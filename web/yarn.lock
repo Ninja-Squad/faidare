@@ -38,10 +38,10 @@
   resolved "https://registry.yarnpkg.com/@trysound/sax/-/sax-0.1.1.tgz#3348564048e7a2d7398c935d466c0414ebb6a669"
   integrity sha512-Z6DoceYb/1xSg5+e+ZlPZ9v0N16ZvZ+wYMraFue4HYrE4ttONKtsvruIRf6t9TBR0YvSOfi1hUU0fJfBLCDYow==
 
-"@types/bootstrap@5.1.9":
-  version "5.1.9"
-  resolved "https://registry.yarnpkg.com/@types/bootstrap/-/bootstrap-5.1.9.tgz#55b9bea862667e351e9873ff94fad7cd0be10c5f"
-  integrity sha512-Tembe6lt7819EUzV5LSG9uuwULm4hdEGV9LZ8QBYpWc0J+a+9DdmJEwZ4FMaXGVJWwumTPSkJ8JQF0/KDAmXYg==
+"@types/bootstrap@5.1.10":
+  version "5.1.10"
+  resolved "https://registry.yarnpkg.com/@types/bootstrap/-/bootstrap-5.1.10.tgz#36d1623fe2500eb1443b740d86215fd3e9b4889d"
+  integrity sha512-N93bSEnlUuRkzZim83hE36dIExrXf+6NlUQRJfOfT7N9kk53j6UtMNXG4TgCUACsmc7XVPwtnJyGVfSrD2KvOA==
   dependencies:
     "@popperjs/core" "^2.9.2"
     "@types/jquery" "*"
@@ -1177,10 +1177,10 @@ leaflet.markercluster@1.5.3:
   resolved "https://registry.yarnpkg.com/leaflet.markercluster/-/leaflet.markercluster-1.5.3.tgz#9cdb52a4eab92671832e1ef9899669e80efc4056"
   integrity sha512-vPTw/Bndq7eQHjLBVlWpnGeLa3t+3zGiuM7fJwCkiMFq+nmRuG3RI3f7f4N4TDX7T4NpbAXpR2+NTRSEGfCSeA==
 
-leaflet@1.7.1:
-  version "1.7.1"
-  resolved "https://registry.yarnpkg.com/leaflet/-/leaflet-1.7.1.tgz#10d684916edfe1bf41d688a3b97127c0322a2a19"
-  integrity sha512-/xwPEBidtg69Q3HlqPdU3DnrXQOvQU/CCHA1tcDQVzOwm91YMYaILjNp7L4Eaw5Z4sOYdbBz6koWyibppd8Zqw==
+leaflet@1.8.0:
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/leaflet/-/leaflet-1.8.0.tgz#4615db4a22a304e8e692cae9270b983b38a2055e"
+  integrity sha512-gwhMjFCQiYs3x/Sf+d49f10ERXaEFCPr+nVTryhAW8DWbMGqJqt9G4XuIaHmFW08zYvhgdzqXGr8AlW8v8dQkA==
 
 lilconfig@^2.0.3:
   version "2.0.3"
@@ -1831,10 +1831,10 @@ sass-loader@12.6.0:
     klona "^2.0.4"
     neo-async "^2.6.2"
 
-sass@1.50.0:
-  version "1.50.0"
-  resolved "https://registry.yarnpkg.com/sass/-/sass-1.50.0.tgz#3e407e2ebc53b12f1e35ce45efb226ea6063c7c8"
-  integrity sha512-cLsD6MEZ5URXHStxApajEh7gW189kkjn4Rc8DQweMyF+o5HF5nfEz8QYLMlPsTOD88DknatTmBWkOcw5/LnJLQ==
+sass@1.50.1:
+  version "1.50.1"
+  resolved "https://registry.yarnpkg.com/sass/-/sass-1.50.1.tgz#e9b078a1748863013c4712d2466ce8ca4e4ed292"
+  integrity sha512-noTnY41KnlW2A9P8sdwESpDmo+KBNkukI1i8+hOK3footBUcohNHtdOJbckp46XO95nuvcHDDZ+4tmOnpK3hjw==
   dependencies:
     chokidar ">=3.0.0 <4.0.0"
     immutable "^4.0.0"
