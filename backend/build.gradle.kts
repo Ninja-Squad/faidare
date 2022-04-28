@@ -123,7 +123,7 @@ dependencies {
     implementation("org.elasticsearch.client:elasticsearch-rest-high-level-client")
 
     // Swagger
-    implementation("org.springdoc:springdoc-openapi-ui:1.6.6")
+    implementation("org.springdoc:springdoc-openapi-ui:1.6.8")
 
     // Others
     implementation("com.google.guava:guava:31.1-jre")
