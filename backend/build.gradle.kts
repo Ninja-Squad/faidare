@@ -10,7 +10,7 @@ buildscript {
 plugins {
     java
     jacoco
-    id("org.springframework.boot") version "2.6.5"
+    id("org.springframework.boot") version "2.6.7"
     id("com.gorylenko.gradle-git-properties") version "2.4.0"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
     id("org.sonarqube")
@@ -114,7 +114,7 @@ dependencies {
     implementation("org.elasticsearch.client:elasticsearch-rest-high-level-client")
 
     // Swagger
-    implementation("org.springdoc:springdoc-openapi-ui:1.6.6")
+    implementation("org.springdoc:springdoc-openapi-ui:1.6.8")
 
     // Others
     implementation("com.google.guava:guava:31.1-jre")
