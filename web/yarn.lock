@@ -89,10 +89,10 @@
   resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.9.tgz#97edc9037ea0c38585320b28964dde3b39e4660d"
   integrity sha512-qcUXuemtEu+E5wZSJHNxUXeCZhAfXKQ41D+duX+VYPde7xyEVZci+/oXKJL13tnRs9lR2pr4fod59GT6/X1/yQ==
 
-"@types/leaflet.markercluster@1.5.0":
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/@types/leaflet.markercluster/-/leaflet.markercluster-1.5.0.tgz#c455e4ae8f238612395cc8de19cc8086db859ce5"
-  integrity sha512-2Qje1CGibdaCZaeCtEycQ/TpX4fsiK81NTmkdHotn0dL/4M1QvmeXiiLAHLnv1GrZBn7DY6mzedBsHmq5REKHA==
+"@types/leaflet.markercluster@1.5.1":
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/@types/leaflet.markercluster/-/leaflet.markercluster-1.5.1.tgz#d039ada408a30bda733b19a24cba89b81f0ace4b"
+  integrity sha512-gzJzP10qO6Zkts5QNVmSAEDLYicQHTEBLT9HZpFrJiSww9eDAs5OWHvIskldf41MvDv1gbMukuEBQEawHn+wtA==
   dependencies:
     "@types/leaflet" "*"
 
@@ -1735,10 +1735,10 @@ safe-buffer@^5.1.0:
   resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.2.1.tgz#1eaf9fa9bdb1fdd4ec75f58f9cdb4e6b7827eec6"
   integrity sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ==
 
-sass-loader@13.0.0:
-  version "13.0.0"
-  resolved "https://registry.yarnpkg.com/sass-loader/-/sass-loader-13.0.0.tgz#0b4bff0289951ed21240bca54453eca3dbda1713"
-  integrity sha512-IHCFecI+rbPvXE2zO/mqdVFe8MU7ElGrwga9hh2H65Ru4iaBJAMRteum1c4Gsxi9Cq1FOtTEDd6+/AEYuQDM4Q==
+sass-loader@13.0.2:
+  version "13.0.2"
+  resolved "https://registry.yarnpkg.com/sass-loader/-/sass-loader-13.0.2.tgz#e81a909048e06520e9f2ff25113a801065adb3fe"
+  integrity sha512-BbiqbVmbfJaWVeOOAu2o7DhYWtcNmTfvroVgFXa6k2hHheMxNAeDHLNoDy/Q5aoaVlz0LH+MbMktKwm9vN/j8Q==
   dependencies:
     klona "^2.0.4"
     neo-async "^2.6.2"
