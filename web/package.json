@@ -20,7 +20,7 @@
     "leaflet": "1.8.0"
   },
   "devDependencies": {
-    "@types/bootstrap": "5.1.13",
+    "@types/bootstrap": "5.2.0",
     "@types/leaflet.markercluster": "1.5.1",
     "autoprefixer": "10.4.7",
     "clean-webpack-plugin": "4.0.0",
@@ -31,11 +31,11 @@
     "postcss": "8.4.14",
     "postcss-loader": "7.0.1",
     "prettier": "2.7.1",
-    "sass": "1.53.0",
+    "sass": "1.54.0",
     "sass-loader": "13.0.2",
     "ts-loader": "9.3.1",
     "typescript": "4.7.4",
-    "webpack": "5.73.0",
+    "webpack": "5.74.0",
     "webpack-cli": "4.10.0"
   },
   "browserslist": [
