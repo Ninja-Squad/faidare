@@ -20,12 +20,12 @@
     "leaflet": "1.8.0"
   },
   "devDependencies": {
-    "@types/bootstrap": "5.2.3",
+    "@types/bootstrap": "5.2.4",
     "@types/leaflet.markercluster": "1.5.1",
-    "autoprefixer": "10.4.8",
+    "autoprefixer": "10.4.11",
     "clean-webpack-plugin": "4.0.0",
     "css-loader": "6.7.1",
-    "css-minimizer-webpack-plugin": "4.0.0",
+    "css-minimizer-webpack-plugin": "4.1.0",
     "leaflet.markercluster": "1.5.3",
     "mini-css-extract-plugin": "2.6.1",
     "postcss": "8.4.16",
