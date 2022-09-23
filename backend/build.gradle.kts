@@ -118,7 +118,7 @@ dependencies {
 
     // Others
     implementation("com.google.guava:guava:31.1-jre")
-    implementation("com.opencsv:opencsv:5.6")
+    implementation("com.opencsv:opencsv:5.7.0")
 
     // Test dependencies
     testImplementation("org.springframework.boot:spring-boot-starter-test")
