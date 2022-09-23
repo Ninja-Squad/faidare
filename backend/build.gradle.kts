@@ -14,7 +14,7 @@ plugins {
     id("com.gorylenko.gradle-git-properties") version "2.4.1"
     id("io.spring.dependency-management") version "1.0.14.RELEASE"
     id("org.sonarqube")
-    id("org.owasp.dependencycheck") version "7.0.0"
+    id("org.owasp.dependencycheck") version "7.2.1"
 }
 
 java {
