@@ -122,5 +122,5 @@ dependencies {
 
     // Test dependencies
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("org.jsoup:jsoup:1.14.3")
+    testImplementation("org.jsoup:jsoup:1.15.3")
 }
