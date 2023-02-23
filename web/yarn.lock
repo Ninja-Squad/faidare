@@ -179,10 +179,17 @@
   dependencies:
     "@types/leaflet" "*"
 
-"@types/leaflet@*", "@types/leaflet@1.9.0":
+"@types/leaflet@*":
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/@types/leaflet/-/leaflet-1.9.0.tgz#8caf452255e16cb15e0eabcb0d2a26793da0a6a2"
   integrity sha512-7LeOSj7EloC5UcyOMo+1kc3S1UT3MjJxwqsMT1d2PTyvQz53w0Y0oSSk9nwZnOZubCmBvpSNGceucxiq+ZPEUw==
+  dependencies:
+    "@types/geojson" "*"
+
+"@types/leaflet@1.9.1":
+  version "1.9.1"
+  resolved "https://registry.yarnpkg.com/@types/leaflet/-/leaflet-1.9.1.tgz#a220706b02c6024951d7fc2959d530c6941c4224"
+  integrity sha512-lYawM3I3lLO6rmBASaqdGgY6zUL4YHr3H79/axx7FNYyPXuj0P1DZHbkNo8Itbv0i7Y9EryLWtDXXROMygXhRA==
   dependencies:
     "@types/geojson" "*"
 
@@ -1787,10 +1794,10 @@ sass-loader@13.2.0:
     klona "^2.0.4"
     neo-async "^2.6.2"
 
-sass@1.58.1:
-  version "1.58.1"
-  resolved "https://registry.yarnpkg.com/sass/-/sass-1.58.1.tgz#17ab0390076a50578ed0733f1cc45429e03405f6"
-  integrity sha512-bnINi6nPXbP1XNRaranMFEBZWUfdW/AF16Ql5+ypRxfTvCRTTKrLsMIakyDcayUt2t/RZotmL4kgJwNH5xO+bg==
+sass@1.58.3:
+  version "1.58.3"
+  resolved "https://registry.yarnpkg.com/sass/-/sass-1.58.3.tgz#2348cc052061ba4f00243a208b09c40e031f270d"
+  integrity sha512-Q7RaEtYf6BflYrQ+buPudKR26/lH+10EmO9bBqbmPh/KeLqv8bjpTNqxe71ocONqXq+jYiCbpPUmQMS+JJPk4A==
   dependencies:
     chokidar ">=3.0.0 <4.0.0"
     immutable "^4.0.0"
