@@ -110,10 +110,10 @@
   resolved "https://registry.yarnpkg.com/@trysound/sax/-/sax-0.2.0.tgz#cccaab758af56761eb7bf37af6f03f326dd798ad"
   integrity sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==
 
-"@types/bootstrap@5.2.7":
-  version "5.2.7"
-  resolved "https://registry.yarnpkg.com/@types/bootstrap/-/bootstrap-5.2.7.tgz#a920df4ea82d8cc605751007f5c9744336842f30"
-  integrity sha512-vWs0HzobIB8Af2F0B1GXpaVLSVn1NWULDYgTIWp08Et/r2B3aAwwhFBeOs/rRFWJA38EZTXkWP3tepIjpQkpLg==
+"@types/bootstrap@5.2.8":
+  version "5.2.8"
+  resolved "https://registry.yarnpkg.com/@types/bootstrap/-/bootstrap-5.2.8.tgz#7000cd03a3aaf9c4f804050ab23a25ba8e9b7eba"
+  integrity sha512-14do+aWZPc1w3G+YevSsy8eas1XEPhTOUNBhQX/r12YKn7ySssATJusBQ/HCQAd2nq54U8vvrftHSb1YpeJUXg==
   dependencies:
     "@popperjs/core" "^2.9.2"
 
@@ -175,10 +175,10 @@
   resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.11.tgz#d421b6c527a3037f7c84433fd2c4229e016863d3"
   integrity sha512-wOuvG1SN4Us4rez+tylwwwCV1psiNVOkJeM3AUWUNWg/jDQY2+HE/444y5gc+jBmRqASOm2Oeh5c1axHobwRKQ==
 
-"@types/leaflet.markercluster@1.5.2":
-  version "1.5.2"
-  resolved "https://registry.yarnpkg.com/@types/leaflet.markercluster/-/leaflet.markercluster-1.5.2.tgz#83ad6f35bc144de942bb5dff78f4bbba3d4fc81d"
-  integrity sha512-Yfi5R0Fb0xc/qotTuqJDAX65XKRt6DauzIdsMTcgrrhgf8DpBOrqPV/jw8/zUjY8FetRd6QdnefNdNJKmG/+zA==
+"@types/leaflet.markercluster@1.5.3":
+  version "1.5.3"
+  resolved "https://registry.yarnpkg.com/@types/leaflet.markercluster/-/leaflet.markercluster-1.5.3.tgz#b3e52ffb1efc18ebdca3da2d6e8a174ec2c2bd07"
+  integrity sha512-G19K7/Nzwvoz9RDKL2/U1RxkdhDqXPDVRokrmI4eNDfSLShlitY6w/hp4bUaMdi2cwyYcNgdNOarpzDHMuSFrQ==
   dependencies:
     "@types/leaflet" "*"
 
@@ -189,10 +189,10 @@
   dependencies:
     "@types/geojson" "*"
 
-"@types/leaflet@1.9.6":
-  version "1.9.6"
-  resolved "https://registry.yarnpkg.com/@types/leaflet/-/leaflet-1.9.6.tgz#d58ecdbe9f1f383cb0a7133a020cd05bfe00a762"
-  integrity sha512-HakGTK5LBBWegNWsAmTlG55zN1zszYec7aG47/z6SzT90bW2vqjmbqk3YKAbrtveO+G7fSTKTYqVbIwAFnTrbg==
+"@types/leaflet@1.9.7":
+  version "1.9.7"
+  resolved "https://registry.yarnpkg.com/@types/leaflet/-/leaflet-1.9.7.tgz#c9a216d77bcdd1f9af4e3100ff3d71cffa437af7"
+  integrity sha512-FOfKB1ALYUDnXkH7LfTFreWiZr9R7GErqGP+8lYQGWr2GFq5+jy3Ih0M7e9j41cvRN65kLALJ4dc43yZwyl/6g==
   dependencies:
     "@types/geojson" "*"
 
@@ -1889,10 +1889,10 @@ sass-loader@13.3.2:
   dependencies:
     neo-async "^2.6.2"
 
-sass@1.69.3:
-  version "1.69.3"
-  resolved "https://registry.yarnpkg.com/sass/-/sass-1.69.3.tgz#f8a0c488697e6419519834a13335e7b65a609c11"
-  integrity sha512-X99+a2iGdXkdWn1akFPs0ZmelUzyAQfvqYc2P/MPTrJRuIRoTffGzT9W9nFqG00S+c8hXzVmgxhUuHFdrwxkhQ==
+sass@1.69.4:
+  version "1.69.4"
+  resolved "https://registry.yarnpkg.com/sass/-/sass-1.69.4.tgz#10c735f55e3ea0b7742c6efa940bce30e07fbca2"
+  integrity sha512-+qEreVhqAy8o++aQfCJwp0sklr2xyEzkm9Pp/Igu9wNPoe7EZEQ8X/MBvvXggI2ql607cxKg/RKOwDj6pp2XDA==
   dependencies:
     chokidar ">=3.0.0 <4.0.0"
     immutable "^4.0.0"
@@ -2155,10 +2155,10 @@ webpack-sources@^3.2.3:
   resolved "https://registry.yarnpkg.com/webpack-sources/-/webpack-sources-3.2.3.tgz#2d4daab8451fd4b240cc27055ff6a0c2ccea0cde"
   integrity sha512-/DyMEOrDgLKKIG0fmvtz+4dUX/3Ghozwgm6iPp8KRhvn+eQf9+Q7GWxVNMk3+uCPWfdXYC4ExGBckIXdFEfH1w==
 
-webpack@5.88.2:
-  version "5.88.2"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.88.2.tgz#f62b4b842f1c6ff580f3fcb2ed4f0b579f4c210e"
-  integrity sha512-JmcgNZ1iKj+aiR0OvTYtWQqJwq37Pf683dY9bVORwVbUrDhLhdn/PlO2sHsFHPkj7sHNQF3JwaAkp49V+Sq1tQ==
+webpack@5.89.0:
+  version "5.89.0"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.89.0.tgz#56b8bf9a34356e93a6625770006490bf3a7f32dc"
+  integrity sha512-qyfIC10pOr70V+jkmud8tMfajraGCZMBWJtrmuBymQKCrLTRejBI8STDp1MCyZu/QTdZSeacCQYpYNQVOzX5kw==
   dependencies:
     "@types/eslint-scope" "^3.7.3"
     "@types/estree" "^1.0.0"
