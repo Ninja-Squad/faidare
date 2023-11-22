@@ -10,7 +10,7 @@ buildscript {
 plugins {
     java
     jacoco
-    id("org.springframework.boot") version "2.7.18"
+    id("org.springframework.boot") version "3.1.5"
     id("com.gorylenko.gradle-git-properties") version "2.5.0"
     id("io.spring.dependency-management") version "1.1.7"
     id("org.sonarqube")
@@ -96,7 +96,7 @@ tasks {
     }
 }
 
-extra["springCloudVersion"] = "2021.0.9"
+extra["springCloudVersion"] = "2022.0.4"
 dependencyManagement {
     imports {
         mavenBom("org.springframework.cloud:spring-cloud-dependencies:${property("springCloudVersion")}")
@@ -104,15 +104,6 @@ dependencyManagement {
 }
 
 dependencies {
-    constraints {
-        implementation("org.apache.logging.log4j:log4j-core") {
-            version {
-                strictly("[2.17, 3[")
-                prefer("2.17.0")
-            }
-            because("CVE-2021-44228, CVE-2021-45046, CVE-2021-45105: Log4j vulnerable to remote code execution and other critical security vulnerabilities")
-        }
-    }
     // Spring
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 
@@ -120,12 +111,13 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-security")
-    implementation("org.springframework.cloud:spring-cloud-starter-config")
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
+    implementation("org.springframework.boot:spring-boot-starter-data-elasticsearch")
 
     // Elasticsearch
     implementation("org.elasticsearch:elasticsearch:7.17.28")
     implementation("org.elasticsearch.client:elasticsearch-rest-high-level-client:7.17.28")
+    implementation("org.springframework.cloud:spring-cloud-starter-config")
 
     // Swagger
     implementation("org.springdoc:springdoc-openapi-ui:1.8.0")
