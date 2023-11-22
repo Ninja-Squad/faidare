@@ -31,7 +31,7 @@ logging:
     org.springframework:
       boot.web.embedded.tomcat.TomcatWebServer: INFO
       web.client.RestTemplate: DEBUG
-    fr.inra: DEBUG
+    fr.inrae: DEBUG
 
 faidare:
   elasticsearch-indexing-template:
