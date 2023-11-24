@@ -9,6 +9,8 @@ import fr.inrae.urgi.faidare.dao.v2.GermplasmCriteria;
 import fr.inrae.urgi.faidare.dao.v2.GermplasmMcpdDao;
 import fr.inrae.urgi.faidare.dao.v2.GermplasmV2Dao;
 import fr.inrae.urgi.faidare.domain.brapi.v2.GermplasmV2VO;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Pageable;
@@ -22,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-//@Tag(name = "Breeding API", description = "BrAPI endpoint")
+@Tag(name = "Breeding API", description = "BrAPI endpoint")
 @RestController
 @RequestMapping({"/brapi/v2"})
 public class GermplasmV2Controller {
@@ -52,6 +54,7 @@ public class GermplasmV2Controller {
         return response;
     }
 
+    @Operation(summary = "Search germplasm")
     @GetMapping("/germplasm")
     public BrapiListResponse<GermplasmV2VO> germplasm(
                                @RequestParam MultiValueMap<String, String> parameters){
