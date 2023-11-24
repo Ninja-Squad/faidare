@@ -108,11 +108,13 @@ server:
     context-path: /faidare-dev
 
 springdoc:
-  packagesToScan: fr.inra.urgi.faidare.api
-  pathsToMatch: /faidare/**, /brapi/**
+  packagesToScan: fr.inrae.urgi.faidare.api
+  pathsToMatch: /brapi/**
   swagger-ui:
     operationsSorter: alpha
     tagsSorter: alpha
+    path: /swagger-ui.html
+    doc-expansion: none
 
 ---
 spring:

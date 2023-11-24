@@ -109,8 +109,7 @@ dependencies {
 
     implementation("org.springframework.cloud:spring-cloud-starter-config")
 
-    // Swagger
-    implementation("org.springdoc:springdoc-openapi-ui:1.6.11")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0")
 
     // Others
     implementation("com.google.guava:guava:31.1-jre")
