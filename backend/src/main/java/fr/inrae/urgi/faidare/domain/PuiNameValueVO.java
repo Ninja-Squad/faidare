@@ -1,5 +1,7 @@
 package fr.inrae.urgi.faidare.domain;
 
+import java.util.Objects;
+
 public class PuiNameValueVO {
 
     private String name;
@@ -33,4 +35,16 @@ public class PuiNameValueVO {
         this.value = value;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PuiNameValueVO that = (PuiNameValueVO) o;
+        return Objects.equals(pui, that.pui);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(pui);
+    }
 }

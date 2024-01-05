@@ -128,9 +128,7 @@ public final class GermplasmModel {
     }
 
     private boolean isProgenyPresent() {
-        // FIXME JBN uncomment this once germplasm has children
-        // return germplasm.getChildren() != null && !germplasm.getChildren().isEmpty();
-        return false;
+        return germplasm.getChildren() != null && !germplasm.getChildren().isEmpty();
     }
 
     private boolean isPedigreePresent() {

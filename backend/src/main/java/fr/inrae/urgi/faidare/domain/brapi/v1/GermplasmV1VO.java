@@ -24,6 +24,7 @@ public final class GermplasmV1VO {
     private String ancestralData;
     private String biologicalStatusOfAccessionCode;
     private GermplasmInstituteVO breeder;
+    private List<GenealogyVO> children;
     private SiteVO collectingSite; //GnpIS
     private List<CollPopVO> collection;
     private GermplasmInstituteVO collector;
@@ -161,6 +162,14 @@ public final class GermplasmV1VO {
 
     public void setBreeder(GermplasmInstituteVO breeder) {
         this.breeder = breeder;
+    }
+
+    public List<GenealogyVO> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<GenealogyVO> children) {
+        this.children = children;
     }
 
     public SiteVO getCollectingSite() {
