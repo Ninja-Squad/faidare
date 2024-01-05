@@ -3,6 +3,7 @@ package fr.inrae.urgi.faidare.domain.brapi.v2;
 import fr.inrae.urgi.faidare.domain.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
 
 import java.util.List;
 import java.util.Objects;
@@ -106,7 +107,10 @@ public class GermplasmV2VO {
 
     private String seedSourceDescription;
 
-    private String source; //GnpIS
+    private String source;
+
+    @Field("schema:includedInDataCatalog")
+    private String sourceUri;
 
     private String species;
 
@@ -483,6 +487,14 @@ public class GermplasmV2VO {
         this.source = source;
     }
 
+    public String getSourceUri() {
+        return sourceUri;
+    }
+
+    public void setSourceUri(String sourceUri) {
+        this.sourceUri = sourceUri;
+    }
+
     public String getSpecies() {
         return species;
     }
@@ -584,12 +596,12 @@ public class GermplasmV2VO {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         GermplasmV2VO that = (GermplasmV2VO) o;
-        return Objects.equals(accessionNumber, that.accessionNumber) && Objects.equals(acquisitionDate, that.acquisitionDate) && Objects.equals(biologicalStatusOfAccessionCode, that.biologicalStatusOfAccessionCode) && Objects.equals(biologicalStatusOfAccessionDescription, that.biologicalStatusOfAccessionDescription) && Objects.equals(breeder, that.breeder) && Objects.equals(breedingMethodDbId, that.breedingMethodDbId) && Objects.equals(breedingMethodName, that.breedingMethodName) && Objects.equals(children, that.children) && Objects.equals(collectingSite, that.collectingSite) && Objects.equals(collection, that.collection) && Objects.equals(collector, that.collector) && Objects.equals(comment, that.comment) && Objects.equals(commonCropName, that.commonCropName) && Objects.equals(countryOfOriginCode, that.countryOfOriginCode) && Objects.equals(defaultDisplayName, that.defaultDisplayName) && Objects.equals(descriptors, that.descriptors) && Objects.equals(distributors, that.distributors) && Objects.equals(documentationURL, that.documentationURL) && Objects.equals(donors, that.donors) && Objects.equals(evaluationSites, that.evaluationSites) && Objects.equals(externalReferences, that.externalReferences) && Objects.equals(genealogy, that.genealogy) && Objects.equals(geneticNature, that.geneticNature) && Objects.equals(genusSpecies, that.genusSpecies) && Objects.equals(genusSpeciesSubtaxa, that.genusSpeciesSubtaxa) && Objects.equals(germplasmDbId, that.germplasmDbId) && Objects.equals(germplasmName, that.germplasmName) && Objects.equals(germplasmOrigin, that.germplasmOrigin) && Objects.equals(germplasmPUI, that.germplasmPUI) && Objects.equals(germplasmPreprocessing, that.germplasmPreprocessing) && Objects.equals(groupId, that.groupId) && Objects.equals(holdingInstitute, that.holdingInstitute) && Objects.equals(holdingGenbank, that.holdingGenbank) && Objects.equals(instituteCode, that.instituteCode) && Objects.equals(instituteName, that.instituteName) && Objects.equals(originSite, that.originSite) && Objects.equals(panel, that.panel) && Objects.equals(photo, that.photo) && Objects.equals(population, that.population) && Objects.equals(presenceStatus, that.presenceStatus) && Objects.equals(seedSource, that.seedSource) && Objects.equals(seedSourceDescription, that.seedSourceDescription) && Objects.equals(source, that.source) && Objects.equals(species, that.species) && Objects.equals(speciesAuthority, that.speciesAuthority) && Objects.equals(storageTypes, that.storageTypes) && Objects.equals(studyDbIds, that.studyDbIds) && Objects.equals(subtaxa, that.subtaxa) && Objects.equals(subtaxaAuthority, that.subtaxaAuthority) && Objects.equals(synonyms, that.synonyms) && Objects.equals(taxonComment, that.taxonComment) && Objects.equals(taxonCommonNames, that.taxonCommonNames) && Objects.equals(taxonIds, that.taxonIds) && Objects.equals(taxonSynonyms, that.taxonSynonyms) && Objects.equals(typeOfGermplasmStorageCode, that.typeOfGermplasmStorageCode);
+        return Objects.equals(accessionNumber, that.accessionNumber) && Objects.equals(acquisitionDate, that.acquisitionDate) && Objects.equals(biologicalStatusOfAccessionCode, that.biologicalStatusOfAccessionCode) && Objects.equals(biologicalStatusOfAccessionDescription, that.biologicalStatusOfAccessionDescription) && Objects.equals(breeder, that.breeder) && Objects.equals(breedingMethodDbId, that.breedingMethodDbId) && Objects.equals(breedingMethodName, that.breedingMethodName) && Objects.equals(children, that.children) && Objects.equals(collectingSite, that.collectingSite) && Objects.equals(collection, that.collection) && Objects.equals(collector, that.collector) && Objects.equals(comment, that.comment) && Objects.equals(commonCropName, that.commonCropName) && Objects.equals(countryOfOriginCode, that.countryOfOriginCode) && Objects.equals(defaultDisplayName, that.defaultDisplayName) && Objects.equals(descriptors, that.descriptors) && Objects.equals(distributors, that.distributors) && Objects.equals(documentationURL, that.documentationURL) && Objects.equals(donors, that.donors) && Objects.equals(evaluationSites, that.evaluationSites) && Objects.equals(externalReferences, that.externalReferences) && Objects.equals(genealogy, that.genealogy) && Objects.equals(geneticNature, that.geneticNature) && Objects.equals(genusSpecies, that.genusSpecies) && Objects.equals(genusSpeciesSubtaxa, that.genusSpeciesSubtaxa) && Objects.equals(germplasmDbId, that.germplasmDbId) && Objects.equals(germplasmName, that.germplasmName) && Objects.equals(germplasmOrigin, that.germplasmOrigin) && Objects.equals(germplasmPUI, that.germplasmPUI) && Objects.equals(germplasmPreprocessing, that.germplasmPreprocessing) && Objects.equals(groupId, that.groupId) && Objects.equals(holdingInstitute, that.holdingInstitute) && Objects.equals(holdingGenbank, that.holdingGenbank) && Objects.equals(instituteCode, that.instituteCode) && Objects.equals(instituteName, that.instituteName) && Objects.equals(originSite, that.originSite) && Objects.equals(panel, that.panel) && Objects.equals(photo, that.photo) && Objects.equals(population, that.population) && Objects.equals(presenceStatus, that.presenceStatus) && Objects.equals(seedSource, that.seedSource) && Objects.equals(seedSourceDescription, that.seedSourceDescription) && Objects.equals(source, that.source) && Objects.equals(sourceUri, that.sourceUri) && Objects.equals(species, that.species) && Objects.equals(speciesAuthority, that.speciesAuthority) && Objects.equals(storageTypes, that.storageTypes) && Objects.equals(studyDbIds, that.studyDbIds) && Objects.equals(subtaxa, that.subtaxa) && Objects.equals(subtaxaAuthority, that.subtaxaAuthority) && Objects.equals(synonyms, that.synonyms) && Objects.equals(taxonComment, that.taxonComment) && Objects.equals(taxonCommonNames, that.taxonCommonNames) && Objects.equals(taxonIds, that.taxonIds) && Objects.equals(taxonSynonyms, that.taxonSynonyms) && Objects.equals(typeOfGermplasmStorageCode, that.typeOfGermplasmStorageCode);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(accessionNumber, acquisitionDate, biologicalStatusOfAccessionCode, biologicalStatusOfAccessionDescription, breeder, breedingMethodDbId, breedingMethodName, children, collectingSite, collection, collector, comment, commonCropName, countryOfOriginCode, defaultDisplayName, descriptors, distributors, documentationURL, donors, evaluationSites, externalReferences, genealogy, geneticNature, genusSpecies, genusSpeciesSubtaxa, germplasmDbId, germplasmName, germplasmOrigin, germplasmPUI, germplasmPreprocessing, groupId, holdingInstitute, holdingGenbank, instituteCode, instituteName, originSite, panel, photo, population, presenceStatus, seedSource, seedSourceDescription, source, species, speciesAuthority, storageTypes, studyDbIds, subtaxa, subtaxaAuthority, synonyms, taxonComment, taxonCommonNames, taxonIds, taxonSynonyms, typeOfGermplasmStorageCode);
+        return Objects.hash(accessionNumber, acquisitionDate, biologicalStatusOfAccessionCode, biologicalStatusOfAccessionDescription, breeder, breedingMethodDbId, breedingMethodName, children, collectingSite, collection, collector, comment, commonCropName, countryOfOriginCode, defaultDisplayName, descriptors, distributors, documentationURL, donors, evaluationSites, externalReferences, genealogy, geneticNature, genusSpecies, genusSpeciesSubtaxa, germplasmDbId, germplasmName, germplasmOrigin, germplasmPUI, germplasmPreprocessing, groupId, holdingInstitute, holdingGenbank, instituteCode, instituteName, originSite, panel, photo, population, presenceStatus, seedSource, seedSourceDescription, source, sourceUri, species, speciesAuthority, storageTypes, studyDbIds, subtaxa, subtaxaAuthority, synonyms, taxonComment, taxonCommonNames, taxonIds, taxonSynonyms, typeOfGermplasmStorageCode);
     }
 
     @Override
@@ -638,6 +650,7 @@ public class GermplasmV2VO {
                 ", seedSource='" + seedSource + '\'' +
                 ", seedSourceDescription='" + seedSourceDescription + '\'' +
                 ", source='" + source + '\'' +
+                ", sourceUri='" + sourceUri + '\'' +
                 ", species='" + species + '\'' +
                 ", speciesAuthority='" + speciesAuthority + '\'' +
                 ", storageTypes=" + storageTypes +

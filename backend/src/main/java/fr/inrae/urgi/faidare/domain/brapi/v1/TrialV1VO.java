@@ -3,6 +3,7 @@ package fr.inrae.urgi.faidare.domain.brapi.v1;
 import fr.inrae.urgi.faidare.domain.ContactVO;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
 
 import java.util.List;
 import java.util.Objects;
@@ -29,6 +30,10 @@ public class TrialV1VO {
     private String programDbId;
     private String programName;
     private String dataSetAuthorship;
+
+    @Field("schema:includedInDataCatalog")
+    private String sourceUri;
+
     private String startDate;
     private List<ContactVO> contact;
     private List<String> studyDbIds;
@@ -121,6 +126,14 @@ public class TrialV1VO {
 
     public void setProgramName(String programName) {
         this.programName = programName;
+    }
+
+    public String getSourceUri() {
+        return sourceUri;
+    }
+
+    public void setSourceUri(String sourceUri) {
+        this.sourceUri = sourceUri;
     }
 
     public String getStartDate() {
