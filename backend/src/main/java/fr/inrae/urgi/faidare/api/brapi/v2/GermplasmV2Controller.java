@@ -5,9 +5,11 @@ import java.io.IOException;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import fr.inrae.urgi.faidare.dao.v2.CollectionV2Dao;
 import fr.inrae.urgi.faidare.dao.v2.GermplasmCriteria;
 import fr.inrae.urgi.faidare.dao.v2.GermplasmMcpdDao;
 import fr.inrae.urgi.faidare.dao.v2.GermplasmV2Dao;
+import fr.inrae.urgi.faidare.domain.CollPopVO;
 import fr.inrae.urgi.faidare.domain.brapi.v2.GermplasmV2VO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -31,10 +33,13 @@ public class GermplasmV2Controller {
 
     private final GermplasmV2Dao germplasmDao;
 
+    private final CollectionV2Dao collectionDao;
+
     private final GermplasmMcpdDao germplasmMcpdDao;
 
-    public GermplasmV2Controller(GermplasmV2Dao germplasmDao, GermplasmMcpdDao germplasmMcpdDao) {
+    public GermplasmV2Controller(GermplasmV2Dao germplasmDao, CollectionV2Dao collectionDao, GermplasmMcpdDao germplasmMcpdDao) {
         this.germplasmDao = germplasmDao;
+        this.collectionDao = collectionDao;
         this.germplasmMcpdDao = germplasmMcpdDao;
     }
 
@@ -54,10 +59,9 @@ public class GermplasmV2Controller {
         return response;
     }
 
-    @Operation(summary = "Search germplasm")
     @GetMapping("/germplasm")
     public BrapiListResponse<GermplasmV2VO> germplasm(
-                               @RequestParam MultiValueMap<String, String> parameters){
+        @RequestParam MultiValueMap<String, String> parameters){
         //TODO: this could be replaced with  @RequestParam GermplasmCriteria gCrit) to be adjusted/tested
         GermplasmCriteria gCrit = new GermplasmCriteria();
         if (parameters.get("accessionNumber") != null ){ gCrit.setAccessionNumber(parameters.get("accessionNumber")); }
@@ -101,6 +105,11 @@ public class GermplasmV2Controller {
 
 
 
+    @GetMapping("/collection")
+    public BrapiListResponse<CollPopVO> getCollections(){
+        return collectionDao.getAllCollections();
+
+    }
     /*
     @GetMapping("/germplasmAttribute")
     public List<SearchHit<GermplasmAttributeV2VO>> germplasmAttribute(@RequestParam(value = "attributeValueDbId", defaultValue = "") String attributeValueDbId,

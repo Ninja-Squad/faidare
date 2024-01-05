@@ -8,6 +8,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.inrae.urgi.faidare.api.brapi.v2.BrapiListResponse;
 import fr.inrae.urgi.faidare.api.brapi.v2.BrapiSingleResponse;
 import fr.inrae.urgi.faidare.dao.v1.GermplasmV1Dao;
+import fr.inrae.urgi.faidare.dao.v2.CollectionV2Dao;
+import fr.inrae.urgi.faidare.domain.CollPopVO;
 import fr.inrae.urgi.faidare.domain.brapi.v1.GermplasmV1VO;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
@@ -24,12 +26,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping({"/brapi/v1"})
 public class GermplasmV1Controller {
-
     private final GermplasmV1Dao germplasmDao;
+    private final CollectionV2Dao collectionDao;
 
-    public GermplasmV1Controller(GermplasmV1Dao germplasmDao) {
+
+    public GermplasmV1Controller(GermplasmV1Dao germplasmDao, CollectionV2Dao collectionDao) {
         this.germplasmDao = germplasmDao;
+        this.collectionDao = collectionDao;
     }
+
+
+
 
     @Value("classpath:calls.json")
     Resource serverInfoFile;
@@ -57,6 +64,11 @@ public class GermplasmV1Controller {
     }
 
     //GemplasmMCPD is assumed to be broken/not loaded and not used in curent FAIDARE cards
+
+    @GetMapping("/collection")
+    public BrapiListResponse<CollPopVO> getAllCollections(){
+        return collectionDao.getAllCollections();
+    }
 
 
 }
