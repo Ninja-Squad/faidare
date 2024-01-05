@@ -3,6 +3,7 @@ package fr.inrae.urgi.faidare.domain.brapi.v2;
 import fr.inrae.urgi.faidare.domain.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
 
 import java.util.List;
 import java.util.Set;
@@ -73,19 +74,14 @@ public final class StudyV2VO {
     @Id
     private String _id;
 
-    public String get_id() {
-        return _id;
-    }
-
-    public void set_id(String _id) {
-        this._id = _id;
-    }
-
     private String studyDbId;
 
     private String studyDescription;
 
     private String studyName;
+
+    @Field("schema:includedInDataCatalog")
+    private String sourceUri;
 
     private String studyPUI;
 
@@ -97,6 +93,13 @@ public final class StudyV2VO {
 
     private String trialName;
 
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
+    }
 
     public boolean isActive() {
         return active;
@@ -272,6 +275,14 @@ public final class StudyV2VO {
 
     public void setSeasons(List<String> seasons) {
         this.seasons = seasons;
+    }
+
+    public String getSourceUri() {
+        return sourceUri;
+    }
+
+    public void setSourceUri(String sourceUri) {
+        this.sourceUri = sourceUri;
     }
 
     public String getStartDate() {

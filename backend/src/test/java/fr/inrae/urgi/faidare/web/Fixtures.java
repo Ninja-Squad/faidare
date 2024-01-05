@@ -150,8 +150,7 @@ public class Fixtures {
         germplasm.setSpecies("Species 1");
         germplasm.setSpeciesAuthority("Species Auth");
 
-        // FIXME JBN uncomment this once germplasm has sourceUri
-        // germplasm.setSourceUri("https://urgi.versailles.inrae.fr/gnpis");
+        germplasm.setSourceUri("https://urgi.versailles.inrae.fr/gnpis");
 
         germplasm.setSubtaxa("Subtaxa 1");
         germplasm.setGenusSpeciesSubtaxa("Triticum aestivum subsp. aestivum");

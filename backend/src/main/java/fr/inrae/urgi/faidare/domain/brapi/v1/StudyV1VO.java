@@ -3,6 +3,7 @@ package fr.inrae.urgi.faidare.domain.brapi.v1;
 import fr.inrae.urgi.faidare.domain.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
 
 import java.util.List;
 import java.util.Set;
@@ -65,6 +66,9 @@ public final class StudyV1VO {
     private String programName;
 
     private List<String> seasons;
+
+    @Field("schema:includedInDataCatalog")
+    private String sourceUri;
 
     private String startDate;
 
@@ -247,6 +251,14 @@ public final class StudyV1VO {
 
     public void setSeasons(List<String> seasons) {
         this.seasons = seasons;
+    }
+
+    public String getSourceUri() {
+        return sourceUri;
+    }
+
+    public void setSourceUri(String sourceUri) {
+        this.sourceUri = sourceUri;
     }
 
     public String getStartDate() {

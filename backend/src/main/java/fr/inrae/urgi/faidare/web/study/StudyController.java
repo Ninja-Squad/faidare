@@ -83,9 +83,7 @@ public class StudyController {
                                 "model",
                                 new StudyModel(
                                     study,
-                                    // FIXME JBN replace the next line by the commented-out one when study has a sourceUri
-                                    faidareProperties.getByUri("https://urgi.versailles.inrae.fr/gnpis"),
-                                    // faidareProperties.getByUri(study.getSourceUri()),
+                                    faidareProperties.getByUri(study.getSourceUri()),
                                     germplasms,
                                     variables,
                                     trials,

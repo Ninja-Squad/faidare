@@ -97,9 +97,7 @@ public class StudyControllerTest {
 
         dataSource = Fixtures.createDataSource();
 
-        // FIXME JBN uncomment this line when study has sourceUri
-        // when(mockFaidareProperties.getByUri(study.getSourceUri())).thenReturn(dataSource);
-        when(mockFaidareProperties.getByUri(any())).thenReturn(dataSource);
+        when(mockFaidareProperties.getByUri(study.getSourceUri())).thenReturn(dataSource);
 
         location = Fixtures.createSite();
         when(mockLocationRepository.getByLocationDbId(study.getLocationDbId())).thenReturn(location);
