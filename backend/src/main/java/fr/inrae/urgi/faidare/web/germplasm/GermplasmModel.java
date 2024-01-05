@@ -90,9 +90,7 @@ public final class GermplasmModel {
     }
 
     private boolean isCollectingSitePresent() {
-        // FIXME JBN uncomment this once germplasm has a collecting site
-        // return this.germplasm.getCollectingSite() != null && StringUtils.hasText(this.germplasm.getCollectingSite().getSiteName());
-        return false;
+        return this.germplasm.getCollectingSite() != null && StringUtils.hasText(this.germplasm.getCollectingSite().getSiteName());
     }
 
     private boolean isCollectorInstitutePresent() {
@@ -151,10 +149,9 @@ public final class GermplasmModel {
 
     public List<MapLocation> getMapLocations() {
         List<SiteVO> sites = new ArrayList<>();
-        // FIXME JBN uncomment this once germplasm has a collecting site
-        // if (germplasm.getCollectingSite() != null) {
-        //     sites.add(germplasm.getCollectingSite());
-        // }
+        if (germplasm.getCollectingSite() != null) {
+            sites.add(germplasm.getCollectingSite());
+        }
         if (germplasm.getOriginSite() != null) {
             sites.add(germplasm.getOriginSite());
         }

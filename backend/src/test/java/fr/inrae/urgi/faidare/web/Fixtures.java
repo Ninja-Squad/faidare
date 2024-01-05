@@ -189,14 +189,13 @@ public class Fixtures {
 //        collector.setAccessionNumber("567");
 //        germplasm.setCollector(collector);
 
-        // FIXME JBN uncomment this once germplasm has collecting site
-//        SiteVO collectingSite = new SiteVO();
-//        collectingSite.setSiteId("1235");
-//        collectingSite.setSiteName("St Just");
-//        collectingSite.setSiteType("Collecting site");
-//        collectingSite.setLatitude(48.0);
-//        collectingSite.setLongitude(13.0);
-//        germplasm.setCollectingSite(collectingSite);
+        SiteVO collectingSite = new SiteVO();
+        collectingSite.setSiteId("1235");
+        collectingSite.setSiteName("St Just");
+        collectingSite.setSiteType("Collecting site");
+        collectingSite.setLatitude(48.0);
+        collectingSite.setLongitude(13.0);
+        germplasm.setCollectingSite(collectingSite);
 
         germplasm.setAcquisitionDate("In the summer");
 
@@ -325,7 +324,7 @@ public class Fixtures {
     }
 
     private static CollPopVO createPopulation1() {
-        CollPopVO result = new CollPopVO();
+        CollPopVO result = new CollPopVO("Population 1", "collpop1");
         result.setName("Population 1");
         result.setType("Pop Type 1");
         result.setGermplasmCount(3);
@@ -334,7 +333,7 @@ public class Fixtures {
     }
 
     private static CollPopVO createPopulation2() {
-        CollPopVO result = new CollPopVO();
+        CollPopVO result = new CollPopVO("Population 2", "collpop2");
         result.setName("Population 2");
         result.setGermplasmCount(3);
         PuiNameValueVO puiNameValueVO = createPuiNameValueVO();
@@ -344,21 +343,21 @@ public class Fixtures {
     }
 
     private static CollPopVO createPopulation3() {
-        CollPopVO result = new CollPopVO();
+        CollPopVO result = new CollPopVO("Population 3", "collpop3");
         result.setName("Population 3");
         result.setGermplasmCount(5);
         return result;
     }
 
     private static CollPopVO createCollection() {
-        CollPopVO result = new CollPopVO();
+        CollPopVO result = new CollPopVO("Collection 1", "collpop4");
         result.setName("Collection 1");
         result.setGermplasmCount(7);
         return result;
     }
 
     private static CollPopVO createPanel() {
-        CollPopVO result = new CollPopVO();
+        CollPopVO result = new CollPopVO("The_panel_1", "collpop5");
         result.setName("The_panel_1");
         result.setGermplasmCount(2);
         return result;
