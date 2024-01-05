@@ -35,7 +35,7 @@ public class StudyV2DaoCustomImpl implements StudyV2DaoCustom {
 
         if (studyCriteria.getGermplasmDbIds() != null
                 && !studyCriteria.getGermplasmDbIds().isEmpty()) {
-            esCrit.and(new Criteria("germplasmDbId").in(studyCriteria.getGermplasmDbIds()));
+            esCrit.and(new Criteria("germplasmDbIds").in(studyCriteria.getGermplasmDbIds()));
         }
 
         if (studyCriteria.getGermplasmNames() != null
