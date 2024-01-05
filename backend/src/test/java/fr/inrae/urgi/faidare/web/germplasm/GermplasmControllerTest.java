@@ -116,8 +116,7 @@ public class GermplasmControllerTest {
 
     @Test
     void shouldDisplayGermplasmWithNullCollector() throws Exception {
-        // FIXME JBN uncomment this line when germplasm has collector
-        // germplasm.setCollector(null);
+        germplasm.setCollector(null);
 
         mockMvc.perform(get("/germplasms/{id}", germplasm.getGermplasmDbId()))
                .andExpect(status().isOk())
