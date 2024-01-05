@@ -5,12 +5,14 @@ import com.google.common.collect.Sets;
 import fr.inrae.urgi.faidare.config.DataSource;
 import fr.inrae.urgi.faidare.config.FaidareProperties;
 import fr.inrae.urgi.faidare.dao.XRefDocumentDao;
+import fr.inrae.urgi.faidare.dao.v1.GermplasmAttributeV1Dao;
 import fr.inrae.urgi.faidare.dao.v1.GermplasmPedigreeV1Dao;
 import fr.inrae.urgi.faidare.dao.v1.GermplasmV1Dao;
 import fr.inrae.urgi.faidare.dao.v2.GermplasmMcpdDao;
 import fr.inrae.urgi.faidare.domain.GermplasmMcpdVO;
 import fr.inrae.urgi.faidare.domain.XRefDocumentVO;
 import fr.inrae.urgi.faidare.domain.brapi.GermplasmSitemapVO;
+import fr.inrae.urgi.faidare.domain.brapi.v1.GermplasmAttributeV1VO;
 import fr.inrae.urgi.faidare.domain.brapi.v1.GermplasmV1VO;
 import fr.inrae.urgi.faidare.web.Fixtures;
 import org.junit.jupiter.api.BeforeEach;
@@ -24,12 +26,11 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import static fr.inrae.urgi.faidare.web.Fixtures.htmlContent;
-import static org.mockito.ArgumentMatchers.*;
-import static org.mockito.Mockito.verify;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
@@ -58,9 +59,8 @@ public class GermplasmControllerTest {
     @MockBean
     private XRefDocumentDao mockXRefDocumentRepository;
 
-    // FIXME JBN uncomment this line when germplasm attribute DAO is implemented
-    // @MockBean
-    // private GermplasmAttributeRepository mockGermplasmAttributeRepository;
+    @MockBean
+    private GermplasmAttributeV1Dao mockGermplasmAttributeRepository;
 
     @MockBean
     private GermplasmMcpdDao mockGermplasmMcpdRepository;
@@ -90,9 +90,8 @@ public class GermplasmControllerTest {
         // when(mockFaidareProperties.getByUri(germplasm.getSourceUri())).thenReturn(dataSource);
         when(mockFaidareProperties.getByUri(any())).thenReturn(dataSource);
 
-        // FIXME JBN uncomment this when germplasm attribute DAO is implemented
-        // List<GermplasmAttributeValueListVO> attributes = Arrays.asList(Fixtures.createGermplasmAttributeValueList());
-        // when(mockGermplasmAttributeRepository.find(any())).thenReturn(new PaginatedList<>(null, attributes));
+        GermplasmAttributeV1VO attribute = Fixtures.createGermplasmAttribute();
+        when(mockGermplasmAttributeRepository.getByGermplasmDbId(germplasm.getGermplasmDbId())).thenReturn(attribute);
     }
 
     @Test
