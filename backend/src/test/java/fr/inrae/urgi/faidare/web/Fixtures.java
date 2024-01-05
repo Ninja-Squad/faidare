@@ -179,15 +179,14 @@ public class Fixtures {
 
         germplasm.setPresenceStatus("Maintained");
 
-        // FIXME JBN uncomment this once germplasm has collector
-//        GermplasmInstituteVO collector = new GermplasmInstituteVO();
-//        collector.setMaterialType("Fork");
-//        collector.setCollectors("Joe, Jack, William, Averell");
-//        InstituteVO collectingInstitute = new InstituteVO();
-//        collectingInstitute.setInstituteName("Ninja Squad");
-//        collector.setInstitute(collectingInstitute);
-//        collector.setAccessionNumber("567");
-//        germplasm.setCollector(collector);
+        GermplasmInstituteVO collector = new GermplasmInstituteVO();
+        collector.setMaterialType("Fork");
+        collector.setCollectors("Joe, Jack, William, Averell");
+        InstituteVO collectingInstitute = new InstituteVO();
+        collectingInstitute.setInstituteName("Ninja Squad");
+        collector.setInstitute(collectingInstitute);
+        collector.setAccessionNumber("567");
+        germplasm.setCollector(collector);
 
         SiteVO collectingSite = new SiteVO();
         collectingSite.setSiteId("1235");
@@ -212,8 +211,7 @@ public class Fixtures {
 
         germplasm.setDonors(List.of(createDonor()));
 
-        // FIXME JBN uncomment this once germplasm has distributors
-        // germplasm.setDistributors(List.of(createDistributor()));
+        germplasm.setDistributors(List.of(createDistributor()));
 
         // FIXME JBN uncomment this once germplasm has children
         // germplasm.setChildren(List.of(createChild(), createChild()));

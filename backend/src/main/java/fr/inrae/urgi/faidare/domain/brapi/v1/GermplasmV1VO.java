@@ -23,22 +23,23 @@ public final class GermplasmV1VO {
     private List<String> alternateIDs;
     private String ancestralData;
     private String biologicalStatusOfAccessionCode;
+    private GermplasmInstituteVO breeder;
     private SiteVO collectingSite; //GnpIS
     private List<CollPopVO> collection;
+    private GermplasmInstituteVO collector;
     private String commonCropName;
     private String countryOfOriginCode;
-
+    private List<GermplasmInstituteVO> distributors;
     //private List<GermplasmInstitute> breedingInstitutes;
     //private GermplasmCollectingInfo collectingInfo;
     private String defaultDisplayName;
     private String documentationURL;
+    private List<DonorVO> donors;
+    private List<SiteVO> evaluationSites; //GnpIS
     private String genus;
     private String genusSpecies; //GnpIS
     private String genusSpeciesSubtaxa; //GnpIS
     private String germplasmDbId;
-    private List<DonorVO> donors;
-    private List<SiteVO> evaluationSites; //GnpIS
-
     //private List<DonorInfoVO> donorInfo; TODO activate
     private String germplasmName;
     private String germplasmPUI;
@@ -154,6 +155,14 @@ public final class GermplasmV1VO {
         this.biologicalStatusOfAccessionCode = biologicalStatusOfAccessionCode;
     }
 
+    public GermplasmInstituteVO getBreeder() {
+        return breeder;
+    }
+
+    public void setBreeder(GermplasmInstituteVO breeder) {
+        this.breeder = breeder;
+    }
+
     public SiteVO getCollectingSite() {
         return collectingSite;
     }
@@ -168,6 +177,14 @@ public final class GermplasmV1VO {
 
     public void setCollection(List<CollPopVO> collection) {
         this.collection = collection;
+    }
+
+    public GermplasmInstituteVO getCollector() {
+        return collector;
+    }
+
+    public void setCollector(GermplasmInstituteVO collector) {
+        this.collector = collector;
     }
 
     public String getCommonCropName() {
@@ -192,6 +209,14 @@ public final class GermplasmV1VO {
 
     public void setDefaultDisplayName(String defaultDisplayName) {
         this.defaultDisplayName = defaultDisplayName;
+    }
+
+    public List<GermplasmInstituteVO> getDistributors() {
+        return distributors;
+    }
+
+    public void setDistributors(List<GermplasmInstituteVO> distributors) {
+        this.distributors = distributors;
     }
 
     public String getDocumentationURL() {

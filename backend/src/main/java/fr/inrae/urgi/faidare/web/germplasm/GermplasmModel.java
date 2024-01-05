@@ -1,6 +1,7 @@
 package fr.inrae.urgi.faidare.web.germplasm;
 
 import fr.inrae.urgi.faidare.config.DataSource;
+import fr.inrae.urgi.faidare.domain.GermplasmInstituteVO;
 import fr.inrae.urgi.faidare.domain.SiteVO;
 import fr.inrae.urgi.faidare.domain.XRefDocumentVO;
 import fr.inrae.urgi.faidare.domain.brapi.v1.GermplasmAttributeValueV1VO;
@@ -94,38 +95,32 @@ public final class GermplasmModel {
     }
 
     private boolean isCollectorInstitutePresent() {
-        // FIXME JBN uncomment this once germplasm has a collector
-        return false;
-        // return this.germplasm.getCollector() != null &&
-        //     this.germplasm.getCollector().getInstitute() != null &&
-        //     StringUtils.hasText(this.germplasm.getCollector().getInstitute().getInstituteName());
+        return this.germplasm.getCollector() != null &&
+            this.germplasm.getCollector().getInstitute() != null &&
+            StringUtils.hasText(this.germplasm.getCollector().getInstitute().getInstituteName());
     }
 
     private boolean isCollectorIntituteFieldPresent() {
-        // FIXME JBN uncomment this once germplasm has a collector
-//        GermplasmInstituteVO collector = this.germplasm.getCollector();
-//        return (collector != null) &&
-//            (StringUtils.hasText(collector.getAccessionNumber())
-//                || collector.getAccessionCreationDate() != null
-//                || StringUtils.hasText(collector.getMaterialType())
-//                || StringUtils.hasText(collector.getCollectors())
-//                || collector.getRegistrationYear() != null
-//                || collector.getDeregistrationYear() != null
-//                || StringUtils.hasText(collector.getDistributionStatus())
-//            );
-        return false;
+        GermplasmInstituteVO collector = this.germplasm.getCollector();
+        return (collector != null) &&
+            (StringUtils.hasText(collector.getAccessionNumber())
+                || collector.getAccessionCreationDate() != null
+                || StringUtils.hasText(collector.getMaterialType())
+                || StringUtils.hasText(collector.getCollectors())
+                || collector.getRegistrationYear() != null
+                || collector.getDeregistrationYear() != null
+                || StringUtils.hasText(collector.getDistributionStatus())
+            );
     }
 
     public boolean isBreeding() {
-        // FIXME JBN uncomment this once germplasm has a breeder
-//        GermplasmInstituteVO breeder = this.germplasm.getBreeder();
-//        return breeder != null &&
-//            ((breeder.getInstitute() != null && StringUtils.hasText(breeder.getInstitute().getInstituteName())) ||
-//                breeder.getAccessionCreationDate() != null ||
-//                StringUtils.hasText(breeder.getAccessionNumber()) ||
-//                breeder.getRegistrationYear() != null ||
-//                breeder.getDeregistrationYear() != null);
-        return false;
+        GermplasmInstituteVO breeder = this.germplasm.getBreeder();
+        return breeder != null &&
+            ((breeder.getInstitute() != null && StringUtils.hasText(breeder.getInstitute().getInstituteName())) ||
+                breeder.getAccessionCreationDate() != null ||
+                StringUtils.hasText(breeder.getAccessionNumber()) ||
+                breeder.getRegistrationYear() != null ||
+                breeder.getDeregistrationYear() != null);
     }
 
     public boolean isGenealogyPresent() {
