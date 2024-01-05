@@ -3,6 +3,7 @@ package fr.inrae.urgi.faidare.web.germplasm;
 import fr.inrae.urgi.faidare.api.NotFoundException;
 import fr.inrae.urgi.faidare.config.FaidareProperties;
 import fr.inrae.urgi.faidare.dao.XRefDocumentDao;
+import fr.inrae.urgi.faidare.dao.v1.GermplasmAttributeV1Dao;
 import fr.inrae.urgi.faidare.dao.v1.GermplasmPedigreeV1Dao;
 import fr.inrae.urgi.faidare.dao.v1.GermplasmV1Dao;
 import fr.inrae.urgi.faidare.dao.v2.GermplasmMcpdDao;
@@ -10,7 +11,8 @@ import fr.inrae.urgi.faidare.domain.CollPopVO;
 import fr.inrae.urgi.faidare.domain.GermplasmMcpdVO;
 import fr.inrae.urgi.faidare.domain.XRefDocumentVO;
 import fr.inrae.urgi.faidare.domain.brapi.GermplasmSitemapVO;
-import fr.inrae.urgi.faidare.domain.brapi.v1.BrapiGermplasmAttributeValue;
+import fr.inrae.urgi.faidare.domain.brapi.v1.GermplasmAttributeV1VO;
+import fr.inrae.urgi.faidare.domain.brapi.v1.GermplasmAttributeValueV1VO;
 import fr.inrae.urgi.faidare.domain.brapi.v1.GermplasmPedigreeV1VO;
 import fr.inrae.urgi.faidare.domain.brapi.v1.GermplasmV1VO;
 import fr.inrae.urgi.faidare.utils.Sitemaps;
@@ -44,7 +46,7 @@ public class GermplasmController {
     private final GermplasmPedigreeV1Dao germplasmPedigreeRepository;
     private final FaidareProperties faidareProperties;
     private final XRefDocumentDao xRefDocumentRepository;
-    // FIXME JBN re-add the GermplasmAttributeRepository once it's implemented
+    private final GermplasmAttributeV1Dao germplasmAttributeRepository;
     private final GermplasmMcpdExportService germplasmMcpdExportService;
     private final GermplasmExportService germplasmExportService;
 
@@ -53,7 +55,7 @@ public class GermplasmController {
                                GermplasmPedigreeV1Dao germplasmPedigreeRepository,
                                FaidareProperties faidareProperties,
                                XRefDocumentDao xRefDocumentRepository,
-                               // TODO JBN re-add the GermplasmAttributeRepository once it's implemented: GermplasmAttributeRepository germplasmAttributeRepository,
+                               GermplasmAttributeV1Dao germplasmAttributeRepository,
                                GermplasmMcpdExportService germplasmMcpdExportService,
                                GermplasmExportService germplasmExportService) {
         this.germplasmRepository = germplasmRepository;
@@ -61,7 +63,7 @@ public class GermplasmController {
         this.germplasmPedigreeRepository = germplasmPedigreeRepository;
         this.faidareProperties = faidareProperties;
         this.xRefDocumentRepository = xRefDocumentRepository;
-        // TODO JBN re-add the GermplasmAttributeRepository once it's implemented: this.germplasmAttributeRepository = germplasmAttributeRepository;
+        this.germplasmAttributeRepository = germplasmAttributeRepository;
         this.germplasmMcpdExportService = germplasmMcpdExportService;
         this.germplasmExportService = germplasmExportService;
     }
@@ -147,7 +149,7 @@ public class GermplasmController {
     }
 
     private ModelAndView toModelAndView(GermplasmV1VO germplasm) {
-        List<BrapiGermplasmAttributeValue> attributes = getAttributes(germplasm);
+        List<GermplasmAttributeValueV1VO> attributes = getAttributes(germplasm);
         GermplasmPedigreeV1VO pedigree = getPedigree(germplasm);
 
         List<XRefDocumentVO> crossReferences =
@@ -208,19 +210,16 @@ public class GermplasmController {
         }
     }
 
-    private List<BrapiGermplasmAttributeValue> getAttributes(GermplasmV1VO germplasm) {
-        /*
-        FIXME JBN reimplement the loading of the germplasm attribute values when the DAO is reimplemented
-        GermplasmAttributeCriteria criteria = new GermplasmAttributeCriteria();
-        criteria.setGermplasmDbId(germplasm.getGermplasmDbId());
-        return germplasmAttributeRepository.find(criteria)
+    private List<GermplasmAttributeValueV1VO> getAttributes(GermplasmV1VO germplasm) {
+        GermplasmAttributeV1VO attribute = germplasmAttributeRepository.getByGermplasmDbId(germplasm.getGermplasmDbId());
+        if (attribute == null) {
+            return List.of();
+        }
+        return attribute
+            .getData()
             .stream()
-            .flatMap(vo -> vo.getData().stream())
-            .sorted(Comparator.comparing(BrapiGermplasmAttributeValue::getAttributeName))
+            .sorted(Comparator.comparing(GermplasmAttributeValueV1VO::getAttributeName))
             .collect(Collectors.toList());
-
-         */
-        return List.of();
     }
 
     private GermplasmPedigreeV1VO getPedigree(GermplasmV1VO germplasm) {

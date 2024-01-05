@@ -388,16 +388,16 @@ public class Fixtures {
         return study;
     }
 
-    // FIXME JBN uncomment this once germplasm has attributes
-//    public static GermplasmAttributeValueListVO createGermplasmAttributeValueList() {
-//        GermplasmAttributeValueVO value = new GermplasmAttributeValueVO();
-//        value.setAttributeName("A1");
-//        value.setValue("V1");
-//
-//        GermplasmAttributeValueListVO list = new GermplasmAttributeValueListVO();
-//        list.setData(List.of(value));
-//        return list;
-//    }
+
+    public static GermplasmAttributeV1VO createGermplasmAttribute() {
+        GermplasmAttributeValueV1VO value = new GermplasmAttributeValueV1VO();
+        value.setAttributeName("A1");
+        value.setValue("V1");
+
+        GermplasmAttributeV1VO germplasmAttribute = new GermplasmAttributeV1VO();
+        germplasmAttribute.setData(List.of(value));
+        return germplasmAttribute;
+    }
 
     public static ObservationVariableVO createVariable() {
         ObservationVariableVO variable = new ObservationVariableVO();

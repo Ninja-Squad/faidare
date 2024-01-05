@@ -3,7 +3,7 @@ package fr.inrae.urgi.faidare.web.germplasm;
 import fr.inrae.urgi.faidare.config.DataSource;
 import fr.inrae.urgi.faidare.domain.SiteVO;
 import fr.inrae.urgi.faidare.domain.XRefDocumentVO;
-import fr.inrae.urgi.faidare.domain.brapi.v1.BrapiGermplasmAttributeValue;
+import fr.inrae.urgi.faidare.domain.brapi.v1.GermplasmAttributeValueV1VO;
 import fr.inrae.urgi.faidare.domain.brapi.v1.GermplasmPedigreeV1VO;
 import fr.inrae.urgi.faidare.domain.brapi.v1.GermplasmV1VO;
 import fr.inrae.urgi.faidare.web.site.MapLocation;
@@ -19,13 +19,13 @@ import java.util.List;
 public final class GermplasmModel {
     private final GermplasmV1VO germplasm;
     private final DataSource source;
-    private final List<BrapiGermplasmAttributeValue> attributes;
+    private final List<GermplasmAttributeValueV1VO> attributes;
     private final GermplasmPedigreeV1VO pedigree;
     private final List<XRefDocumentVO> crossReferences;
 
     public GermplasmModel(GermplasmV1VO germplasm,
                           DataSource source,
-                          List<BrapiGermplasmAttributeValue> attributes,
+                          List<GermplasmAttributeValueV1VO> attributes,
                           GermplasmPedigreeV1VO pedigree,
                           List<XRefDocumentVO> crossReferences) {
         this.germplasm = germplasm;
@@ -43,7 +43,7 @@ public final class GermplasmModel {
         return source;
     }
 
-    public List<BrapiGermplasmAttributeValue> getAttributes() {
+    public List<GermplasmAttributeValueV1VO> getAttributes() {
         return attributes;
     }
 
