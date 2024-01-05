@@ -23,25 +23,23 @@ public final class GermplasmV1VO {
     private List<String> alternateIDs;
     private String ancestralData;
     private String biologicalStatusOfAccessionCode;
+    private SiteVO collectingSite; //GnpIS
     private List<CollPopVO> collection;
     private String commonCropName;
     private String countryOfOriginCode;
 
     //private List<GermplasmInstitute> breedingInstitutes;
-
     //private GermplasmCollectingInfo collectingInfo;
     private String defaultDisplayName;
     private String documentationURL;
     private String genus;
     private String genusSpecies; //GnpIS
-
     private String genusSpeciesSubtaxa; //GnpIS
     private String germplasmDbId;
-
-    //private List<DonorInfoVO> donorInfo; TODO activate
-
     private List<DonorVO> donors;
     private List<SiteVO> evaluationSites; //GnpIS
+
+    //private List<DonorInfoVO> donorInfo; TODO activate
     private String germplasmName;
     private String germplasmPUI;
     private Long groupId; //GnpIS
@@ -51,7 +49,6 @@ public final class GermplasmV1VO {
     @Field(name="germplasmPUI")//TODO : should take germpalsmURI as it is always fed in the new transformer
     private String id;
     private InstituteVO holdingInstitute; //GnpIS
-
     private InstituteVO holdingGenbank; //GnpIS
     @Id
     private String _id;
@@ -62,9 +59,7 @@ public final class GermplasmV1VO {
     private List<CollPopVO> panel; //GnpIS
     private String pedigree;
     private PhotoVO photo; //GnpIS
-
     private List<CollPopVO> population; //GnpIS
-
     private String presenceStatus; //GnpIS
     private String remarks;
     @JsonProperty("schema:name")
@@ -77,10 +72,8 @@ public final class GermplasmV1VO {
     @Field("schema:includedInDataCatalog")
     private String schemaCatalog;
     private String seedSource;
-
     @Field("schema:includedInDataCatalog")
     private String sourceUri;
-
     private String species;
     //private List<GermplasmInstitute> safetyDuplicateInstitutes;
     private String speciesAuthority;
@@ -159,6 +152,14 @@ public final class GermplasmV1VO {
 
     public void setBiologicalStatusOfAccessionCode(String biologicalStatusOfAccessionCode) {
         this.biologicalStatusOfAccessionCode = biologicalStatusOfAccessionCode;
+    }
+
+    public SiteVO getCollectingSite() {
+        return collectingSite;
+    }
+
+    public void setCollectingSite(SiteVO collectingSite) {
+        this.collectingSite = collectingSite;
     }
 
     public List<CollPopVO> getCollection() {
@@ -269,8 +270,6 @@ public final class GermplasmV1VO {
         return germplasmURI;
     }
 
-    //private List<TaxonSource> taxonIds; TODO activate Taxonsource OK
-
     public void setGermplasmURI(String germplasmURI) {
         this.germplasmURI = germplasmURI;
     }
@@ -282,6 +281,8 @@ public final class GermplasmV1VO {
     public void setGroupId(Long groupId) {
         this.groupId = groupId;
     }
+
+    //private List<TaxonSource> taxonIds; TODO activate Taxonsource OK
 
     public InstituteVO getHoldingGenbank() {
         return holdingGenbank;
@@ -539,138 +540,59 @@ public final class GermplasmV1VO {
     @Override
     public String toString() {
         return "GermplasmV1VO{" +
-                "accessionNames=" + accessionNames +
-                ", accessionNumber='" + accessionNumber + '\'' +
-                ", acquisitionDate='" + acquisitionDate + '\'' +
-                ", acquisitionSourceCode='" + acquisitionSourceCode + '\'' +
-                ", alternateIDs=" + alternateIDs +
-                ", ancestralData='" + ancestralData + '\'' +
-                ", biologicalStatusOfAccessionCode='" + biologicalStatusOfAccessionCode + '\'' +
-                ", collection=" + collection +
-                ", commonCropName='" + commonCropName + '\'' +
-                ", countryOfOriginCode='" + countryOfOriginCode + '\'' +
-                ", defaultDisplayName='" + defaultDisplayName + '\'' +
-                ", documentationURL='" + documentationURL + '\'' +
-                ", genus='" + genus + '\'' +
-                ", genusSpecies='" + genusSpecies + '\'' +
-                ", genusSpeciesSubtaxa='" + genusSpeciesSubtaxa + '\'' +
-                ", germplasmDbId='" + germplasmDbId + '\'' +
-                ", donors=" + donors +
-                ", evaluationSites=" + evaluationSites +
-                ", germplasmName='" + germplasmName + '\'' +
-                ", germplasmPUI='" + germplasmPUI + '\'' +
-                ", groupId=" + groupId +
-                ", germplasmURI='" + germplasmURI + '\'' +
-                ", id='" + id + '\'' +
-                ", holdingInstitute=" + holdingInstitute +
-                ", holdingGenbank=" + holdingGenbank +
-                ", _id='" + _id + '\'' +
-                ", instituteCode='" + instituteCode + '\'' +
-                ", instituteName='" + instituteName + '\'' +
-                ", mlsStatus='" + mlsStatus + '\'' +
-                ", originSite=" + originSite +
-                ", panel=" + panel +
-                ", pedigree='" + pedigree + '\'' +
-                ", photo=" + photo +
-                ", population=" + population +
-                ", presenceStatus='" + presenceStatus + '\'' +
-                ", remarks='" + remarks + '\'' +
-                ", schemaName='" + schemaName + '\'' +
-                ", schemaId='" + schemaId + '\'' +
-                ", schemaCatalog='" + schemaCatalog + '\'' +
-                ", seedSource='" + seedSource + '\'' +
-                ", sourceUri='" + sourceUri + '\'' +
-                ", species='" + species + '\'' +
-                ", speciesAuthority='" + speciesAuthority + '\'' +
-                ", storageTypeCodes=" + storageTypeCodes +
-                ", studyDbIds=" + studyDbIds +
-                ", studyURIs=" + studyURIs +
-                ", subtaxa='" + subtaxa + '\'' +
-                ", subtaxaAuthority='" + subtaxaAuthority + '\'' +
-                ", subtaxon='" + subtaxon + '\'' +
-                ", subtaxonAuthority='" + subtaxonAuthority + '\'' +
-                ", synonyms=" + synonyms +
-                ", taxonCommonNames=" + taxonCommonNames +
-                ", typeOfGermplasmStorageCode=" + typeOfGermplasmStorageCode +
-                ", type='" + type + '\'' +
-                '}';
+            "accessionNames=" + accessionNames +
+            ", accessionNumber='" + accessionNumber + '\'' +
+            ", acquisitionDate='" + acquisitionDate + '\'' +
+            ", acquisitionSourceCode='" + acquisitionSourceCode + '\'' +
+            ", alternateIDs=" + alternateIDs +
+            ", ancestralData='" + ancestralData + '\'' +
+            ", biologicalStatusOfAccessionCode='" + biologicalStatusOfAccessionCode + '\'' +
+            ", collection=" + collection +
+            ", commonCropName='" + commonCropName + '\'' +
+            ", countryOfOriginCode='" + countryOfOriginCode + '\'' +
+            ", defaultDisplayName='" + defaultDisplayName + '\'' +
+            ", documentationURL='" + documentationURL + '\'' +
+            ", genus='" + genus + '\'' +
+            ", genusSpecies='" + genusSpecies + '\'' +
+            ", genusSpeciesSubtaxa='" + genusSpeciesSubtaxa + '\'' +
+            ", germplasmDbId='" + germplasmDbId + '\'' +
+            ", donors=" + donors +
+            ", evaluationSites=" + evaluationSites +
+            ", germplasmName='" + germplasmName + '\'' +
+            ", germplasmPUI='" + germplasmPUI + '\'' +
+            ", groupId=" + groupId +
+            ", germplasmURI='" + germplasmURI + '\'' +
+            ", id='" + id + '\'' +
+            ", holdingInstitute=" + holdingInstitute +
+            ", holdingGenbank=" + holdingGenbank +
+            ", _id='" + _id + '\'' +
+            ", instituteCode='" + instituteCode + '\'' +
+            ", instituteName='" + instituteName + '\'' +
+            ", mlsStatus='" + mlsStatus + '\'' +
+            ", originSite=" + originSite +
+            ", panel=" + panel +
+            ", pedigree='" + pedigree + '\'' +
+            ", photo=" + photo +
+            ", population=" + population +
+            ", presenceStatus='" + presenceStatus + '\'' +
+            ", remarks='" + remarks + '\'' +
+            ", schemaName='" + schemaName + '\'' +
+            ", schemaId='" + schemaId + '\'' +
+            ", schemaCatalog='" + schemaCatalog + '\'' +
+            ", seedSource='" + seedSource + '\'' +
+            ", species='" + species + '\'' +
+            ", speciesAuthority='" + speciesAuthority + '\'' +
+            ", storageTypeCodes=" + storageTypeCodes +
+            ", studyDbIds=" + studyDbIds +
+            ", studyURIs=" + studyURIs +
+            ", subtaxa='" + subtaxa + '\'' +
+            ", subtaxaAuthority='" + subtaxaAuthority + '\'' +
+            ", subtaxon='" + subtaxon + '\'' +
+            ", subtaxonAuthority='" + subtaxonAuthority + '\'' +
+            ", synonyms=" + synonyms +
+            ", taxonCommonNames=" + taxonCommonNames +
+            ", typeOfGermplasmStorageCode=" + typeOfGermplasmStorageCode +
+            ", type='" + type + '\'' +
+            '}';
     }
-
-
 }
-
-
-/*
-List<String> getAccessionNames();
-
-    String getAccessionNumber();
-
-    String getAcquisitionDate();
-
-    String getAcquisitionSourceCode();
-
-    List<String> getAlternateIDs();
-
-    String getAncestralData();
-
-    String getBiologicalStatusOfAccessionCode();
-
-    List<GermplasmInstitute> getBreedingInstitutes();
-
-    GermplasmCollectingInfo getCollectingInfo();
-
-    String getCommonCropName();
-
-    String getCountryOfOriginCode();
-
-    String getDefaultDisplayName();
-
-    String getDocumentationURL();
-
-    List<DonorInfoVO> getDonorInfo();
-
-    List<GermplasmDonor> getDonors();
-
-    String getGenus();
-
-    String getGermplasmDbId();
-
-    String getGermplasmName();
-
-    String getGermplasmPUI();
-
-    String getInstituteCode();
-
-    String getInstituteName();
-
-    String getMlsStatus();
-
-    String getPedigree();
-
-    String getRemarks();
-
-    List<GermplasmInstitute> getSafetyDuplicateInstitutes();
-
-    String getSeedSource();
-
-    String getSpecies();
-
-    String getSpeciesAuthority();
-
-    List<String> getStorageTypeCodes();
-
-    String getSubtaxa();
-
-    String getSubtaxaAuthority();
-
-    String getSubtaxon();
-
-    String getSubtaxonAuthority();
-
-    List<String> getSynonyms();
-
-    List<TaxonSource> getTaxonIds();
-
-    List<String> getTypeOfGermplasmStorageCode();
-
-*/
