@@ -163,9 +163,7 @@ public class GermplasmController {
                                 "model",
                                 new GermplasmModel(
                                     germplasm,
-                                    // FIXME JBN replace the next line by the commented-out one when germplasm has a sourceUri
-                                    faidareProperties.getByUri("https://urgi.versailles.inrae.fr/gnpis"),
-                                    // faidareProperties.getByUri(germplasm.getSourceUri()),
+                                    faidareProperties.getByUri(germplasm.getSourceUri()),
                                     attributes,
                                     pedigree,
                                     crossReferences)

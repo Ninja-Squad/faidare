@@ -77,6 +77,10 @@ public final class GermplasmV1VO {
     @Field("schema:includedInDataCatalog")
     private String schemaCatalog;
     private String seedSource;
+
+    @Field("schema:includedInDataCatalog")
+    private String sourceUri;
+
     private String species;
     //private List<GermplasmInstitute> safetyDuplicateInstitutes;
     private String speciesAuthority;
@@ -98,7 +102,7 @@ public final class GermplasmV1VO {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         GermplasmV1VO that = (GermplasmV1VO) o;
-        return Objects.equals(accessionNames, that.accessionNames) && Objects.equals(accessionNumber, that.accessionNumber) && Objects.equals(acquisitionDate, that.acquisitionDate) && Objects.equals(acquisitionSourceCode, that.acquisitionSourceCode) && Objects.equals(alternateIDs, that.alternateIDs) && Objects.equals(ancestralData, that.ancestralData) && Objects.equals(biologicalStatusOfAccessionCode, that.biologicalStatusOfAccessionCode) && Objects.equals(collection, that.collection) && Objects.equals(commonCropName, that.commonCropName) && Objects.equals(countryOfOriginCode, that.countryOfOriginCode) && Objects.equals(defaultDisplayName, that.defaultDisplayName) && Objects.equals(documentationURL, that.documentationURL) && Objects.equals(genus, that.genus) && Objects.equals(genusSpecies, that.genusSpecies) && Objects.equals(genusSpeciesSubtaxa, that.genusSpeciesSubtaxa) && Objects.equals(germplasmDbId, that.germplasmDbId) && Objects.equals(donors, that.donors) && Objects.equals(evaluationSites, that.evaluationSites) && Objects.equals(germplasmName, that.germplasmName) && Objects.equals(germplasmPUI, that.germplasmPUI) && Objects.equals(groupId, that.groupId) && Objects.equals(germplasmURI, that.germplasmURI) && Objects.equals(id, that.id) && Objects.equals(holdingInstitute, that.holdingInstitute) && Objects.equals(holdingGenbank, that.holdingGenbank) && Objects.equals(_id, that._id) && Objects.equals(instituteCode, that.instituteCode) && Objects.equals(instituteName, that.instituteName) && Objects.equals(mlsStatus, that.mlsStatus) && Objects.equals(originSite, that.originSite) && Objects.equals(panel, that.panel) && Objects.equals(pedigree, that.pedigree) && Objects.equals(photo, that.photo) && Objects.equals(population, that.population) && Objects.equals(presenceStatus, that.presenceStatus) && Objects.equals(remarks, that.remarks) && Objects.equals(schemaName, that.schemaName) && Objects.equals(schemaId, that.schemaId) && Objects.equals(schemaCatalog, that.schemaCatalog) && Objects.equals(seedSource, that.seedSource) && Objects.equals(species, that.species) && Objects.equals(speciesAuthority, that.speciesAuthority) && Objects.equals(storageTypeCodes, that.storageTypeCodes) && Objects.equals(studyDbIds, that.studyDbIds) && Objects.equals(studyURIs, that.studyURIs) && Objects.equals(subtaxa, that.subtaxa) && Objects.equals(subtaxaAuthority, that.subtaxaAuthority) && Objects.equals(subtaxon, that.subtaxon) && Objects.equals(subtaxonAuthority, that.subtaxonAuthority) && Objects.equals(synonyms, that.synonyms) && Objects.equals(taxonCommonNames, that.taxonCommonNames) && Objects.equals(typeOfGermplasmStorageCode, that.typeOfGermplasmStorageCode) && Objects.equals(type, that.type);
+        return Objects.equals(accessionNames, that.accessionNames) && Objects.equals(accessionNumber, that.accessionNumber) && Objects.equals(acquisitionDate, that.acquisitionDate) && Objects.equals(acquisitionSourceCode, that.acquisitionSourceCode) && Objects.equals(alternateIDs, that.alternateIDs) && Objects.equals(ancestralData, that.ancestralData) && Objects.equals(biologicalStatusOfAccessionCode, that.biologicalStatusOfAccessionCode) && Objects.equals(collection, that.collection) && Objects.equals(commonCropName, that.commonCropName) && Objects.equals(countryOfOriginCode, that.countryOfOriginCode) && Objects.equals(defaultDisplayName, that.defaultDisplayName) && Objects.equals(documentationURL, that.documentationURL) && Objects.equals(genus, that.genus) && Objects.equals(genusSpecies, that.genusSpecies) && Objects.equals(genusSpeciesSubtaxa, that.genusSpeciesSubtaxa) && Objects.equals(germplasmDbId, that.germplasmDbId) && Objects.equals(donors, that.donors) && Objects.equals(evaluationSites, that.evaluationSites) && Objects.equals(germplasmName, that.germplasmName) && Objects.equals(germplasmPUI, that.germplasmPUI) && Objects.equals(groupId, that.groupId) && Objects.equals(germplasmURI, that.germplasmURI) && Objects.equals(id, that.id) && Objects.equals(holdingInstitute, that.holdingInstitute) && Objects.equals(holdingGenbank, that.holdingGenbank) && Objects.equals(_id, that._id) && Objects.equals(instituteCode, that.instituteCode) && Objects.equals(instituteName, that.instituteName) && Objects.equals(mlsStatus, that.mlsStatus) && Objects.equals(originSite, that.originSite) && Objects.equals(panel, that.panel) && Objects.equals(pedigree, that.pedigree) && Objects.equals(photo, that.photo) && Objects.equals(population, that.population) && Objects.equals(presenceStatus, that.presenceStatus) && Objects.equals(remarks, that.remarks) && Objects.equals(schemaName, that.schemaName) && Objects.equals(schemaId, that.schemaId) && Objects.equals(schemaCatalog, that.schemaCatalog) && Objects.equals(seedSource, that.seedSource) && Objects.equals(sourceUri, that.sourceUri) && Objects.equals(species, that.species) && Objects.equals(speciesAuthority, that.speciesAuthority) && Objects.equals(storageTypeCodes, that.storageTypeCodes) && Objects.equals(studyDbIds, that.studyDbIds) && Objects.equals(studyURIs, that.studyURIs) && Objects.equals(subtaxa, that.subtaxa) && Objects.equals(subtaxaAuthority, that.subtaxaAuthority) && Objects.equals(subtaxon, that.subtaxon) && Objects.equals(subtaxonAuthority, that.subtaxonAuthority) && Objects.equals(synonyms, that.synonyms) && Objects.equals(taxonCommonNames, that.taxonCommonNames) && Objects.equals(typeOfGermplasmStorageCode, that.typeOfGermplasmStorageCode) && Objects.equals(type, that.type);
     }
 
     public List<String> getAccessionNames() {
@@ -415,6 +419,14 @@ public final class GermplasmV1VO {
         this.seedSource = seedSource;
     }
 
+    public String getSourceUri() {
+        return sourceUri;
+    }
+
+    public void setSourceUri(String sourceUri) {
+        this.sourceUri = sourceUri;
+    }
+
     public String getSpecies() {
         return species;
     }
@@ -521,7 +533,7 @@ public final class GermplasmV1VO {
 
     @Override
     public int hashCode() {
-        return Objects.hash(accessionNames, accessionNumber, acquisitionDate, acquisitionSourceCode, alternateIDs, ancestralData, biologicalStatusOfAccessionCode, collection, commonCropName, countryOfOriginCode, defaultDisplayName, documentationURL, genus, genusSpecies, genusSpeciesSubtaxa, germplasmDbId, donors, evaluationSites, germplasmName, germplasmPUI, groupId, germplasmURI, id, holdingInstitute, holdingGenbank, _id, instituteCode, instituteName, mlsStatus, originSite, panel, pedigree, photo, population, presenceStatus, remarks, schemaName, schemaId, schemaCatalog, seedSource, species, speciesAuthority, storageTypeCodes, studyDbIds, studyURIs, subtaxa, subtaxaAuthority, subtaxon, subtaxonAuthority, synonyms, taxonCommonNames, typeOfGermplasmStorageCode, type);
+        return Objects.hash(accessionNames, accessionNumber, acquisitionDate, acquisitionSourceCode, alternateIDs, ancestralData, biologicalStatusOfAccessionCode, collection, commonCropName, countryOfOriginCode, defaultDisplayName, documentationURL, genus, genusSpecies, genusSpeciesSubtaxa, germplasmDbId, donors, evaluationSites, germplasmName, germplasmPUI, groupId, germplasmURI, id, holdingInstitute, holdingGenbank, _id, instituteCode, instituteName, mlsStatus, originSite, panel, pedigree, photo, population, presenceStatus, remarks, schemaName, schemaId, schemaCatalog, seedSource, sourceUri, species, speciesAuthority, storageTypeCodes, studyDbIds, studyURIs, subtaxa, subtaxaAuthority, subtaxon, subtaxonAuthority, synonyms, taxonCommonNames, typeOfGermplasmStorageCode, type);
     }
 
     @Override
@@ -567,6 +579,7 @@ public final class GermplasmV1VO {
                 ", schemaId='" + schemaId + '\'' +
                 ", schemaCatalog='" + schemaCatalog + '\'' +
                 ", seedSource='" + seedSource + '\'' +
+                ", sourceUri='" + sourceUri + '\'' +
                 ", species='" + species + '\'' +
                 ", speciesAuthority='" + speciesAuthority + '\'' +
                 ", storageTypeCodes=" + storageTypeCodes +

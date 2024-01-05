@@ -86,8 +86,7 @@ public class GermplasmControllerTest {
 
         dataSource = Fixtures.createDataSource();
 
-        // FIXME JBN uncomment this line once germplasm has sourceUri
-        // when(mockFaidareProperties.getByUri(germplasm.getSourceUri())).thenReturn(dataSource);
+        when(mockFaidareProperties.getByUri(germplasm.getSourceUri())).thenReturn(dataSource);
         when(mockFaidareProperties.getByUri(any())).thenReturn(dataSource);
 
         GermplasmAttributeV1VO attribute = Fixtures.createGermplasmAttribute();
