@@ -198,23 +198,21 @@ public class Fixtures {
 
         germplasm.setAcquisitionDate("In the summer");
 
-        // FIXME JBN uncomment this once germplasm has breeder
-//        GermplasmInstituteVO breeder = new GermplasmInstituteVO();
-//        InstituteVO breedingInstitute = new InstituteVO();
-//        breedingInstitute.setInstituteName("Microsoft");
-//        breeder.setInstitute(breedingInstitute);
-//        breeder.setAccessionCreationDate(2015);
-//        breeder.setAccessionNumber("678");
-//        breeder.setRegistrationYear(2016);
-//        breeder.setDeregistrationYear(2019);
-//        germplasm.setBreeder(breeder);
+        GermplasmInstituteVO breeder = new GermplasmInstituteVO();
+        InstituteVO breedingInstitute = new InstituteVO();
+        breedingInstitute.setInstituteName("Microsoft");
+        breeder.setInstitute(breedingInstitute);
+        breeder.setAccessionCreationDate(2015);
+        breeder.setAccessionNumber("678");
+        breeder.setRegistrationYear(2016);
+        breeder.setDeregistrationYear(2019);
+        germplasm.setBreeder(breeder);
 
         germplasm.setDonors(List.of(createDonor()));
 
         germplasm.setDistributors(List.of(createDistributor()));
 
-        // FIXME JBN uncomment this once germplasm has children
-        // germplasm.setChildren(List.of(createChild(), createChild()));
+        germplasm.setChildren(List.of(createChild(), createChild()));
 
         germplasm.setGermplasmPUI("germplasmPUI");
         germplasm.setPopulation(List.of(createPopulation1(), createPopulation2(), createPopulation3()));
