@@ -31,7 +31,7 @@
     "postcss": "8.4.35",
     "postcss-loader": "8.1.1",
     "prettier": "3.2.5",
-    "sass": "1.71.1",
+    "sass": "1.72.0",
     "sass-loader": "14.1.1",
     "ts-loader": "9.5.1",
     "typescript": "5.4.2",
