@@ -56,7 +56,7 @@ public class GermplasmPedigreeV1DaoTest {
                         }
                 """;
 
-    String expectedPedigree = """   
+    String expectedPedigree = """
             {
                              "groupId": 0,
                              "germplasmDbId": "dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzQ1MDM3-test",
@@ -82,6 +82,7 @@ public class GermplasmPedigreeV1DaoTest {
                                }
                              ],
                              "germplasmPedigreeDbId": "dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtUGVkaWdyZWUvNDE1MTAxODg4-test",
+                             "germplasmPedigreeURI": "urn:INRAE-URGI/germplasmPedigree/415101888-test",
                              "germplasmURI": "urn:INRAE-URGI/germplasm/45037-test",
                              "parent1URI": "urn:INRAE-URGI/germplasm/43165",
                              "parent2URI": "urn:INRAE-URGI/germplasm/43148",
