@@ -3,6 +3,7 @@ package fr.inrae.urgi.faidare.domain;
 import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
@@ -56,10 +57,16 @@ public final class GermplasmMcpdVO {
     private String genus;
 
 
-    @Field(type=FieldType.Text)
-    @Id
+    //@Field(type=FieldType.Text)
+    //@Id
     private String germplasmDbId;
 
+    @JsonProperty("@id")
+    @Field(name="germplasmPUI")//TODO : should take germpalsmURI as it is always fed in the new transformer
+    private String id;
+
+    @Id
+    private String _id;
     //private String germplasmName;
 
     //private String germplasmPUI;
@@ -121,6 +128,14 @@ public final class GermplasmMcpdVO {
         this.accessionNames = accessionNames;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getAccessionNumber() {
         return accessionNumber;
     }
@@ -159,6 +174,14 @@ public final class GermplasmMcpdVO {
 
     public void setAncestralData(String ancestralData) {
         this.ancestralData = ancestralData;
+    }
+
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
     }
 
     public String getPUID() {

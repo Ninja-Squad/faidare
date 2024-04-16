@@ -32,16 +32,16 @@ class GermplasmMcpdDaoTest {
     @Test
     void getByGermplasmDbId() {
         GermplasmMcpdVO germplasmVo =
-            germplasmMcpdDao.getByGermplasmDbId("https://doi.org/10.15454/4NCDUP");
+            germplasmMcpdDao.getByGermplasmDbId("dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI0MDU5");
         assertThat(germplasmVo).isNotNull();
         assertThat(germplasmVo).isInstanceOf(GermplasmMcpdVO.class);
         assertThat(germplasmVo.getAncestralData()).isNotNull();
-        assertThat(germplasmVo.getAncestralData()).isEqualTo("RE99102");
+        assertThat(germplasmVo.getAncestralData()).isEqualTo("RECITAL");
     }
 
     @Test
     void findByGermplasmDbIdIn() {
-        List<GermplasmMcpdVO> list = germplasmMcpdDao.findByGermplasmDbIdIn(Set.of("https://doi.org/10.15454/4NCDUP", "not-existing")).toList();
-        assertThat(list).extracting(GermplasmMcpdVO::getGermplasmDbId).containsOnly("https://doi.org/10.15454/4NCDUP");
+        List<GermplasmMcpdVO> list = germplasmMcpdDao.findByGermplasmDbIdIn(Set.of("dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI0MDU5", "not-existing")).toList();
+        assertThat(list).extracting(GermplasmMcpdVO::getGermplasmDbId).containsOnly("dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI0MDU5");
     }
 }

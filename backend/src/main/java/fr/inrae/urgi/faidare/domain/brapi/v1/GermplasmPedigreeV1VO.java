@@ -1,7 +1,9 @@
 package fr.inrae.urgi.faidare.domain.brapi.v1;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
 
 import java.util.List;
 import java.util.Objects;
@@ -17,7 +19,12 @@ public final class GermplasmPedigreeV1VO {
 
     @Id
     private String _id;
+    @JsonProperty("@id")
+    @Field(name="@id")//TODO : should take germpalsmURI as it is always fed in the new transformer
+    private String id;
     private String germplasmDbId;
+
+    private String germplasmPedigreeDbId;
     private String defaultDisplayName;
     private String pedigree;
     private Long groupId;
@@ -32,9 +39,12 @@ public final class GermplasmPedigreeV1VO {
     private String parent2Type;
     private List<SiblingV1VO> siblings;
     private String germplasmURI;
+
+    private String germplasmPedigreeURI;
     private String parent1URI;
     private String parent2URI;
-
+    @JsonProperty("@type")
+    private String type = "germplasmPedigree";
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -47,8 +57,40 @@ public final class GermplasmPedigreeV1VO {
         return crossingPlan;
     }
 
+    public String getGermplasmPedigreeURI() {
+        return germplasmPedigreeURI;
+    }
+
+    public void setGermplasmPedigreeURI(String germplasmPedigreeURI) {
+        this.germplasmPedigreeURI = germplasmPedigreeURI;
+    }
+
     public void setCrossingPlan(String crossingPlan) {
         this.crossingPlan = crossingPlan;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getGermplasmPedigreeDbId() {
+        return germplasmPedigreeDbId;
+    }
+
+    public void setGermplasmPedigreeDbId(String germplasmPedigreeDbId) {
+        this.germplasmPedigreeDbId = germplasmPedigreeDbId;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getCrossingYear() {
