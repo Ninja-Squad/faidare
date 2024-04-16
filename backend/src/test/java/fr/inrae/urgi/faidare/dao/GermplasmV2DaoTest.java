@@ -38,22 +38,22 @@ class GermplasmV2DaoTest {
     @Test
     void getByGermplasmDbId_should_return_one_result() {
         GermplasmV2VO germplasmVo =
-                germplasmDao.getByGermplasmDbId("aHR0cHM6Ly9kb2kub3JnLzEwLjE1NDU0L1pSTU5PMg==");
+                germplasmDao.getByGermplasmDbId("dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI0NTA1");
 
         assertThat(germplasmVo).isNotNull();
         assertThat(germplasmVo.getGermplasmDbId())
-                .isEqualTo("aHR0cHM6Ly9kb2kub3JnLzEwLjE1NDU0L1pSTU5PMg==");
+                .isEqualTo("dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI0NTA1");
     }
 
     @Test
     void getByGermplasmPUI_should_return_one_result() {
         GermplasmV2VO germplasmVo =
-                germplasmDao.getByGermplasmPUI("https://doi.org/10.15454/4NCDUP");
+                germplasmDao.getByGermplasmPUI("https://doi.org/10.15454/WL6NIE");
         assertThat(germplasmVo).isNotNull();
         assertThat(germplasmVo.getGermplasmPUI())
-                .isEqualTo("https://doi.org/10.15454/4NCDUP");
+                .isEqualTo("https://doi.org/10.15454/WL6NIE");
         assertThat(germplasmVo.getGermplasmDbId())
-                .isEqualTo("aHR0cHM6Ly9kb2kub3JnLzEwLjE1NDU0LzROQ0RVUA==");
+                .isEqualTo("dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI0MDU5");
     }
 
     @Test
@@ -182,15 +182,15 @@ class GermplasmV2DaoTest {
     void custom_should_search_by_germplasmDbIds(){
         GermplasmCriteria gCrit = new GermplasmCriteria();
         gCrit.setGermplasmDbIds(List.of(
-                "aHR0cHM6Ly9kb2kub3JnLzEwLjE1NDU0L01HN0hVSQ==",
-                "aHR0cHM6Ly9kb2kub3JnLzEwLjE1NDU0LzFOM0hDTQ==",
-                "dXJuOklOUkFFLVVSR0kvZ25waXNfcHVpJTNBaG9sZGluZy05MjFfdGF4b24tNDg5OF9hY2Nlc3Npb24tNDg4NDM="
+            "dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI0MDU5",//recital
+            "dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI0MzI4",//soisson
+            "dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI0NTA1"//TREMIE
         ));
         BrapiListResponse<GermplasmV2VO> germplasmVOs = germplasmDao.findGermplasmsByCriteria(gCrit);
         assertThat(germplasmVOs).isNotNull();
         assertThat(germplasmVOs.getMetadata().getPagination().getTotalCount()).isEqualTo(3);
-        assertThat(germplasmVOs.getResult().getData().get(0).getGermplasmDbId()).isEqualTo("aHR0cHM6Ly9kb2kub3JnLzEwLjE1NDU0L01HN0hVSQ==");
-        assertThat(germplasmVOs.getResult().getData().get(1).getGermplasmDbId()).isEqualTo("aHR0cHM6Ly9kb2kub3JnLzEwLjE1NDU0LzFOM0hDTQ==");
+        assertThat(germplasmVOs.getResult().getData().get(0).getGermplasmDbId()).isEqualTo("dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI0MDU5");
+        assertThat(germplasmVOs.getResult().getData().get(1).getGermplasmDbId()).isEqualTo("dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI0MzI4");
     }
 
     @Test
@@ -291,11 +291,16 @@ class GermplasmV2DaoTest {
     @Test
     void custom_should_search_by_synonyms(){
         GermplasmCriteria gCrit = new GermplasmCriteria();
-        gCrit.setSynonyms(List.of("ALL-76-test"));
-        BrapiListResponse<GermplasmV2VO> germplasmVOs = germplasmDao.findGermplasmsByCriteria(gCrit);
+        gCrit.setSynonyms(List.of("test-synonym"));
+        BrapiListResponse<GermplasmV2VO> germplasmVOs =
+            germplasmDao.findGermplasmsByCriteria(gCrit);
         assertThat(germplasmVOs).isNotNull();
-        assertThat(germplasmVOs.getMetadata().getPagination().getTotalCount()).isGreaterThan(0);
-        assertThat(germplasmVOs.getResult().getData().get(0).getSynonyms()).contains("ALL-76-test");
+        assertThat(germplasmVOs.getMetadata().getPagination().getTotalCount())
+            .isGreaterThan(0);
+        assertThat(germplasmVOs.getResult().getData().get(0).getSynonyms())
+            .contains("test-synonym");
+        assertThat(germplasmVOs.getResult().getData().get(0).getGermplasmDbId())
+            .isEqualTo("aHR0cHM6Ly9kb2kub3JnLzEwLjE1NDU0L0VFVkNaUQ==");
     }
 
     void custom_should_search_by_trialDbIds(){
