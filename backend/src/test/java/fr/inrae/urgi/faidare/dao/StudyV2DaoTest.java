@@ -26,7 +26,7 @@ class StudyV2DaoTest {
     @Test
     void getByStudyDbId_should_return_empty_result() {
         StudyV2VO studyVO =
-                studyV2Dao.getByStudyDbId("toto");
+                studyV2Dao.getByStudyDbId("foo");
         assertThat(studyVO).isNull();
     }
 

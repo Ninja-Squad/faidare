@@ -30,21 +30,21 @@ class StudyV1DaoTest {
     @Test
     void getByStudyDbId_should_return_one_result() {
         StudyV1VO sVo =
-                studyV1Dao.getByStudyDbId("dXJuOlVSR0kvc3R1ZHkvQlRIX0NoYXV4X2Rlc19QciVDMyVBOXNfMjAwMF9TZXRCMQ==");
+                studyV1Dao.getByStudyDbId("dXJuOklOUkFFLVVSR0kvc3R1ZHkvQlRIX0xlX01vdWxvbl8yMDA0X1RFQ0g=");
 
         assertThat(sVo).isNotNull();
         assertThat(sVo.getStudyDbId())
-                .isEqualTo("dXJuOlVSR0kvc3R1ZHkvQlRIX0NoYXV4X2Rlc19QciVDMyVBOXNfMjAwMF9TZXRCMQ==");
+                .isEqualTo("dXJuOklOUkFFLVVSR0kvc3R1ZHkvQlRIX0xlX01vdWxvbl8yMDA0X1RFQ0g=");
     }
 
     @Test
     void getByStudyDbId_should_return_lastUpdate() {
         StudyV1VO sVo =
-                studyV1Dao.getByStudyDbId("dXJuOlVSR0kvc3R1ZHkvQlRIX0NoYXV4X2Rlc19QciVDMyVBOXNfMjAwMF9TZXRCMQ==");
+                studyV1Dao.getByStudyDbId("dXJuOklOUkFFLVVSR0kvc3R1ZHkvQlRIX0VzdHIlQzMlQTllcy1Nb25zXzIwMDRfVEVDSA==");
 
         assertThat(sVo).isNotNull();
         assertThat(sVo.getStudyDbId())
-                .isEqualTo("dXJuOlVSR0kvc3R1ZHkvQlRIX0NoYXV4X2Rlc19QciVDMyVBOXNfMjAwMF9TZXRCMQ==");
+                .isEqualTo("dXJuOklOUkFFLVVSR0kvc3R1ZHkvQlRIX0VzdHIlQzMlQTllcy1Nb25zXzIwMDRfVEVDSA==");
         assertThat(sVo.getLastUpdate().getTimestamp()).isNotNull().containsSubsequence("2017-02-21");
     }
 
@@ -56,13 +56,25 @@ class StudyV1DaoTest {
     @Test
     void should_get_variables_by_study_id(){
         StudyV1VO sVo =
-                studyV1Dao.getByStudyDbId("dXJuOlVSR0kvc3R1ZHkvQlRIX0NoYXV4X2Rlc19QciVDMyVBOXNfMjAwMF9TZXRCMQ==");
+                studyV1Dao.getByStudyDbId("dXJuOklOUkFFLVVSR0kvc3R1ZHkvQlRIX0VzdHIlQzMlQTllcy1Nb25zXzIwMTBfVEVDSA==");
 
         assertThat(sVo).isNotNull();
         assertThat(sVo.getStudyDbId())
-                .isEqualTo("dXJuOlVSR0kvc3R1ZHkvQlRIX0NoYXV4X2Rlc19QciVDMyVBOXNfMjAwMF9TZXRCMQ==");
+                .isEqualTo("dXJuOklOUkFFLVVSR0kvc3R1ZHkvQlRIX0VzdHIlQzMlQTllcy1Nb25zXzIwMTBfVEVDSA==");
         Set<String> obsVarIds = Set.copyOf(sVo.getObservationVariableDbIds());
-        assertThat(obsVarIds).isNotNull().isNotEmpty().hasSize(1);
+        assertThat(obsVarIds).isNotNull().isNotEmpty().hasSizeGreaterThan(10);
+        assertThat(obsVarIds).contains("CO_321:1000216");
+        assertThat(obsVarIds).containsAll(List.of("CO_321:1000227",
+            "CO_321:1000228",
+            "CO_321:1000229",
+            "CO_321:1000230",
+            "CO_321:1000231",
+            "CO_321:1000236",
+            "CO_321:1000237",
+            "CO_321:1000238",
+            "CO_321:1000239",
+            "CO_321:1000240"));
+        assertThat(obsVarIds).doesNotContain("foo");
     }
 
     @Test

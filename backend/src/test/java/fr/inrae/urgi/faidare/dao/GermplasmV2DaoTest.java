@@ -223,7 +223,7 @@ class GermplasmV2DaoTest {
         assertThat(germplasmVOs.getResult().getData().get(0).getInstituteCode()).isEqualTo("FRA095");
     }
 
-
+    //might be unrelevant or badly implemented with V2, see pedigree call
     void custom_should_search_by_parentDbIds(){
         GermplasmCriteria gCrit = new GermplasmCriteria();
         gCrit.setParentDbIds(List.of(""));
