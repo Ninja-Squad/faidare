@@ -23,12 +23,12 @@ public class XRefDaoTest {
     @Test
     public void should_get_perDbId(){
         //TODO: problem between resources and ressources check what is realy produced byt the current ETL.
-        List<XRefDocumentVO> lVos = dao.findByLinkedResourcesID("aHR0cHM6Ly9kb2kub3JnLzEwLjE1NDU0L002QVBUUA==");
-        assertThat(lVos).hasSize(34);
+        List<XRefDocumentVO> lVos = dao.findByLinkedResourcesID("dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzQ1MDI5");
+        assertThat(lVos).hasSize(3);
         assertThat(lVos).allMatch(vo -> !vo.getUrl().isBlank());
         assertThat(lVos).anyMatch(vo -> vo.getDatabaseName().equals("GnpIS"));
-        assertThat(lVos).anyMatch(vo -> vo.getEntryType().equals("GWAS analysis"));
-        assertThat(lVos).anyMatch(vo -> vo.getSpecies().get(0).equals("Triticum aestivum aestivum"));
+        assertThat(lVos).anyMatch(vo -> vo.getEntryType().equals("Phenotyping study"));
+        assertThat(lVos).anyMatch(vo -> vo.getSpecies().get(0).equals("Populus deltoides"));
 
     }
 }
