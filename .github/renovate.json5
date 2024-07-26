@@ -16,7 +16,7 @@
   "packageRules": [
     // group all minor dependencies, once a week
     {
-      "matchPackagePatterns": [
+      "matchDepPatterns": [
         "*"
       ],
       "matchUpdateTypes": [
