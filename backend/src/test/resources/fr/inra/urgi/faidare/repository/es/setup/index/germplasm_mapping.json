@@ -141,8 +141,12 @@
       "type": "keyword"
     },
     "synonyms": {
-      "type": "keyword",
-      "doc_values": true
+      "type": "nested",
+      "properties": {
+        "type": { "type": "keyword" },
+        "synonym": { "type": "keyword" }
+      }
+
     },
     "taxonIds": {
       "properties": {
