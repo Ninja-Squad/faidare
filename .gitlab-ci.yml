@@ -52,8 +52,8 @@ build-loader-docker-image:
     - changes:
       - Dockerfile
       - scripts/*
-      - backend/src/test/resources/fr/inra/urgi/faidare/repository/es/setup/index/*_mapping.json
-      - backend/src/test/resources/fr/inra/urgi/faidare/repository/es/setup/index/settings.json
+      - backend/src/test/resources/fr/inrae/urgi/faidare/repository/es/setup/index/*_mapping.json
+      - backend/src/test/resources/fr/inrae/urgi/faidare/repository/es/setup/index/settings.json
       - .gitlab-ci.yml
     - if: $CI_PIPELINE_SOURCE == "merge_request_event" || $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
   allow_failure: true
