@@ -10,11 +10,11 @@ buildscript {
 plugins {
     java
     jacoco
-    id("org.springframework.boot") version "2.7.4"
-    id("com.gorylenko.gradle-git-properties") version "2.4.1"
-    id("io.spring.dependency-management") version "1.0.14.RELEASE"
+    id("org.springframework.boot") version "2.7.18"
+    id("com.gorylenko.gradle-git-properties") version "2.4.2"
+    id("io.spring.dependency-management") version "1.1.6"
     id("org.sonarqube")
-    id("org.owasp.dependencycheck") version "7.2.1"
+    id("org.owasp.dependencycheck") version "7.4.4"
 }
 
 java {
@@ -91,7 +91,7 @@ tasks {
     }
 }
 
-extra["springCloudVersion"] = "2021.0.4"
+extra["springCloudVersion"] = "2021.0.9"
 dependencyManagement {
     imports {
         mavenBom("org.springframework.cloud:spring-cloud-dependencies:${property("springCloudVersion")}")
@@ -123,13 +123,13 @@ dependencies {
     implementation("org.elasticsearch.client:elasticsearch-rest-high-level-client")
 
     // Swagger
-    implementation("org.springdoc:springdoc-openapi-ui:1.6.11")
+    implementation("org.springdoc:springdoc-openapi-ui:1.8.0")
 
     // Others
     implementation("com.google.guava:guava:31.1-jre")
-    implementation("com.opencsv:opencsv:5.7.0")
+    implementation("com.opencsv:opencsv:5.9")
 
     // Test dependencies
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("org.jsoup:jsoup:1.15.3")
+    testImplementation("org.jsoup:jsoup:1.18.1")
 }
