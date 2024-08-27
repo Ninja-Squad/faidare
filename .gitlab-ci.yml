@@ -37,7 +37,7 @@ build-loader-docker-image:
   image: registry.forgemia.inra.fr/urgi-is/docker-rare/docker-git:latest
   stage: pre-build
   services:
-    - docker:20.10.6-dind
+    - docker:20.10.24-dind
   script:
     # build the image
     - docker build -t registry.forgemia.inra.fr/urgi-is/docker-rare/faidare-loader:${IMAGE_TAG} .
