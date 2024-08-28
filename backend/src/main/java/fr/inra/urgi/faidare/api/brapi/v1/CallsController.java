@@ -1,5 +1,6 @@
 package fr.inra.urgi.faidare.api.brapi.v1;
 
+import java.io.IOException;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
@@ -57,7 +58,7 @@ public class CallsController {
      */
     @Operation(summary = "List implemented Breeding API calls")
     @GetMapping("/brapi/v1/calls")
-    public BrapiListResponse<BrapiCall> calls(@Valid PaginationCriteriaImpl criteria, HttpServletRequest request) throws JsonProcessingException {
+    public BrapiListResponse<BrapiCall> calls(@Valid PaginationCriteriaImpl criteria, HttpServletRequest request) throws IOException {
         if (implementedCalls.get() == null) {
             implementedCalls.set(swaggerToBrapiCalls(request));
         }
@@ -74,8 +75,8 @@ public class CallsController {
      * documentation and thus can't be done in this class constructor
      */
     @SuppressWarnings("unchecked")
-    private List<BrapiCall> swaggerToBrapiCalls(HttpServletRequest request) throws JsonProcessingException {
-        String json = openApiResource.openapiJson(request, "/v3/api-docs", Locale.ENGLISH);
+    private List<BrapiCall> swaggerToBrapiCalls(HttpServletRequest request) throws IOException {
+        byte[] json = openApiResource.openapiJson(request, "/v3/api-docs", Locale.ENGLISH);
 
         Map<String, Object> map = objectMapper.readValue(json,
                                                          new TypeReference<Map<String, Object>>() {});
