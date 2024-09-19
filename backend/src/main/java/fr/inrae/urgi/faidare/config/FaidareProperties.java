@@ -21,6 +21,10 @@ public class FaidareProperties {
      * The URL used by the germplasm card to generate links to the faidare search application
      * (i.e. the faidare flavor of data-discovery).
      */
+
+    @NotBlank
+    private String elasticsearchIndexingTemplate;
+
     @NotBlank
     private String searchUrl;
 
@@ -46,6 +50,14 @@ public class FaidareProperties {
 
     public void setSecurityUserGroupWsToken(String securityUserGroupWsToken) {
         this.securityUserGroupWsToken = securityUserGroupWsToken;
+    }
+
+    public String getElasticsearchIndexingTemplate() {
+        return elasticsearchIndexingTemplate;
+    }
+
+    public void setElasticsearchIndexingTemplate(String elasticsearchIndexingTemplate) {
+        this.elasticsearchIndexingTemplate = elasticsearchIndexingTemplate;
     }
 
     public String getSearchUrl() {
@@ -87,5 +99,18 @@ public class FaidareProperties {
             }
         }
         return null;
+    }
+
+    /**
+     * Get Elasticearch alias name using the template property, the document type and the group id
+     */
+    public String getAliasName (String documentType, long groupId) {
+        return getBaseIndexName(documentType) + "-group" + groupId;
+    }
+
+
+    private String getBaseIndexName(String documentType) {
+        documentType = documentType.replaceAll("([a-z0-9])([A-Z])", "$1-$2").toLowerCase();
+        return elasticsearchIndexingTemplate.replace("{documentType}", documentType);
     }
 }

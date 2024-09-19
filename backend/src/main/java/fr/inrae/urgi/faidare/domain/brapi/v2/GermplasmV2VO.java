@@ -9,12 +9,13 @@ import java.util.List;
 import java.util.Objects;
 
 @Document(
-        indexName = GermplasmV2VO.INDEX_NAME,
+        indexName = "#{@faidareProperties.getAliasName('germplasm', 0L)}",
         createIndex = false
 )
 public class GermplasmV2VO {
 
-    public static final String INDEX_NAME = "faidare_germplasm_dev-group0";
+
+    //public static final String INDEX_NAME = "faidare_germplasm_dev-group0";
 
     private String accessionNumber;
 
