@@ -9,9 +9,13 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jayway.jsonpath.JsonPath;
 import fr.inrae.urgi.faidare.Application;
+import fr.inrae.urgi.faidare.config.FaidareProperties;
+import fr.inrae.urgi.faidare.dao.v2.GermplasmV2Dao;
+import fr.inrae.urgi.faidare.domain.brapi.v2.GermplasmV2VO;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.skyscreamer.jsonassert.JSONAssert;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -25,6 +29,8 @@ import java.net.URISyntaxException;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
 @ExtendWith(SpringExtension.class)
@@ -32,6 +38,9 @@ import static org.assertj.core.api.Assertions.assertThat;
         webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class GermplasmV2ControllerTest {
 
+
+    @Autowired
+    protected GermplasmV2Dao germplasmDao;
 
     @Value("${server.servlet.context-path}")
     private String contextPath;
@@ -138,4 +147,40 @@ class GermplasmV2ControllerTest {
         String collName = JsonPath.parse(response.getBody()).read("$.result.data.[0].name");
         assertThat(collName).isEqualTo("SMALL_GRAIN_CEREALS_NETWORK_COL");
     }
+
+    @Test
+    public void unitTestGetAliasName() {
+        FaidareProperties properties = new FaidareProperties();
+        properties.setElasticsearchIndexingTemplate("faidare_{documentType}");
+
+        String aliasName = properties.getAliasName("germplasm", 0L);
+        assertThat(aliasName).isEqualTo("faidare_germplasm-group0");
+    }
+
+    @Autowired
+    private FaidareProperties faidareProperties;
+
+    @Test
+    public void integrationTestAliasName() {
+        String indexName = faidareProperties.getAliasName("germplasm", 0L);
+        assertThat(indexName).isEqualTo("faidare_germplasm_dev-group0");
+    }
+
+    @Test
+    public void testIndexation() {
+        // Créer un document à indexer
+        GermplasmV2VO germplasm = new GermplasmV2VO();
+        germplasm.setGermplasmDbId("123");
+        germplasm.setGermplasmName("Test Germplasm");
+
+        // Indexer le document
+        germplasmDao.save(germplasm);
+
+        // Vérifier que le document a bien été indexé
+        GermplasmV2VO indexedGermplasm = germplasmDao.findById("123").orElse(null);
+        assertNotNull(indexedGermplasm);
+        assertEquals("Test Germplasm", indexedGermplasm.getGermplasmName());
+    }
 }
+
+
