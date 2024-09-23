@@ -1,6 +1,9 @@
 package fr.inrae.urgi.faidare.domain.brapi.v2;
 
+import fr.inrae.urgi.faidare.config.ElasticSearchConfig;
+import fr.inrae.urgi.faidare.config.FaidareProperties;
 import fr.inrae.urgi.faidare.domain.*;
+import org.springframework.context.annotation.Import;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
@@ -8,8 +11,11 @@ import org.springframework.data.elasticsearch.annotations.Field;
 import java.util.List;
 import java.util.Objects;
 
+//@Import({FaidareProperties.class})
+
+@Import({ElasticSearchConfig.class})
 @Document(
-        indexName = "#{@faidareProperties.getAliasName('germplasm', 0L)}",
+        indexName = "#{@faidarePropertiesBean.getAliasName('germplasm', 0L)}",
         createIndex = false
 )
 public class GermplasmV2VO {

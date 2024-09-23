@@ -1,6 +1,7 @@
 package fr.inrae.urgi.faidare.dao;
 
 import fr.inrae.urgi.faidare.api.brapi.v2.BrapiListResponse;
+import fr.inrae.urgi.faidare.config.ElasticSearchConfig;
 import fr.inrae.urgi.faidare.config.FaidareProperties;
 import fr.inrae.urgi.faidare.dao.v2.GermplasmCriteria;
 import fr.inrae.urgi.faidare.dao.v2.GermplasmV2Dao;
@@ -9,6 +10,7 @@ import fr.inrae.urgi.faidare.domain.brapi.v2.GermplasmV2VO;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.elasticsearch.DataElasticsearchTest;
+import org.springframework.context.annotation.Import;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -16,7 +18,7 @@ import java.util.function.Predicate;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-
+@Import({ElasticSearchConfig.class})
 @DataElasticsearchTest
 class GermplasmV2DaoTest {
 
