@@ -1,6 +1,7 @@
 package fr.inrae.urgi.faidare.dao;
 
 import fr.inrae.urgi.faidare.api.brapi.v2.BrapiListResponse;
+import fr.inrae.urgi.faidare.config.FaidareProperties;
 import fr.inrae.urgi.faidare.dao.v2.GermplasmCriteria;
 import fr.inrae.urgi.faidare.dao.v2.GermplasmV2Dao;
 import fr.inrae.urgi.faidare.domain.CollPopVO;
@@ -13,6 +14,8 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @DataElasticsearchTest
 class GermplasmV2DaoTest {
@@ -319,5 +322,29 @@ class GermplasmV2DaoTest {
         assertThat(germplasmVOs).isNotNull();
         assertThat(germplasmVOs.getMetadata().getPagination().getTotalCount()).isGreaterThan(0);
  //       assertThat(germplasmVOs.getSearchHits().getSearchHit(0).getContent().get()).isEqualTo("");
+    }
+    @Autowired
+    private FaidareProperties faidareProperties;
+
+    @Test
+    public void integrationTestAliasName() {
+        String indexName = faidareProperties.getAliasName("germplasm", 0L);
+        assertThat(indexName).isEqualTo("faidare_germplasm_dev-group0");
+    }
+
+    @Test
+    public void testFaidarePropertiesQuering() {
+        // Créer un document à indexer
+        GermplasmV2VO germplasm = new GermplasmV2VO();
+        germplasm.setGermplasmDbId("123");
+        germplasm.setGermplasmName("Test Germplasm");
+
+        // Indexer le document
+        germplasmDao.save(germplasm);
+
+        // Vérifier que le document a bien été indexé
+        GermplasmV2VO indexedGermplasm = germplasmDao.findById("123").orElse(null);
+        assertNotNull(indexedGermplasm);
+        assertEquals("Test Germplasm", indexedGermplasm.getGermplasmName());
     }
 }
