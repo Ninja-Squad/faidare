@@ -11,12 +11,14 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.elasticsearch.DataElasticsearchTest;
 import org.springframework.context.annotation.Import;
+import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
+import org.springframework.data.elasticsearch.core.IndexOperations;
+import org.springframework.data.elasticsearch.core.mapping.IndexCoordinates;
 
 import java.util.List;
 import java.util.function.Predicate;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 @Import({ElasticSearchConfig.class})
 @DataElasticsearchTest
@@ -24,6 +26,10 @@ class GermplasmV2DaoTest {
 
     @Autowired
     protected GermplasmV2Dao germplasmDao;
+
+    @Autowired
+    private ElasticsearchOperations elasticsearchTemplate;
+
 
 /*
     @Test
@@ -335,18 +341,27 @@ class GermplasmV2DaoTest {
     }
 
     @Test
-    public void testFaidarePropertiesQuering() {
-        // Créer un document à indexer
-        GermplasmV2VO germplasm = new GermplasmV2VO();
-        germplasm.setGermplasmDbId("123");
-        germplasm.setGermplasmName("Test Germplasm");
+    public void testFaidarePropertiesQuerying() {
+        // Verify that the document has been correctly indexed in Elasticsearch
+        String germplasmId = "dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI3ODA3";
+        GermplasmV2VO indexedGermplasm = germplasmDao.getByGermplasmDbId(germplasmId);
 
-        // Indexer le document
-        germplasmDao.save(germplasm);
+        // Ensure the retrieved document is not null and validate its key fields
+        assertNotNull(indexedGermplasm, "The document must not be null");
+        assertThat(indexedGermplasm.getGermplasmName()).isEqualTo("DI08011");
+        assertThat(indexedGermplasm.getGermplasmPUI()).isEqualTo("https://doi.org/10.15454/E8FP9Y");
 
-        // Vérifier que le document a bien été indexé
-        GermplasmV2VO indexedGermplasm = germplasmDao.findById("123").orElse(null);
-        assertNotNull(indexedGermplasm);
-        assertEquals("Test Germplasm", indexedGermplasm.getGermplasmName());
+        // Verify that the index name is correctly generated and exists in Elasticsearch
+        String expectedIndexName = faidareProperties.getAliasName("germplasm", 0L);
+        IndexCoordinates indexCoordinates = elasticsearchTemplate.getIndexCoordinatesFor(GermplasmV2VO.class);
+
+        // Ensure the index name matches the expected name
+        assertThat(indexCoordinates.getIndexName()).isEqualTo(expectedIndexName);
+
+        // Check that the index actually exists in the Elasticsearch cluster
+        IndexOperations indexOperations = elasticsearchTemplate.indexOps(indexCoordinates);
+        boolean indexExists = indexOperations.exists();
+        assertThat(indexExists).isTrue();
     }
+
 }
