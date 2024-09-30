@@ -57,6 +57,8 @@ build-loader-docker-image:
       - .gitlab-ci.yml
     - if: $CI_PIPELINE_SOURCE == "merge_request_event" || $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
   allow_failure: true
+  tags:
+    - openstack
 
 # TESTS
 test-and-sonarqube:
