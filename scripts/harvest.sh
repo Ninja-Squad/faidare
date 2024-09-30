@@ -153,8 +153,8 @@ for DOCUMENT_TYPE in ${DOCUMENT_TYPES}; do
 	\"index_patterns\": [\"${INDEX_PATTERN}-*\"],
 	\"order\": 101,
 	\"mappings\":
-		$(cat "${BASEDIR}"/../backend/src/test/resources/fr/inrae/urgi/faidare/repository/es/setup/index/${DOCUMENT_TYPE}_mapping.json),
-	\"settings\": $(cat "${BASEDIR}"/../backend/src/test/resources/fr/inrae/urgi/faidare/repository/es/setup/index/settings.json)
+		$(cat "${BASEDIR}"/../backend/src/main/resources/fr/inrae/urgi/faidare/repository/es/setup/index/${DOCUMENT_TYPE}_mapping.json),
+	\"settings\": $(cat "${BASEDIR}"/../backend/src/main/resources/fr/inrae/urgi/faidare/repository/es/setup/index/settings.json)
 }")
 	check_acknowledgment "${LOG}" "create template"
 
