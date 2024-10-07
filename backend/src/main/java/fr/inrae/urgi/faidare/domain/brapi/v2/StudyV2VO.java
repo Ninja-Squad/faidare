@@ -10,12 +10,12 @@ import java.util.Set;
 
 
 @Document(
-        indexName = StudyV2VO.INDEX_NAME,
-        createIndex = false
+    indexName = "#{@faidarePropertiesBean.getAliasName('study', 0L)}",
+    createIndex = false
 )
 public final class StudyV2VO {
 
-    public static final String INDEX_NAME = "faidare_study_dev-group0";
+    //public static final String INDEX_NAME = "faidare_study_dev-group0";
 
     private boolean active;
 
