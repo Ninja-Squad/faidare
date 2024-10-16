@@ -1,5 +1,7 @@
 package fr.inrae.urgi.faidare.dao.v2;
 
+import fr.inrae.urgi.faidare.domain.SynonymsVO;
+
 import java.util.List;
 
 public class GermplasmCriteria {
@@ -26,7 +28,7 @@ public class GermplasmCriteria {
     private List<String> species;
     private List<String> studyDbIds;
     private List<String> studyNames;
-    private List<String> synonyms;
+    private List<SynonymsVO> synonyms;
     private List<String> trialDbIds;
     private List<String> trialNames;
 
@@ -123,9 +125,9 @@ public class GermplasmCriteria {
 
     public void setStudyNames(List<String> studyNames) { this.studyNames = studyNames; }
 
-    public List<String> getSynonyms() { return synonyms; }
+    public List<SynonymsVO> getSynonyms() { return synonyms; }
 
-    public void setSynonyms(List<String> synonyms) { this.synonyms = synonyms; }
+    public void setSynonyms(List<SynonymsVO> synonyms) { this.synonyms = synonyms; }
 
     public List<String> getTrialDbIds() { return trialDbIds; }
 

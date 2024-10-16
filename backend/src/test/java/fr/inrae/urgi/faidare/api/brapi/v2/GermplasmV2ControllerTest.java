@@ -80,11 +80,11 @@ class GermplasmV2ControllerTest {
         HttpEntity<String> entity = new HttpEntity<>(null, headers);
 
         ResponseEntity<String> response = testRestTemplate.exchange(
-                createURLWithPort("/brapi/v2/germplasm/dXJuOklCRVQvYmU0ZTljZGMtNTgwMC00NDU3LWE2YzgtNDA1NjNjMDI3ZGQ5"),
+                createURLWithPort("/brapi/v2/germplasm/dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI2ODkx"),
                 HttpMethod.GET, entity, String.class);
         assertThat(response.getStatusCode().is2xxSuccessful()).isTrue();
         String accNumber = JsonPath.parse(response.getBody()).read("$.result.accessionNumber");
-        assertThat(accNumber).isEqualTo("IRGC53931");
+        assertThat(accNumber).isEqualTo("29814");
     }
 
 
@@ -94,10 +94,10 @@ class GermplasmV2ControllerTest {
         HttpEntity<String> entity = new HttpEntity<>(null, headers);
 
         ResponseEntity<String> response = testRestTemplate.exchange(
-                createURLWithPort("/brapi/v2/germplasm?accessionNumber=IRGC53931&page=0&pageSize=1"),
+                createURLWithPort("/brapi/v2/germplasm?accessionNumber=32100&page=0&pageSize=1"),
                 HttpMethod.GET, entity, String.class);
         String accNumber = JsonPath.parse(response.getBody()).read("$.result.data.[0].accessionNumber");
-        assertThat(accNumber).isEqualTo("IRGC53931");
+        assertThat(accNumber).isEqualTo("32100");
         Integer pageSize = JsonPath.parse(response.getBody()).read("$.metadata.pagination.pageSize");
         assertThat(pageSize).isEqualTo(1);
     }
@@ -108,11 +108,11 @@ class GermplasmV2ControllerTest {
         HttpEntity<String> entity = new HttpEntity<>(null, headers);
 
         ResponseEntity<String> response = testRestTemplate.exchange(
-                createURLWithPort("/brapi/v2/germplasm?accessionNumber=IRGC53931"),
+                createURLWithPort("/brapi/v2/germplasm?accessionNumber=29814"),
                 HttpMethod.GET, entity, String.class);
         assertThat(response.getStatusCode().is2xxSuccessful()).isTrue();
         String accNumber = JsonPath.parse(response.getBody()).read("$.result.data.[0].accessionNumber");
-        assertThat(accNumber).isEqualTo("IRGC53931");
+        assertThat(accNumber).isEqualTo("29814");
     }
 
     @Test
@@ -141,7 +141,7 @@ class GermplasmV2ControllerTest {
                 HttpMethod.GET, entity, String.class);
         assertThat(response.getStatusCode().is2xxSuccessful()).isTrue();
         String collName = JsonPath.parse(response.getBody()).read("$.result.data.[0].name");
-        assertThat(collName).isEqualTo("SMALL_GRAIN_CEREALS_NETWORK_COL");
+        assertThat(collName).isEqualTo("Collection blé INRA");
     }
 
 }

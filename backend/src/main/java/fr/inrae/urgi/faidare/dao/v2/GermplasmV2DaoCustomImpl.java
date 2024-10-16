@@ -5,6 +5,7 @@ package fr.inrae.urgi.faidare.dao.v2;
 //https://www.baeldung.com/spring-data-elasticsearch-queries
 
 import fr.inrae.urgi.faidare.api.brapi.v2.BrapiListResponse;
+import fr.inrae.urgi.faidare.domain.SynonymsVO;
 import fr.inrae.urgi.faidare.domain.brapi.v2.GermplasmV2VO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -14,6 +15,7 @@ import org.springframework.data.elasticsearch.core.query.Criteria;
 import org.springframework.data.elasticsearch.core.query.CriteriaQuery;
 import org.springframework.data.elasticsearch.core.query.CriteriaQueryBuilder;
 
+import java.util.List;
 
 public class GermplasmV2DaoCustomImpl implements GermplasmV2DaoCustom {
 
@@ -133,7 +135,12 @@ public class GermplasmV2DaoCustomImpl implements GermplasmV2DaoCustom {
 
         if(germplasmCriteria.getSynonyms() != null
                 && !germplasmCriteria.getSynonyms().isEmpty()){
-            esCrit.and(new Criteria("synonyms").in(germplasmCriteria.getSynonyms()));
+            List<String> synonymValues = germplasmCriteria.getSynonyms()
+                .stream()
+                .map(SynonymsVO::getSynonym)
+                .toList();
+            esCrit.and(new Criteria().and("synonyms.synonym").in(synonymValues));
+            //esCrit.and(new Criteria("synonyms").in(germplasmCriteria.getSynonyms()));
         }
 
         if(germplasmCriteria.getTrialDbIds() != null
