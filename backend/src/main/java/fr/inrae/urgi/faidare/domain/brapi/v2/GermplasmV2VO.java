@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import java.util.List;
 import java.util.Objects;
@@ -131,7 +132,8 @@ public class GermplasmV2VO {
 
     private String subtaxaAuthority;
 
-    private List<String> synonyms;
+    @Field(type = FieldType.Nested)
+    private List<SynonymsVO> synonyms;
 
     private String taxonComment; //GnpIS
 
@@ -550,11 +552,11 @@ public class GermplasmV2VO {
         this.subtaxaAuthority = subtaxaAuthority;
     }
 
-    public List<String> getSynonyms() {
+    public List<SynonymsVO> getSynonyms() {
         return synonyms;
     }
 
-    public void setSynonyms(List<String> synonyms) {
+    public void setSynonyms(List<SynonymsVO> synonyms) {
         this.synonyms = synonyms;
     }
 

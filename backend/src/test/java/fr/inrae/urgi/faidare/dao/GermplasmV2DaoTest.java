@@ -6,6 +6,7 @@ import fr.inrae.urgi.faidare.config.FaidareProperties;
 import fr.inrae.urgi.faidare.dao.v2.GermplasmCriteria;
 import fr.inrae.urgi.faidare.dao.v2.GermplasmV2Dao;
 import fr.inrae.urgi.faidare.domain.CollPopVO;
+import fr.inrae.urgi.faidare.domain.SynonymsVO;
 import fr.inrae.urgi.faidare.domain.brapi.v2.GermplasmV2VO;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -200,8 +201,16 @@ class GermplasmV2DaoTest {
         BrapiListResponse<GermplasmV2VO> germplasmVOs = germplasmDao.findGermplasmsByCriteria(gCrit);
         assertThat(germplasmVOs).isNotNull();
         assertThat(germplasmVOs.getMetadata().getPagination().getTotalCount()).isEqualTo(3);
-        assertThat(germplasmVOs.getResult().getData().get(0).getGermplasmDbId()).isEqualTo("dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI0MDU5");
-        assertThat(germplasmVOs.getResult().getData().get(1).getGermplasmDbId()).isEqualTo("dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI0MzI4");
+        // Elasticsearch does not guarantee the order of results, so we verify the IDs regardless of their order.
+        List<String> returnedDbIds = germplasmVOs.getResult().getData().stream()
+            .map(GermplasmV2VO::getGermplasmDbId).toList();
+        assertThat(returnedDbIds).containsExactlyInAnyOrder(
+            "dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI0MDU5",
+            "dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI0MzI4",
+            "dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI0NTA1"
+        );
+        //assertThat(germplasmVOs.getResult().getData().get(0).getGermplasmDbId()).isEqualTo("dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI0MDU5");
+        //assertThat(germplasmVOs.getResult().getData().get(1).getGermplasmDbId()).isEqualTo("dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI0MzI4");
     }
 
     @Test
@@ -302,16 +311,25 @@ class GermplasmV2DaoTest {
     @Test
     void custom_should_search_by_synonyms(){
         GermplasmCriteria gCrit = new GermplasmCriteria();
-        gCrit.setSynonyms(List.of("test-synonym"));
+
+        SynonymsVO synonymsVO = new SynonymsVO();
+        synonymsVO.setSynonym("DI01016");
+
+        gCrit.setSynonyms(List.of(synonymsVO));
         BrapiListResponse<GermplasmV2VO> germplasmVOs =
             germplasmDao.findGermplasmsByCriteria(gCrit);
         assertThat(germplasmVOs).isNotNull();
         assertThat(germplasmVOs.getMetadata().getPagination().getTotalCount())
             .isGreaterThan(0);
-        assertThat(germplasmVOs.getResult().getData().get(0).getSynonyms())
-            .contains("test-synonym");
+
+        List<SynonymsVO> synonyms = germplasmVOs.getResult().getData().get(0).getSynonyms();
+        List<String> expectedSynonyms= List.of("DI01016");
+
+        assertThat(synonyms)
+            .extracting(SynonymsVO::getSynonym)
+            .isEqualTo(expectedSynonyms);
         assertThat(germplasmVOs.getResult().getData().get(0).getGermplasmDbId())
-            .isEqualTo("aHR0cHM6Ly9kb2kub3JnLzEwLjE1NDU0L0VFVkNaUQ==");
+            .isEqualTo("dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI2ODkx");
     }
 
     void custom_should_search_by_trialDbIds(){
