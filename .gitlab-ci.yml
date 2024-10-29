@@ -60,6 +60,31 @@ build-loader-docker-image:
   tags:
     - openstack
 
+# Job to upload test data on Elasticsearch
+load-test-data:
+  stage: pre-build
+  services:
+    - name: docker.elastic.co/elasticsearch/elasticsearch:${ELASTIC_VERSION}
+      alias: elasticsearch
+      command: ["bin/elasticsearch", "-Ediscovery.type=single-node"]
+  script:
+    # Wait until Elasticsearch starts
+    - echo "Strating Elasticsearch..."
+    - until curl -s http://elasticsearch:9200 > /dev/null; do sleep 5; echo "Waiting..."; done
+    - echo "Elasticsearch is ready !"
+
+    # Upload each test JSON file on Elasticsearch
+    - |
+      for file in data/test/json-bulk/**/*.json; do
+        echo "Uploading $file on Elasticsearch...";
+        curl -X POST "http://elasticsearch:9200/_bulk" -H "Content-Type: application/json" --data-binary "@$file";
+      done
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event" || $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  tags:
+    - openstack
+
+
 # TESTS
 test-and-sonarqube:
   stage: test
