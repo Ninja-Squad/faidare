@@ -62,27 +62,34 @@ build-loader-docker-image:
 
 # Job to upload test data on Elasticsearch
 load-test-data:
-  stage: pre-build
+  needs: ["build-loader-docker-image"]
+  image: registry.forgemia.inra.fr/urgi-is/docker-rare/faidare-loader:${IMAGE_TAG}  # Specify the Docker image for loading test data
+  stage: pre-build  # Change the stage to "pre-build"
   services:
-    - name: docker.elastic.co/elasticsearch/elasticsearch:${ELASTIC_VERSION}
-      alias: elasticsearch
-      command: ["bin/elasticsearch", "-Ediscovery.type=single-node"]
+    - name: docker.elastic.co/elasticsearch/elasticsearch:${ELASTIC_VERSION}  # Define the Elasticsearch service
+      alias: elasticsearch  # Alias for accessing the service
+      command: ["bin/elasticsearch", "-Ediscovery.type=single-node"]  # Start Elasticsearch in single-node mode
+  variables:
+    ES_HOST: "elasticsearch"  # Set the Elasticsearch host
+    ES_PORT: "9200"  # Set the Elasticsearch port
+    JSON_DIR: "/opt/data/test/"  # Directory containing JSON files for bulk loading
+    PARALLEL: "--no-notice"
   script:
-    # Wait until Elasticsearch starts
-    - echo "Strating Elasticsearch..."
-    - until curl -s http://elasticsearch:9200 > /dev/null; do sleep 5; echo "Waiting..."; done
-    - echo "Elasticsearch is ready !"
+    # Wait for Elasticsearch to be ready to receive requests
+    - echo "Waiting for Elasticsearch to start..."
+    - until curl -s "http://${ES_HOST}:${ES_PORT}" | grep "You Know, for Search" > /dev/null; do sleep 1; done  # Polling until Elasticsearch is available
+    - echo "Elasticsearch is up and running."  # Confirmation message when Elasticsearch is ready
+    - echo "Listing JSON directory contents:"
+    - ls -la "${JSON_DIR}"  # List files in the JSON directory
+    - echo "${JSON_DIR}"
 
-    # Upload each test JSON file on Elasticsearch
-    - |
-      for file in data/test/json-bulk/**/*.json; do
-        echo "Uploading $file on Elasticsearch...";
-        curl -X POST "http://elasticsearch:9200/_bulk" -H "Content-Type: application/json" --data-binary "@$file";
-      done
+    # Launch the data loading script
+    - ./scripts/harvest.sh -jsonDir "${JSON_DIR}" -es_host "${ES_HOST}" -es_port "${ES_PORT}" -env "test" -type "all" </dev/null # Execute the script to load data into Elasticsearch
+
   rules:
-    - if: $CI_PIPELINE_SOURCE == "merge_request_event" || $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event" || $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH  # Specify when to run the job
   tags:
-    - openstack
+    - openstack  # Tag for the job runner
 
 
 # TESTS
