@@ -60,46 +60,42 @@ build-loader-docker-image:
   tags:
     - openstack
 
-# Job to configure Elasticsearch
-elasticsearch-setup:
+load-test-data:
+  image: registry.forgemia.inra.fr/urgi-is/docker-rare/faidare-loader:${IMAGE_TAG}
   stage: pre-build
-  image: docker.elastic.co/elasticsearch/elasticsearch:${ELASTIC_VERSION}
   services:
-    - name: docker.elastic.co/elasticsearch/elasticsearch:${ELASTIC_VERSION}
-      alias: elasticsearch
-      command: ["bin/elasticsearch", "-Ediscovery.type=single-node"]
+    - name: docker.elastic.co/elasticsearch/elasticsearch:8.10.0
+      alias: elasticsearch  # Alias for Elasticsearch service
   script:
-    - echo "Elasticsearch is up and running."
+    # 1. Check if Elasticsearch service is up and running
+    - echo "Checking Elasticsearch status..."
+    - |
+      until curl -s "http://${ES_HOST:-elasticsearch}:${ES_PORT:-9200}" | grep "You Know, for Search" > /dev/null; do
+        echo "Elasticsearch is not ready yet. Waiting 1 second..." && sleep 1;
+      done
+    - echo "Elasticsearch is ready."
+
+    # 2. Check if JSON files exist in the specified directory
+    - echo "Checking if JSON files are present in ${JSON_DIR:-/opt/data/test}..."
+    - |
+      if [ ! -d "${JSON_DIR:-/opt/data/test}" ] || [ $(ls -1 ${JSON_DIR:-/opt/data/test}/*.json.gz 2>/dev/null | wc -l) -eq 0 ]; then
+        echo "ERROR: No JSON files found in ${JSON_DIR:-/opt/data/test}!";
+        exit 1;
+      fi
+    - echo "The required JSON files are present:"
+    - ls -la "${JSON_DIR:-/opt/data/test}"
+
+    # 3. Run the `harvest.sh` script to load data into Elasticsearch
+    - echo "Starting data indexing..."
+    - |
+      ./scripts/harvest.sh -jsonDir "${JSON_DIR:-/opt/data/test}" -es_host "${ES_HOST:-elasticsearch}" -es_port "${ES_PORT:-9200}" -env "${ENV:-dev}" -type "all" || {
+        echo "ERROR: harvest.sh indexing failed.";
+        exit 1;
+      }
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event" || $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
   tags:
     - openstack
-
-# Job to upload test data on Elasticsearch
-load-test-data:
-  needs: ["build-loader-docker-image","elasticsearch-setup"]
-  image: registry.forgemia.inra.fr/urgi-is/docker-rare/faidare-loader:${IMAGE_TAG}  # Specify the Docker image for loading test data
-  stage: pre-build
-  variables:
-    ES_HOST: "elasticsearch"  # Set the Elasticsearch host
-    ES_PORT: "9200"  # Set the Elasticsearch port
-    JSON_DIR: "/opt/data/test/"  # Directory containing JSON files for bulk loading
-  script:
-    # Wait for Elasticsearch to be ready to receive requests
-    - echo "Waiting for Elasticsearch to start..."
-    - until curl -s "http://${ES_HOST}:${ES_PORT}" | grep "You Know, for Search" > /dev/null; do sleep 1; done  # Polling until Elasticsearch is available
-    - echo "Elasticsearch is up and running."  # Confirmation message when Elasticsearch is ready
-    - echo "Listing JSON directory contents:"
-    - ls -la "${JSON_DIR}"  # List files in the JSON directory
-    - echo "${JSON_DIR}"
-
-    # Launch the data loading script
-    - ./scripts/harvest.sh -jsonDir "${JSON_DIR}" -es_host "${ES_HOST}" -es_port "${ES_PORT}" -env "test" -type "all" </dev/null # Execute the script to load data into Elasticsearch
-
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "merge_request_event" || $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH  # Specify when to run the job
-  tags:
-    - openstack  # Tag for the job runner
 
 
 # TESTS
@@ -108,13 +104,27 @@ test-and-sonarqube:
   stage: test
   tags:
     - openstack
+  # the backend tests need an elasticsearch instance
+  services:
+    # even if that would be ideal
+    # we can't just launch the service with just elasticsearch:6.3.1
+    # because we need to pass some variables, but they are passed to _all_ containers
+    # so they fail the start of other docker images like urgi/docker-browsers
+    # the only solution is to override the entrypoint of the service and pass the arguments manually
+    - name: docker.elastic.co/elasticsearch/elasticsearch:${ELASTIC_VERSION}
+      alias: elasticsearch
+      # discovery.type=single-node
+      # single-node is necessary to start in development mode
+      # so there will be no bootstrap checks that would fail on CI
+      # especially the error regarding
+      # `max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]`
+      command: [ "bin/elasticsearch", "-Ediscovery.type=single-node" ]
+
   variables:
     GRADLE_OPTS: "-Xms512m -Xmx8192m -XX:MaxMetaspaceSize=8192m -Dorg.gradle.daemon=false"
     SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  # Defines the location of the analysis task cache
     GIT_DEPTH: "0"  # Tells git to fetch all the branches of the project, required by the analysis task
     ES_JAVA_OPTS: "-Xms2g -Xmx2g"
-    ES_HOST: "elasticsearch"  # Référence à l'instance Elasticsearch
-    ES_PORT: "9200"
   cache:
     key: "${CI_COMMIT_REF_NAME}"
     policy: pull-push
