@@ -72,6 +72,8 @@ elasticsearch-setup:
     - echo "Elasticsearch is up and running."
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event" || $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  tags:
+    - openstack
 
 # Job to upload test data on Elasticsearch
 load-test-data:
