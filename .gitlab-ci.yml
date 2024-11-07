@@ -69,12 +69,10 @@ load-test-data:
       command: ["bin/elasticsearch", "-Ediscovery.type=single-node"]
   script:
     # 1. Check if Elasticsearch service is up and running
-    - echo "Checking Elasticsearch status..."
-    - |
-      until curl -s "http://${ES_HOST:-elasticsearch}:${ES_PORT:-9200}" | grep "You Know, for Search" > /dev/null; do
-        echo "Elasticsearch is not ready yet. Waiting 1 second..." && sleep 1;
-      done
-    - echo "Elasticsearch is ready."
+    - echo "Strating Elasticsearch..."
+    - until curl -s http://elasticsearch:9200 > /dev/null; do sleep 5; echo "Waiting..."; done
+    - echo "Elasticsearch is ready !"
+
 
     # 2. Check if JSON files exist in the specified directory
     - echo "Checking if JSON files are present in ${JSON_DIR:-/opt/data/test}..."
