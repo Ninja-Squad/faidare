@@ -66,6 +66,7 @@ load-test-data:
   services:
     - name: docker.elastic.co/elasticsearch/elasticsearch:8.10.0
       alias: elasticsearch  # Alias for Elasticsearch service
+      command: ["bin/elasticsearch", "-Ediscovery.type=single-node"]
   script:
     # 1. Check if Elasticsearch service is up and running
     - echo "Checking Elasticsearch status..."
