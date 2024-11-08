@@ -61,10 +61,11 @@ build-loader-docker-image:
     - openstack
 
 load-test-data:
-  image: registry.forgemia.inra.fr/urgi-is/docker-rare/faidare-loader:${IMAGE_TAG}
   stage: pre-build
+  needs: ["build-loader-docker-image"]
+  image: registry.forgemia.inra.fr/urgi-is/docker-rare/faidare-loader:${IMAGE_TAG}
   services:
-    - name: docker.elastic.co/elasticsearch/elasticsearch:8.10.0
+    - name: docker.elastic.co/elasticsearch/elasticsearch:${ELASTIC_VERSION}
       alias: elasticsearch  # Alias for Elasticsearch service
       command: ["bin/elasticsearch", "-Ediscovery.type=single-node"]
   script:
