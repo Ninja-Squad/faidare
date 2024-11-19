@@ -10,8 +10,8 @@ import java.util.List;
 import java.util.Objects;
 
 @Document(
-        indexName = GermplasmV1VO.INDEX_NAME,
-        createIndex = false
+    indexName = GermplasmV1VO.INDEX_NAME,
+    createIndex = false
 )
 public final class GermplasmV1VO {
     public static final String INDEX_NAME = "faidare_germplasm_dev-group0";
@@ -34,6 +34,8 @@ public final class GermplasmV1VO {
     //private List<GermplasmInstitute> breedingInstitutes;
     //private GermplasmCollectingInfo collectingInfo;
     private String defaultDisplayName;
+    @Field(name = "documentationURL")
+    private String url;
     private String documentationURL;
     private List<DonorVO> donors;
     private List<SiteVO> evaluationSites; //GnpIS
@@ -45,10 +47,11 @@ public final class GermplasmV1VO {
     private String germplasmName;
     private String germplasmPUI;
     private Long groupId; //GnpIS
-    @Field(name="germplasmPUI")
+    @Field(name = "germplasmPUI")
     private String germplasmURI;
     @JsonProperty("@id")
-    @Field(name="germplasmPUI")//TODO : should take germpalsmURI as it is always fed in the new transformer
+    @Field(name = "germplasmPUI")
+//TODO : should take germpalsmURI as it is always fed in the new transformer
     private String id;
     private InstituteVO holdingInstitute; //GnpIS
     private InstituteVO holdingGenbank; //GnpIS
@@ -85,10 +88,15 @@ public final class GermplasmV1VO {
     private String subtaxa;
     private String subtaxaAuthority;
     private String subtaxon;
+    private List<TaxonSourceVO> taxonIds;
     private String subtaxonAuthority;
     private List<String> synonyms;
     private List<String> taxonCommonNames;
     private List<String> typeOfGermplasmStorageCode;
+    private String taxonComment;
+    private List<String> taxonSynonyms;
+    private String geneticNature;
+    private String comment;
     @JsonProperty("@type")
     private String type = "germplasm";
 
@@ -97,7 +105,52 @@ public final class GermplasmV1VO {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         GermplasmV1VO that = (GermplasmV1VO) o;
-        return Objects.equals(accessionNames, that.accessionNames) && Objects.equals(accessionNumber, that.accessionNumber) && Objects.equals(acquisitionDate, that.acquisitionDate) && Objects.equals(acquisitionSourceCode, that.acquisitionSourceCode) && Objects.equals(alternateIDs, that.alternateIDs) && Objects.equals(ancestralData, that.ancestralData) && Objects.equals(biologicalStatusOfAccessionCode, that.biologicalStatusOfAccessionCode) && Objects.equals(collection, that.collection) && Objects.equals(commonCropName, that.commonCropName) && Objects.equals(countryOfOriginCode, that.countryOfOriginCode) && Objects.equals(defaultDisplayName, that.defaultDisplayName) && Objects.equals(documentationURL, that.documentationURL) && Objects.equals(genus, that.genus) && Objects.equals(genusSpecies, that.genusSpecies) && Objects.equals(genusSpeciesSubtaxa, that.genusSpeciesSubtaxa) && Objects.equals(germplasmDbId, that.germplasmDbId) && Objects.equals(donors, that.donors) && Objects.equals(evaluationSites, that.evaluationSites) && Objects.equals(germplasmName, that.germplasmName) && Objects.equals(germplasmPUI, that.germplasmPUI) && Objects.equals(groupId, that.groupId) && Objects.equals(germplasmURI, that.germplasmURI) && Objects.equals(id, that.id) && Objects.equals(holdingInstitute, that.holdingInstitute) && Objects.equals(holdingGenbank, that.holdingGenbank) && Objects.equals(_id, that._id) && Objects.equals(instituteCode, that.instituteCode) && Objects.equals(instituteName, that.instituteName) && Objects.equals(mlsStatus, that.mlsStatus) && Objects.equals(originSite, that.originSite) && Objects.equals(panel, that.panel) && Objects.equals(pedigree, that.pedigree) && Objects.equals(photo, that.photo) && Objects.equals(population, that.population) && Objects.equals(presenceStatus, that.presenceStatus) && Objects.equals(remarks, that.remarks) && Objects.equals(schemaName, that.schemaName) && Objects.equals(schemaId, that.schemaId) && Objects.equals(schemaCatalog, that.schemaCatalog) && Objects.equals(seedSource, that.seedSource) && Objects.equals(sourceUri, that.sourceUri) && Objects.equals(species, that.species) && Objects.equals(speciesAuthority, that.speciesAuthority) && Objects.equals(storageTypeCodes, that.storageTypeCodes) && Objects.equals(studyDbIds, that.studyDbIds) && Objects.equals(studyURIs, that.studyURIs) && Objects.equals(subtaxa, that.subtaxa) && Objects.equals(subtaxaAuthority, that.subtaxaAuthority) && Objects.equals(subtaxon, that.subtaxon) && Objects.equals(subtaxonAuthority, that.subtaxonAuthority) && Objects.equals(synonyms, that.synonyms) && Objects.equals(taxonCommonNames, that.taxonCommonNames) && Objects.equals(typeOfGermplasmStorageCode, that.typeOfGermplasmStorageCode) && Objects.equals(type, that.type);
+        return Objects.equals(accessionNames, that.accessionNames) && Objects.equals(accessionNumber, that.accessionNumber) && Objects.equals(acquisitionDate, that.acquisitionDate) && Objects.equals(acquisitionSourceCode, that.acquisitionSourceCode) && Objects.equals(alternateIDs, that.alternateIDs) && Objects.equals(ancestralData, that.ancestralData) && Objects.equals(biologicalStatusOfAccessionCode, that.biologicalStatusOfAccessionCode) && Objects.equals(breeder, that.breeder) && Objects.equals(children, that.children) && Objects.equals(collectingSite, that.collectingSite) && Objects.equals(collection, that.collection) && Objects.equals(collector, that.collector) && Objects.equals(commonCropName, that.commonCropName) && Objects.equals(countryOfOriginCode, that.countryOfOriginCode) && Objects.equals(distributors, that.distributors) && Objects.equals(defaultDisplayName, that.defaultDisplayName) && Objects.equals(url, that.url) && Objects.equals(documentationURL, that.documentationURL) && Objects.equals(donors, that.donors) && Objects.equals(evaluationSites, that.evaluationSites) && Objects.equals(genus, that.genus) && Objects.equals(genusSpecies, that.genusSpecies) && Objects.equals(genusSpeciesSubtaxa, that.genusSpeciesSubtaxa) && Objects.equals(germplasmDbId, that.germplasmDbId) && Objects.equals(germplasmName, that.germplasmName) && Objects.equals(germplasmPUI, that.germplasmPUI) && Objects.equals(groupId, that.groupId) && Objects.equals(germplasmURI, that.germplasmURI) && Objects.equals(id, that.id) && Objects.equals(holdingInstitute, that.holdingInstitute) && Objects.equals(holdingGenbank, that.holdingGenbank) && Objects.equals(_id, that._id) && Objects.equals(instituteCode, that.instituteCode) && Objects.equals(instituteName, that.instituteName) && Objects.equals(mlsStatus, that.mlsStatus) && Objects.equals(originSite, that.originSite) && Objects.equals(panel, that.panel) && Objects.equals(pedigree, that.pedigree) && Objects.equals(photo, that.photo) && Objects.equals(population, that.population) && Objects.equals(presenceStatus, that.presenceStatus) && Objects.equals(remarks, that.remarks) && Objects.equals(schemaName, that.schemaName) && Objects.equals(schemaId, that.schemaId) && Objects.equals(schemaCatalog, that.schemaCatalog) && Objects.equals(seedSource, that.seedSource) && Objects.equals(sourceUri, that.sourceUri) && Objects.equals(species, that.species) && Objects.equals(speciesAuthority, that.speciesAuthority) && Objects.equals(storageTypeCodes, that.storageTypeCodes) && Objects.equals(studyDbIds, that.studyDbIds) && Objects.equals(studyURIs, that.studyURIs) && Objects.equals(subtaxa, that.subtaxa) && Objects.equals(subtaxaAuthority, that.subtaxaAuthority) && Objects.equals(subtaxon, that.subtaxon) && Objects.equals(taxonIds, that.taxonIds) && Objects.equals(subtaxonAuthority, that.subtaxonAuthority) && Objects.equals(synonyms, that.synonyms) && Objects.equals(taxonCommonNames, that.taxonCommonNames) && Objects.equals(typeOfGermplasmStorageCode, that.typeOfGermplasmStorageCode) && Objects.equals(taxonComment, that.taxonComment) && Objects.equals(taxonSynonyms, that.taxonSynonyms) && Objects.equals(geneticNature, that.geneticNature) && Objects.equals(comment, that.comment) && Objects.equals(type, that.type);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(accessionNames, accessionNumber, acquisitionDate, acquisitionSourceCode, alternateIDs, ancestralData, biologicalStatusOfAccessionCode, breeder, children, collectingSite, collection, collector, commonCropName, countryOfOriginCode, distributors, defaultDisplayName, url, documentationURL, donors, evaluationSites, genus, genusSpecies, genusSpeciesSubtaxa, germplasmDbId, germplasmName, germplasmPUI, groupId, germplasmURI, id, holdingInstitute, holdingGenbank, _id, instituteCode, instituteName, mlsStatus, originSite, panel, pedigree, photo, population, presenceStatus, remarks, schemaName, schemaId, schemaCatalog, seedSource, sourceUri, species, speciesAuthority, storageTypeCodes, studyDbIds, studyURIs, subtaxa, subtaxaAuthority, subtaxon, taxonIds, subtaxonAuthority, synonyms, taxonCommonNames, typeOfGermplasmStorageCode, taxonComment, taxonSynonyms, geneticNature, comment, type);
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public String getGeneticNature() {
+        return geneticNature;
+    }
+
+    public void setGeneticNature(String geneticNature) {
+        this.geneticNature = geneticNature;
+    }
+
+    public List<String> getTaxonSynonyms() {
+        return taxonSynonyms;
+    }
+
+    public void setTaxonSynonyms(List<String> taxonSynonyms) {
+        this.taxonSynonyms = taxonSynonyms;
+    }
+
+    public String getTaxonComment() {
+        return taxonComment;
+    }
+
+    public void setTaxonComment(String taxonComment) {
+        this.taxonComment = taxonComment;
+    }
+
+    public List<TaxonSourceVO> getTaxonIds() {
+        return taxonIds;
+    }
+
+    public void setTaxonIds(List<TaxonSourceVO> taxonIds) {
+        this.taxonIds = taxonIds;
     }
 
     public List<String> getAccessionNames() {
@@ -236,6 +289,14 @@ public final class GermplasmV1VO {
         this.documentationURL = documentationURL;
     }
 
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
     public List<DonorVO> getDonors() {
         return donors;
     }
@@ -315,8 +376,6 @@ public final class GermplasmV1VO {
     public void setGroupId(Long groupId) {
         this.groupId = groupId;
     }
-
-    //private List<TaxonSource> taxonIds; TODO activate Taxonsource OK
 
     public InstituteVO getHoldingGenbank() {
         return holdingGenbank;
@@ -567,11 +626,6 @@ public final class GermplasmV1VO {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(accessionNames, accessionNumber, acquisitionDate, acquisitionSourceCode, alternateIDs, ancestralData, biologicalStatusOfAccessionCode, collection, commonCropName, countryOfOriginCode, defaultDisplayName, documentationURL, genus, genusSpecies, genusSpeciesSubtaxa, germplasmDbId, donors, evaluationSites, germplasmName, germplasmPUI, groupId, germplasmURI, id, holdingInstitute, holdingGenbank, _id, instituteCode, instituteName, mlsStatus, originSite, panel, pedigree, photo, population, presenceStatus, remarks, schemaName, schemaId, schemaCatalog, seedSource, sourceUri, species, speciesAuthority, storageTypeCodes, studyDbIds, studyURIs, subtaxa, subtaxaAuthority, subtaxon, subtaxonAuthority, synonyms, taxonCommonNames, typeOfGermplasmStorageCode, type);
-    }
-
-    @Override
     public String toString() {
         return "GermplasmV1VO{" +
             "accessionNames=" + accessionNames +
@@ -581,17 +635,23 @@ public final class GermplasmV1VO {
             ", alternateIDs=" + alternateIDs +
             ", ancestralData='" + ancestralData + '\'' +
             ", biologicalStatusOfAccessionCode='" + biologicalStatusOfAccessionCode + '\'' +
+            ", breeder=" + breeder +
+            ", children=" + children +
+            ", collectingSite=" + collectingSite +
             ", collection=" + collection +
+            ", collector=" + collector +
             ", commonCropName='" + commonCropName + '\'' +
             ", countryOfOriginCode='" + countryOfOriginCode + '\'' +
+            ", distributors=" + distributors +
             ", defaultDisplayName='" + defaultDisplayName + '\'' +
+            ", url='" + url + '\'' +
             ", documentationURL='" + documentationURL + '\'' +
+            ", donors=" + donors +
+            ", evaluationSites=" + evaluationSites +
             ", genus='" + genus + '\'' +
             ", genusSpecies='" + genusSpecies + '\'' +
             ", genusSpeciesSubtaxa='" + genusSpeciesSubtaxa + '\'' +
             ", germplasmDbId='" + germplasmDbId + '\'' +
-            ", donors=" + donors +
-            ", evaluationSites=" + evaluationSites +
             ", germplasmName='" + germplasmName + '\'' +
             ", germplasmPUI='" + germplasmPUI + '\'' +
             ", groupId=" + groupId +
@@ -614,6 +674,7 @@ public final class GermplasmV1VO {
             ", schemaId='" + schemaId + '\'' +
             ", schemaCatalog='" + schemaCatalog + '\'' +
             ", seedSource='" + seedSource + '\'' +
+            ", sourceUri='" + sourceUri + '\'' +
             ", species='" + species + '\'' +
             ", speciesAuthority='" + speciesAuthority + '\'' +
             ", storageTypeCodes=" + storageTypeCodes +
@@ -622,10 +683,15 @@ public final class GermplasmV1VO {
             ", subtaxa='" + subtaxa + '\'' +
             ", subtaxaAuthority='" + subtaxaAuthority + '\'' +
             ", subtaxon='" + subtaxon + '\'' +
+            ", taxonIds=" + taxonIds +
             ", subtaxonAuthority='" + subtaxonAuthority + '\'' +
             ", synonyms=" + synonyms +
             ", taxonCommonNames=" + taxonCommonNames +
             ", typeOfGermplasmStorageCode=" + typeOfGermplasmStorageCode +
+            ", taxonComment='" + taxonComment + '\'' +
+            ", taxonSynonyms=" + taxonSynonyms +
+            ", geneticNature='" + geneticNature + '\'' +
+            ", comment='" + comment + '\'' +
             ", type='" + type + '\'' +
             '}';
     }
