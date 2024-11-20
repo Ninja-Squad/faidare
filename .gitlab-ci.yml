@@ -81,7 +81,7 @@ load-test-data:
     - ls -la "${JSON_DIR}"  # List files in the JSON directory
     - echo "${JSON_DIR}"
     # Launch the data loading script
-    - ./scripts/harvest.sh -jsonDir "${JSON_DIR}" -es_host "${ES_HOST}" -es_port "${ES_PORT}" -env "test" -type "all" </dev/null # Execute the script to load data into Elasticsearch
+    - ./scripts/harvest.sh -jsonDir "${JSON_DIR}" -es_host "${ES_HOST}" -es_port "${ES_PORT}" -env "dev" -type "all" </dev/null # Execute the script to load data into Elasticsearch
 
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event" || $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
