@@ -56,22 +56,45 @@ build-loader-docker-image:
       - backend/src/main/resources/fr/inrae/urgi/faidare/repository/es/setup/index/settings.json
       - .gitlab-ci.yml
     - if: $CI_PIPELINE_SOURCE == "merge_request_event" || $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-  allow_failure: true
+#  allow_failure: true
   tags:
     - openstack
 
-load-test-data:
-  stage: pre-build
-  needs: ["build-loader-docker-image"]
-  image: registry.forgemia.inra.fr/urgi-is/docker-rare/faidare-loader:${IMAGE_TAG}
+# TESTS
+test-and-sonarqube:
+  stage: test
+  tags:
+    - openstack
+  # the backend tests need an elasticsearch instance
   services:
+    # even if that would be ideal
+    # we can't just launch the service with just elasticsearch:6.3.1
+    # because we need to pass some variables, but they are passed to _all_ containers
+    # so they fail the start of other docker images like urgi/docker-browsers
+    # the only solution is to override the entrypoint of the service and pass the arguments manually
     - name: docker.elastic.co/elasticsearch/elasticsearch:${ELASTIC_VERSION}
-      alias: elasticsearch  # Alias for Elasticsearch service
-      command: ["bin/elasticsearch", "-Ediscovery.type=single-node"]
+      alias: elasticsearch
+      # discovery.type=single-node
+      # single-node is necessary to start in development mode
+      # so there will be no bootstrap checks that would fail on CI
+      # especially the error regarding
+      # `max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]`
+      command: [ "bin/elasticsearch", "-Ediscovery.type=single-node" ]
+
   variables:
+    GRADLE_OPTS: "-Xms512m -Xmx8192m -XX:MaxMetaspaceSize=8192m -Dorg.gradle.daemon=false"
+    SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  # Defines the location of the analysis task cache
+    GIT_DEPTH: "0"  # Tells git to fetch all the branches of the project, required by the analysis task
+    ES_JAVA_OPTS: "-Xms2g -Xmx2g"
     ES_HOST: "elasticsearch"  # Set the Elasticsearch host
     ES_PORT: "9200"  # Set the Elasticsearch port
-    JSON_DIR: "/opt/data/test/"  # Directory containing JSON files for bulk loading
+    JSON_DIR: "./data/test/"  # Directory containing JSON files for bulk loading
+  cache:
+    key: "${CI_COMMIT_REF_NAME}"
+    policy: pull-push
+    paths:
+      - ".gradle"
+      - .sonar/cache
   script:
     # Wait for Elasticsearch to be ready to receive requests
     - echo "Waiting for Elasticsearch to start..."
@@ -82,50 +105,6 @@ load-test-data:
     - echo "${JSON_DIR}"
     # Launch the data loading script
     - ./scripts/harvest.sh -jsonDir "${JSON_DIR}" -es_host "${ES_HOST}" -es_port "${ES_PORT}" -env "dev" -type "all" </dev/null # Execute the script to load data into Elasticsearch
-
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "merge_request_event" || $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-  tags:
-    - openstack
-
-
-# TESTS
-test-and-sonarqube:
-  needs: ["load-test-data"]
-  stage: test
-  tags:
-    - openstack
-  # the backend tests need an elasticsearch instance
-  #services:
-    # even if that would be ideal
-    # we can't just launch the service with just elasticsearch:6.3.1
-    # because we need to pass some variables, but they are passed to _all_ containers
-    # so they fail the start of other docker images like urgi/docker-browsers
-    # the only solution is to override the entrypoint of the service and pass the arguments manually
-    #- name: docker.elastic.co/elasticsearch/elasticsearch:${ELASTIC_VERSION}
-      #alias: elasticsearch
-      # discovery.type=single-node
-      # single-node is necessary to start in development mode
-      # so there will be no bootstrap checks that would fail on CI
-      # especially the error regarding
-      # `max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]`
-      #command: [ "bin/elasticsearch", "-Ediscovery.type=single-node" ]
-
-  variables:
-    GRADLE_OPTS: "-Xms512m -Xmx8192m -XX:MaxMetaspaceSize=8192m -Dorg.gradle.daemon=false"
-    SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  # Defines the location of the analysis task cache
-    GIT_DEPTH: "0"  # Tells git to fetch all the branches of the project, required by the analysis task
-    ES_JAVA_OPTS: "-Xms2g -Xmx2g"
-    ES_HOST: "elasticsearch"  # Set the Elasticsearch host
-    ES_PORT: "9200"  # Set the Elasticsearch port
-    JSON_DIR: "/opt/data/test/"  # Directory containing JSON files for bulk loading
-  cache:
-    key: "${CI_COMMIT_REF_NAME}"
-    policy: pull-push
-    paths:
-      - ".gradle"
-      - .sonar/cache
-  script:
     - ./gradlew test jacocoTestReport -s sonarqube
   artifacts:
     reports:
