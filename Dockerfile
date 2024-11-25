@@ -10,12 +10,9 @@ COPY backend/src/main/resources/fr/inrae/urgi/faidare/repository/es/setup/index/
 # COPY dao mappings
 COPY backend/src/main/resources/fr/inrae/urgi/faidare/repository/es/setup/index/*_mapping.json /opt/backend/src/main/resources/fr/inrae/urgi/faidare/repository/es/setup/index/
 
-# Copy the JSON test data files
-COPY data/test/ /opt/data/test/
-
 RUN apk add --update --no-cache bash curl jq parallel wget grep gzip sed date coreutils
 
 RUN chmod +x /opt/scripts/harvest.sh
 RUN mkdir ~/.parallel && touch ~/.parallel/will-cite
 
-#ENTRYPOINT ["/opt/scripts/harvest.sh"]
+ENTRYPOINT ["/opt/scripts/harvest.sh"]
