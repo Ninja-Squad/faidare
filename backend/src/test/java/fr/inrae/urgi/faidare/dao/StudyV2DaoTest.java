@@ -1,17 +1,20 @@
 package fr.inrae.urgi.faidare.dao;
 
+import fr.inrae.urgi.faidare.config.ElasticSearchConfig;
 import fr.inrae.urgi.faidare.dao.v2.StudyCriteria;
 import fr.inrae.urgi.faidare.dao.v2.StudyV2Dao;
 import fr.inrae.urgi.faidare.domain.brapi.v2.StudyV2VO;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.elasticsearch.DataElasticsearchTest;
+import org.springframework.context.annotation.Import;
 import org.springframework.data.elasticsearch.core.SearchHits;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Import({ElasticSearchConfig.class})
 @DataElasticsearchTest
 class StudyV2DaoTest {
 
@@ -32,19 +35,19 @@ class StudyV2DaoTest {
 
     @Test
     void getByStudyDbID_studyDbId(){
-        StudyV2VO studyVO = studyV2Dao.getByStudyDbId("dXJuOklCRVQvc3R1ZHkvMQ==");
+        StudyV2VO studyVO = studyV2Dao.getByStudyDbId("dXJuOklOUkFFLVVSR0kvc3R1ZHkvQlRIX0VzdHIlQzMlQTllcy1Nb25zXzIwMDRfVEVDSA==");
         assertThat(studyVO).isNotNull();
-        assertThat(studyVO.getStudyDbId()).isEqualTo("dXJuOklCRVQvc3R1ZHkvMQ==");
+        assertThat(studyVO.getStudyDbId()).isEqualTo("dXJuOklOUkFFLVVSR0kvc3R1ZHkvQlRIX0VzdHIlQzMlQTllcy1Nb25zXzIwMDRfVEVDSA==");
     }
-
-    @Test
-    void custom_should_search_by_commonCropNames(){
-        StudyCriteria sCrit = new StudyCriteria();
-        sCrit.setCommonCropNames(List.of("Rice"));
-        SearchHits<StudyV2VO> studyVOs = studyV2Dao.findStudiesByCriteria(sCrit);
-        assertThat(studyVOs).isNotNull().isNotEmpty();
-        assertThat(studyVOs.getSearchHit(0).getContent().getCommonCropName()).isEqualTo("Rice");
-    }
+    // TODO : There is no Rice, all the test studies docs have a null commonCropName
+//    @Test
+//    void custom_should_search_by_commonCropNames(){
+//        StudyCriteria sCrit = new StudyCriteria();
+//        sCrit.setCommonCropNames(List.of("Rice"));
+//        SearchHits<StudyV2VO> studyVOs = studyV2Dao.findStudiesByCriteria(sCrit);
+//        assertThat(studyVOs).isNotNull().isNotEmpty();
+//        assertThat(studyVOs.getSearchHit(0).getContent().getCommonCropNames()).isEqualTo("Rice");
+//    }
 
 
         //TODO : check if this is in the spec
@@ -69,10 +72,10 @@ class StudyV2DaoTest {
     @Test
     void custom_should_search_by_germplasmDbIds(){
         StudyCriteria sCrit = new StudyCriteria();
-        sCrit.setGermplasmDbIds((List.of("dXJuOklCRVQvYTY3OTk1MDgtMmFhOS00NmVjLThjM2MtMjcyZmViODg1MDVi")));
+        sCrit.setGermplasmDbIds((List.of("dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI0MzI4")));
         SearchHits<StudyV2VO> studyVOs = studyV2Dao.findStudiesByCriteria(sCrit);
         assertThat(studyVOs).isNotNull().isNotEmpty();
-        assertThat(studyVOs.getSearchHit(0).getContent().getGermplasmDbIds()).contains("dXJuOklCRVQvYTY3OTk1MDgtMmFhOS00NmVjLThjM2MtMjcyZmViODg1MDVi");
+        assertThat(studyVOs.getSearchHit(0).getContent().getGermplasmDbIds()).contains("dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI0MzI4");
     }
 
 
@@ -89,28 +92,28 @@ class StudyV2DaoTest {
     @Test
     void custom_should_search_by_locationDbIds(){
         StudyCriteria sCrit = new StudyCriteria();
-        sCrit.setLocationDbIds(List.of("dXJuOklCRVQvbG9jYXRpb24vdW5kZWZpbmVk"));
+        sCrit.setLocationDbIds(List.of("dXJuOklOUkFFLVVSR0kvbG9jYXRpb24vMzQwNjQ="));
         SearchHits<StudyV2VO> studyVOs = studyV2Dao.findStudiesByCriteria(sCrit);
         assertThat(studyVOs).isNotNull().isNotEmpty();
-        assertThat(studyVOs.getSearchHit(0).getContent().getLocationDbId()).isEqualTo("dXJuOklCRVQvbG9jYXRpb24vdW5kZWZpbmVk");
+        assertThat(studyVOs.getSearchHit(0).getContent().getLocationDbId()).isEqualTo("dXJuOklOUkFFLVVSR0kvbG9jYXRpb24vMzQwNjQ=");
     }
 
     @Test
     void custom_should_search_by_locationNames(){
         StudyCriteria sCrit = new StudyCriteria();
-        sCrit.setLocationNames(List.of("Grandola (Barradas da Serra)"));
+        sCrit.setLocationNames(List.of("Le Moulon"));
         SearchHits<StudyV2VO> studyVOs = studyV2Dao.findStudiesByCriteria(sCrit);
         assertThat(studyVOs).isNotNull().isNotEmpty();
-        assertThat(studyVOs.getSearchHit(0).getContent().getLocationName()).isEqualTo("Grandola (Barradas da Serra)");
+        assertThat(studyVOs.getSearchHit(0).getContent().getLocationName()).isEqualTo("Le Moulon");
     }
 
     @Test
     void custom_should_search_by_observationVariableDbIds(){
         StudyCriteria sCrit = new StudyCriteria();
-        sCrit.setObservationVariableDbIds(List.of("17"));
+        sCrit.setObservationVariableDbIds(List.of("CO_321:1000070"));
         SearchHits<StudyV2VO> studyVOs = studyV2Dao.findStudiesByCriteria(sCrit);
         assertThat(studyVOs).isNotNull().isNotEmpty();
-        assertThat(studyVOs.getSearchHit(0).getContent().getObservationVariableDbIds()).contains("17");
+        assertThat(studyVOs.getSearchHit(0).getContent().getObservationVariableDbIds()).contains("CO_321:1000070");
     }
 
 
@@ -136,10 +139,10 @@ class StudyV2DaoTest {
     @Test
     void custom_should_search_by_programDbIds(){
         StudyCriteria sCrit = new StudyCriteria();
-        sCrit.setProgramDbIds(List.of("dXJuOklCRVQvcHJvZ3JhbS8x"));
+        sCrit.setProgramDbIds(List.of("dXJuOklOUkFFLVVSR0kvcHJvZ3JhbS9JTlJBX1doZWF0X0JyZWVkaW5nX05ldHdvcms="));
         SearchHits<StudyV2VO> studyVOs = studyV2Dao.findStudiesByCriteria(sCrit);
         assertThat(studyVOs).isNotNull().isNotEmpty();
-        assertThat(studyVOs.getSearchHit(0).getContent().getProgramDbId()).isEqualTo("dXJuOklCRVQvcHJvZ3JhbS8x");
+        assertThat(studyVOs.getSearchHit(0).getContent().getProgramDbId()).isEqualTo("dXJuOklOUkFFLVVSR0kvcHJvZ3JhbS9JTlJBX1doZWF0X0JyZWVkaW5nX05ldHdvcms=");
     }
 
     @Test
@@ -173,19 +176,19 @@ class StudyV2DaoTest {
     @Test
     void custom_should_search_by_studyDbIds(){
         StudyCriteria sCrit = new StudyCriteria();
-        sCrit.setStudyDbIds(List.of("dXJuOklCRVQvc3R1ZHkvMQ=="));
+        sCrit.setStudyDbIds(List.of("dXJuOklOUkFFLVVSR0kvc3R1ZHkvQlRIX0NsZXJtb250LUZlcnJhbmRfMjAwNV9URUNI"));
         SearchHits<StudyV2VO> studyVOs = studyV2Dao.findStudiesByCriteria(sCrit);
         assertThat(studyVOs).isNotNull().isNotEmpty();
-        assertThat(studyVOs.getSearchHit(0).getContent().getStudyDbId()).isEqualTo("dXJuOklCRVQvc3R1ZHkvMQ==");
+        assertThat(studyVOs.getSearchHit(0).getContent().getStudyDbId()).isEqualTo("dXJuOklOUkFFLVVSR0kvc3R1ZHkvQlRIX0NsZXJtb250LUZlcnJhbmRfMjAwNV9URUNI");
     }
 
     @Test
     void custom_should_search_by_studyName(){
         StudyCriteria sCrit = new StudyCriteria();
-        sCrit.setStudyNames(List.of("D4"));
+        sCrit.setStudyNames(List.of("BTH_Estrées-Mons_2005_TECH"));
         SearchHits<StudyV2VO> studyVOs = studyV2Dao.findStudiesByCriteria(sCrit);
         assertThat(studyVOs).isNotNull().isNotEmpty();
-        assertThat(studyVOs.getSearchHit(0).getContent().getStudyName()).isEqualTo("D4");
+        assertThat(studyVOs.getSearchHit(0).getContent().getStudyName()).isEqualTo("BTH_Estrées-Mons_2005_TECH");
     }
 
     void custom_should_search_by_studyPUIs(){
@@ -208,19 +211,19 @@ class StudyV2DaoTest {
     @Test
     void custom_should_search_by_trialDbIds(){
         StudyCriteria sCrit = new StudyCriteria();
-        sCrit.setTrialDbIds(List.of("dXJuOklCRVQvdHJpYWwvMQ=="));
+        sCrit.setTrialDbIds(List.of("dXJuOklOUkFFLVVSR0kvdHJpYWwvNw=="));
         SearchHits<StudyV2VO> studyVOs = studyV2Dao.findStudiesByCriteria(sCrit);
         assertThat(studyVOs).isNotNull().isNotEmpty();
-        assertThat(studyVOs.getSearchHit(0).getContent().getTrialDbId()).contains("dXJuOklCRVQvdHJpYWwvMQ==");
+        assertThat(studyVOs.getSearchHit(0).getContent().getTrialDbId()).contains("dXJuOklOUkFFLVVSR0kvdHJpYWwvNw==");
     }
 
     @Test
     void custom_should_search_by_trialNames(){
         StudyCriteria sCrit = new StudyCriteria();
-        sCrit.setTrialNames(List.of("Cork quality traits in three populations of Quercus suber"));
+        sCrit.setTrialNames(List.of("INRA Wheat Network technological variables"));
         SearchHits<StudyV2VO> studyVOs = studyV2Dao.findStudiesByCriteria(sCrit);
         assertThat(studyVOs).isNotNull().isNotEmpty();
-        assertThat(studyVOs.getSearchHit(0).getContent().getTrialName()).isEqualTo("Cork quality traits in three populations of Quercus suber");
+        assertThat(studyVOs.getSearchHit(0).getContent().getTrialName()).isEqualTo("INRA Wheat Network technological variables");
     }
 
 }

@@ -1,6 +1,8 @@
 package fr.inrae.urgi.faidare.domain.brapi.v2;
 
+import fr.inrae.urgi.faidare.config.ElasticSearchConfig;
 import fr.inrae.urgi.faidare.domain.*;
+import org.springframework.context.annotation.Import;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
@@ -8,7 +10,7 @@ import org.springframework.data.elasticsearch.annotations.Field;
 import java.util.List;
 import java.util.Set;
 
-
+@Import({ElasticSearchConfig.class})
 @Document(
     indexName = "#{@faidarePropertiesBean.getAliasName('study', 0L)}",
     createIndex = false

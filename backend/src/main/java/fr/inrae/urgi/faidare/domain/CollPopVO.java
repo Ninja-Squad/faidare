@@ -1,10 +1,12 @@
 package fr.inrae.urgi.faidare.domain;
 
+import fr.inrae.urgi.faidare.config.ElasticSearchConfig;
+import org.springframework.context.annotation.Import;
 import org.springframework.data.elasticsearch.annotations.Document;
 
+@Import({ElasticSearchConfig.class})
 @Document(
-    indexName = "faidare_germplasm_dev-group0",
-    //indexName = "faidare_germplasm_beta-group0",
+    indexName = "#{@faidarePropertiesBean.getAliasName('germplasm', 0L)}",
     createIndex = false
 )
 public class CollPopVO {
