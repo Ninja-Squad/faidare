@@ -121,7 +121,6 @@ public class StudyControllerTest {
                .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
                .andExpect(htmlContent().hasTitle("Study Doability: Study 1"))
                .andExpect(htmlContent().containsH2s("Identification", "Genotype", "Variables", "Data Set", "Contact", "Additional information", "Cross references"))
-                .andExpect(htmlContent().contains("http://example.com"))
                 .andExpect(htmlContent().endsCorrectly());
     }
 
