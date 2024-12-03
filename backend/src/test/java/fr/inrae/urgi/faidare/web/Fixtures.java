@@ -66,9 +66,9 @@ public class Fixtures {
         study.setProgramName("Program 1");
         study.setActive(true);
         // FIXME JBN study.startDate used to be a java.util.Date, it's now a String. What does it contain?
-        study.setStartDate(LocalDate.now().toString());
+        study.setStartDate(LocalDate.now());
         study.setDataLinks(List.of(createDataLink()));
-        study.setContact(List.of(createContact()));
+        study.setContacts(List.of(createContact()));
 
         // FIXME JBN uncomment this once study has additionalInfo
 //        BrapiAdditionalInfo additionalInfo = new BrapiAdditionalInfo();
@@ -81,6 +81,7 @@ public class Fixtures {
         study.setLocationName("France");
         study.setGermplasmDbIds(List.of("germplasm1"));
         study.setTrialsDbIds(Collections.singleton("trial1"));
+        study.setUrl("http://test.com/study/");
         return study;
     }
 

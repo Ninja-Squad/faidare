@@ -5,6 +5,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
 
@@ -23,7 +24,7 @@ public final class StudyV1VO {
 
     private String commonCropName;
 
-    private List<ContactVO> contact;
+    private List<ContactVO> contacts;
 
     private String culturalPractices;
 
@@ -31,7 +32,7 @@ public final class StudyV1VO {
 
     private String documentationURL;
 
-    private String endDate;
+    private LocalDate endDate;
 
     private List<EnvironmentParametersVO> environmentParameters;
 
@@ -70,7 +71,7 @@ public final class StudyV1VO {
     @Field("schema:includedInDataCatalog")
     private String sourceUri;
 
-    private String startDate;
+    private LocalDate startDate;
 
     private String studyCode;
 
@@ -84,6 +85,15 @@ public final class StudyV1VO {
     private String trialDbId;
     private Set<String> trialsDbIds;
     private String trialName;
+    private String url;
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
     public String getCommonCropName() {
         return commonCropName;
@@ -93,12 +103,12 @@ public final class StudyV1VO {
         this.commonCropName = commonCropName;
     }
 
-    public List<ContactVO> getContact() {
-        return contact;
+    public List<ContactVO> getContacts() {
+        return contacts;
     }
 
-    public void setContact(List<ContactVO> contact) {
-        this.contact = contact;
+    public void setContacts(List<ContactVO> contacts) {
+        this.contacts = contacts;
     }
 
     public String getCulturalPractices() {
@@ -125,9 +135,9 @@ public final class StudyV1VO {
         this.documentationURL = documentationURL;
     }
 
-    public String getEndDate() { return endDate; }
+    public LocalDate getEndDate() { return endDate; }
 
-    public void setEndDate(String endDate) { this.endDate = endDate; }
+    public void setEndDate(LocalDate endDate) { this.endDate = endDate; }
 
     public List<EnvironmentParametersVO> getEnvironmentParameters() {
         return environmentParameters;
@@ -261,11 +271,11 @@ public final class StudyV1VO {
         this.sourceUri = sourceUri;
     }
 
-    public String getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(String startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 

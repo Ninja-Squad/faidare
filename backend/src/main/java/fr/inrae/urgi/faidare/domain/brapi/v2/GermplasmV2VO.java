@@ -41,7 +41,7 @@ public class GermplasmV2VO {
     private String breedingMethodName;
 
     private List<GenealogyVO> children; // GnpIS
-
+    @Field(name = "originSite")
     private SiteVO collectingSite; //GnpIS
 
     private List<CollPopVO> collection;
@@ -57,7 +57,7 @@ public class GermplasmV2VO {
     private String defaultDisplayName;
 
     private List<PuiNameValueVO> descriptors; //GnpIS
-
+    @Field(name = "distributors")
     private List<GermplasmInstituteVO> distributors; //GnpIS
 
     private String documentationURL;
@@ -132,7 +132,7 @@ public class GermplasmV2VO {
 
     private String subtaxaAuthority;
 
-    @Field(type = FieldType.Nested)
+    @Field(name = "synonymsV2" ,type = FieldType.Nested)
     private List<SynonymsVO> synonyms;
 
     private String taxonComment; //GnpIS

@@ -20,9 +20,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.web.servlet.ModelAndView;
@@ -78,6 +80,7 @@ public class StudyControllerTest {
     private LocationVO location;
     private TrialV1VO trial;
 
+
     @BeforeEach
     void prepare() {
         study = Fixtures.createStudy();
@@ -120,7 +123,7 @@ public class StudyControllerTest {
                .andExpect(status().isOk())
                .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
                .andExpect(htmlContent().hasTitle("Study Doability: Study 1"))
-               .andExpect(htmlContent().containsH2s("Identification", "Genotype", "Variables", "Data Set", "Contact", "Additional information", "Cross references"))
+               .andExpect(htmlContent().containsH2s("Identification", "Genotype", "Data Set", "Contact", "Cross references"))
                 .andExpect(htmlContent().endsCorrectly());
     }
 

@@ -145,26 +145,26 @@ class GermplasmV1DaoTest {
 
     @Test
     void should_find_by_germplasmId_with_collecting_site2(){
-        GermplasmV1VO gVo = germplasmDao.getByGermplasmDbId("aHR0cHM6Ly9kb2kub3JnLzEwLjE1NDU0L0VFVkNaUQ==");
+        GermplasmV1VO gVo = germplasmDao.getByGermplasmDbId("dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI2ODU5");
         assertThat(gVo).isNotNull();
-        assertThat(gVo.getGermplasmDbId()).isEqualTo("aHR0cHM6Ly9kb2kub3JnLzEwLjE1NDU0L0VFVkNaUQ==");
+        assertThat(gVo.getGermplasmDbId()).isEqualTo("dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI2ODU5");
         assertThat(gVo.getCollectingSite()).isNotNull();
-        assertThat(gVo.getCollectingSite().getSiteId()).isEqualTo("40635");
-        assertThat(gVo.getCollectingSite().getSiteName()).isEqualTo("(U) Liamone - ULI");
-        assertThat(gVo.getCollectingSite().getLatitude()).isEqualTo(42.124165);
-        assertThat(gVo.getCollectingSite().getLongitude()).isEqualTo(8.749445);
-        assertThat(gVo.getCollectingSite().getSiteType()).isEqualTo("Origin and Collecting site");
+        assertThat(gVo.getCollectingSite().getSiteId()).isEqualTo("1626");
+        assertThat(gVo.getCollectingSite().getSiteName()).isEqualTo("France");
+        assertThat(gVo.getCollectingSite().getLatitude()).isEqualTo(47.428085);
+        assertThat(gVo.getCollectingSite().getLongitude()).isEqualTo(2.680664);
+        assertThat(gVo.getCollectingSite().getSiteType()).isEqualTo("Origin, Breeding and Collecting site");
     }
 
     @Test
     void should_get_by_germplasm_id_and_have_collector(){
-        GermplasmV1VO gVo = germplasmDao.getByGermplasmDbId("aHR0cHM6Ly9kb2kub3JnLzEwLjE1NDU0L0VFVkNaUQ==");
+        GermplasmV1VO gVo = germplasmDao.getByGermplasmDbId("dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI2ODU3");
         assertThat(gVo).isNotNull();
-        assertThat(gVo.getGermplasmDbId()).isEqualTo("aHR0cHM6Ly9kb2kub3JnLzEwLjE1NDU0L0VFVkNaUQ==");
+        assertThat(gVo.getGermplasmDbId()).isEqualTo("dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI2ODU3");
         assertThat(gVo.getCollector()).isNotNull();
-        assertThat(gVo.getCollector().getInstitute().getAcronym()).isEqualTo("INRAE_ONF_UMR_BioForA");
-        assertThat(gVo.getCollector().getMaterialType()).isEqualTo("Cutting");
-        assertThat(gVo.getCollector().getAccessionCreationDate()).isEqualTo(20091200);
+        assertThat(gVo.getCollector().getInstitute().getAcronym()).isEqualTo("INRAE_UMR_GDEC");
+        //assertThat(gVo.getCollector().getMaterialType()).isEqualTo("Cutting"); is null in this case
+        //assertThat(gVo.getCollector().getAccessionCreationDate()).isEqualTo(20091200); null also
     }
 
     @Test

@@ -88,7 +88,8 @@ public class StudyController {
                                     variables,
                                     trials,
                                     crossReferences,
-                                    location
+                                    location,
+                                    study.getUrl()
                                 )
         );
     }
