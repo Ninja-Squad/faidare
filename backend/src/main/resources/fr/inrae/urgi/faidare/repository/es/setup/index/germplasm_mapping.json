@@ -141,6 +141,10 @@
       "type": "keyword"
     },
     "synonyms": {
+      "type": "keyword",
+      "doc_values": true
+    },
+    "synonymsV2": {
       "type": "nested",
       "properties": {
         "type": { "type": "keyword" },
