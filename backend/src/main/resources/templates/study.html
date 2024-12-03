@@ -63,7 +63,7 @@
             th:if="${model.study.startDate != null && model.study.endDate == null}"
           >
             <div
-              th:replace="fragments/row::text-row(label='Date', text=${'Started on ' + #dates.format(model.study.startDate, 'yyyy-MM-dd')})"
+              th:replace="fragments/row::text-row(label='Date', text=${'Started on ' + #temporals.format(model.study.startDate, 'yyyy-MM-dd')})"
             ></div>
           </th:block>
 

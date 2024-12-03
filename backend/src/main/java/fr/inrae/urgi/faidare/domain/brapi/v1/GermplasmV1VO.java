@@ -25,8 +25,10 @@ public final class GermplasmV1VO {
     private String biologicalStatusOfAccessionCode;
     private GermplasmInstituteVO breeder;
     private List<GenealogyVO> children;
+    @Field(name = "originSite")
     private SiteVO collectingSite; //GnpIS
     private List<CollPopVO> collection;
+    @Field(name = "collector")
     private GermplasmInstituteVO collector;
     private String commonCropName;
     private String countryOfOriginCode;
@@ -90,6 +92,7 @@ public final class GermplasmV1VO {
     private String subtaxon;
     private List<TaxonSourceVO> taxonIds;
     private String subtaxonAuthority;
+    @Field(name = "synonyms")
     private List<String> synonyms;
     private List<String> taxonCommonNames;
     private List<String> typeOfGermplasmStorageCode;

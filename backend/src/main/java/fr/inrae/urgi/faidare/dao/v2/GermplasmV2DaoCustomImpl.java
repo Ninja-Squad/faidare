@@ -139,7 +139,7 @@ public class GermplasmV2DaoCustomImpl implements GermplasmV2DaoCustom {
                 .stream()
                 .map(SynonymsVO::getSynonym)
                 .toList();
-            esCrit.and(new Criteria().and("synonyms.synonym").in(synonymValues));
+            esCrit.and(new Criteria().and("synonymsV2.synonym").in(synonymValues));
             //esCrit.and(new Criteria("synonyms").in(germplasmCriteria.getSynonyms()));
         }
 
