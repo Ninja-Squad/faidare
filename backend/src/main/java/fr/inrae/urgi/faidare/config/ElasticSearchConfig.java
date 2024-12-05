@@ -1,5 +1,7 @@
 package fr.inrae.urgi.faidare.config;
 
+import org.apache.hc.core5.http.message.BasicHeader;
+import org.apache.http.Header;
 import org.apache.http.HttpHost;
 import org.apache.http.impl.nio.reactor.IOReactorConfig;
 import org.elasticsearch.client.NodeSelector;
@@ -31,14 +33,23 @@ public class ElasticSearchConfig {
         // if we are on CI, we use a hardcoded host, else we use the injected value
         String host = System.getenv("CI") != null ? "elasticsearch" : esHost;
         HttpHost httpHost = new HttpHost(host, esPort, HttpHost.DEFAULT_SCHEME_NAME);
+        // Add the X-Elastic-Product header to each request
+        BasicHeader productHeader = new BasicHeader("X-Elastic-Product", "Elasticsearch");
 
-        return RestClient.builder(httpHost)
+        RestClientBuilder builder = RestClient.builder(httpHost)
             .setNodeSelector(NodeSelector.SKIP_DEDICATED_MASTERS)
             .setHttpClientConfigCallback(http -> http.setDefaultIOReactorConfig(
                 IOReactorConfig.custom()
                     .setIoThreadCount(2)
-                    .build())
-            );
+                    .build()
+            ));
+
+        // Ajoute le header uniquement si nécessaire (par exemple, en CI)
+        if (System.getenv("CI") != null) {
+            builder.setDefaultHeaders(new Header[]{(Header) new BasicHeader("X-Elastic-Product", "Elasticsearch")});
+        }
+
+        return builder;
     }
 
     private FaidareProperties faidareProperties;
