@@ -105,8 +105,8 @@ test-and-sonarqube:
     - echo "${JSON_DIR}"
     # Launch the data loading script
     - ./scripts/harvest.sh -jsonDir "${JSON_DIR}" -es_host "${ES_HOST}" -es_port "${ES_PORT}" -env "dev" -type "all" </dev/null # Execute the script to load data into Elasticsearch
-    - echo "Elasticsearch started. Showing logs:"
-    - docker logs $(docker ps -q --filter ancestor=docker.elastic.co/elasticsearch/elasticsearch:7.17.6)
+    - echo "Trying to access Elasticsearch logs..."
+    - curl -s "http://${ES_HOST}:${ES_PORT}/_cluster/health?pretty"
     # Launch tests
     - ./gradlew test jacocoTestReport -s sonarqube
   artifacts:
