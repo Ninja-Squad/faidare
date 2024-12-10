@@ -15,9 +15,6 @@ data:
   elasticsearch:
     host: 127.0.0.1
     port: 9200
-    rest:
-      headers:
-        X-Elastic-Product=Elasticsearch:
 
 management:
   endpoint:

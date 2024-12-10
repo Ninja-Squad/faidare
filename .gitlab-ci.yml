@@ -22,7 +22,7 @@ variables:
   JAR_PATH: "backend/build/libs/faidare.jar"
   GIT_DEPTH: 0
   IMAGE_TAG: $CI_COMMIT_REF_SLUG
-  ELASTIC_VERSION: "8.5.3"
+  ELASTIC_VERSION: "7.17.6"
   DOCKER_OPTS: "--mtu=1450"
 
 # Gradle cache for all jobs
@@ -105,6 +105,8 @@ test-and-sonarqube:
     - echo "${JSON_DIR}"
     # Launch the data loading script
     - ./scripts/harvest.sh -jsonDir "${JSON_DIR}" -es_host "${ES_HOST}" -es_port "${ES_PORT}" -env "dev" -type "all" </dev/null # Execute the script to load data into Elasticsearch
+    - echo "Elasticsearch started. Showing logs:"
+    - docker logs $(docker ps -q --filter ancestor=docker.elastic.co/elasticsearch/elasticsearch:7.17.6)
     # Launch tests
     - ./gradlew test jacocoTestReport -s sonarqube
   artifacts:
