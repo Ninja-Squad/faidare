@@ -22,7 +22,7 @@ variables:
   JAR_PATH: "backend/build/libs/faidare.jar"
   GIT_DEPTH: 0
   IMAGE_TAG: $CI_COMMIT_REF_SLUG
-  ELASTIC_VERSION: "7.13.2"
+  ELASTIC_VERSION: "7.17.6"
   DOCKER_OPTS: "--mtu=1450"
 
 # Gradle cache for all jobs
@@ -98,13 +98,19 @@ test-and-sonarqube:
   script:
     # Wait for Elasticsearch to be ready to receive requests
     - echo "Waiting for Elasticsearch to start..."
-    - until curl -s "http://${ES_HOST}:${ES_PORT}" | grep "You Know, for Search" > /dev/null; do sleep 1; done  # Polling until Elasticsearch is available
+    - until curl -s "http://${ES_HOST}:${ES_PORT}"| grep "You Know, for Search" > /dev/null; do sleep 1; done  # Polling until Elasticsearch is available
     - echo "Elasticsearch is up and running."  # Confirmation message when Elasticsearch is ready
     - echo "Listing JSON directory contents:"
     - ls -la "${JSON_DIR}"  # List files in the JSON directory
     - echo "${JSON_DIR}"
     # Launch the data loading script
     - ./scripts/harvest.sh -jsonDir "${JSON_DIR}" -es_host "${ES_HOST}" -es_port "${ES_PORT}" -env "dev" -type "all" </dev/null # Execute the script to load data into Elasticsearch
+    # Test the connection before running the tests
+    - echo "Testing Elasticsearch connection before running tests..."
+    - until curl -s "http://${ES_HOST}:${ES_PORT}"| grep "You Know, for Search" > /dev/null; do
+      echo "Elasticsearch not available, retrying...";
+      sleep 5;
+      done
     - ./gradlew test jacocoTestReport -s sonarqube
   artifacts:
     reports:
