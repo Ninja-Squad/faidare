@@ -98,13 +98,17 @@ test-and-sonarqube:
   script:
     # Wait for Elasticsearch to be ready to receive requests
     - echo "Waiting for Elasticsearch to start..."
-    - until curl -s "http://${ES_HOST}:${ES_PORT}"| grep "You Know, for Search" > /dev/null; do sleep 1; done  # Polling until Elasticsearch is available
+    #- until curl -s "http://${ES_HOST}:${ES_PORT}"| grep "You Know, for Search" > /dev/null; do sleep 1; done  # Polling until Elasticsearch is available
+    - until curl -s "http://${ES_HOST}:${ES_PORT}/_cluster/health?wait_for_status=green&timeout=60s"; do sleep 1; done
+    - curl -X GET "http://${ES_HOST}:${ES_PORT}/_cat/shards?v"
     - echo "Elasticsearch is up and running."  # Confirmation message when Elasticsearch is ready
     - echo "Listing JSON directory contents:"
     - ls -la "${JSON_DIR}"  # List files in the JSON directory
     - echo "${JSON_DIR}"
     # Launch the data loading script
     - ./scripts/harvest.sh -jsonDir "${JSON_DIR}" -es_host "${ES_HOST}" -es_port "${ES_PORT}" -env "dev" -type "all" </dev/null # Execute the script to load data into Elasticsearch
+    - curl -X GET "http://${ES_HOST}:${ES_PORT}/_cat/indices?v"
+    - curl -X GET "http://${ES_HOST}:${ES_PORT}/_aliases"
     - echo "Trying to access Elasticsearch logs..."
     - curl -s "http://${ES_HOST}:${ES_PORT}/_cluster/health?pretty"
     # Launch tests
