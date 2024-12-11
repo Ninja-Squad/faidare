@@ -1,6 +1,8 @@
 package fr.inrae.urgi.faidare.domain.brapi.v1;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import fr.inrae.urgi.faidare.config.ElasticSearchConfig;
+import org.springframework.context.annotation.Import;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
@@ -9,10 +11,10 @@ import java.util.List;
 import java.util.Objects;
 
 //indexName = "#{@dataDiscoveryProperties.getElasticsearchPrefix}resource-alias"
+@Import({ElasticSearchConfig.class})
 @Document(
-        indexName = "faidare_germplasm-pedigree_dev-group0",
-        //indexName = "faidare_pedigree_beta-group0",
-        createIndex = false
+    indexName = "#{@faidarePropertiesBean.getAliasName('germplasm-pedigree', 0L)}",
+    createIndex = false
 )
 //@Mapping(mappingPath = "fr/inra/urgi/datadiscovery/domain/faidare/FaidareGeneticResource.mapping.json")
 public final class GermplasmPedigreeV1VO {

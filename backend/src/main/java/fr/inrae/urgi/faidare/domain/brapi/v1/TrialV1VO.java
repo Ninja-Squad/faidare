@@ -1,6 +1,8 @@
 package fr.inrae.urgi.faidare.domain.brapi.v1;
 
+import fr.inrae.urgi.faidare.config.ElasticSearchConfig;
 import fr.inrae.urgi.faidare.domain.ContactVO;
+import org.springframework.context.annotation.Import;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
@@ -8,10 +10,10 @@ import org.springframework.data.elasticsearch.annotations.Field;
 import java.util.List;
 import java.util.Objects;
 
+@Import({ElasticSearchConfig.class})
 @Document(
-        indexName = "faidare_trial_dev-group0",
-        //indexName = "faidare_trial_beta-group0",
-        createIndex = false
+    indexName = "#{@faidarePropertiesBean.getAliasName('trial', 0L)}",
+    createIndex = false
 )
 
 public class TrialV1VO {

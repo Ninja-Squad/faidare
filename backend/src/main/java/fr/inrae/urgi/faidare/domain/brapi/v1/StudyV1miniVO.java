@@ -1,15 +1,17 @@
 package fr.inrae.urgi.faidare.domain.brapi.v1;
 
+import fr.inrae.urgi.faidare.config.ElasticSearchConfig;
+import org.springframework.context.annotation.Import;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 
 import java.util.Objects;
 
 
+@Import({ElasticSearchConfig.class})
 @Document(
-        indexName = "faidare_study_dev-group0",
-        //indexName = "faidare_study_beta-group0",
-        createIndex = false
+    indexName = "#{@faidarePropertiesBean.getAliasName('study', 0L)}",
+    createIndex = false
 )
 public final class StudyV1miniVO {
 

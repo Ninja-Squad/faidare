@@ -3,13 +3,15 @@ package fr.inrae.urgi.faidare.domain;
 import java.util.List;
 import java.util.Objects;
 
+import fr.inrae.urgi.faidare.config.ElasticSearchConfig;
+import org.springframework.context.annotation.Import;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 
+@Import({ElasticSearchConfig.class})
 @Document(
-        indexName = "faidare_xref_dev-group0",
-        //indexName = "faidare_xref_beta-group0",
-        createIndex = false
+    indexName = "#{@faidarePropertiesBean.getAliasName('xref', 0L)}",
+    createIndex = false
 )
 public class XRefDocumentVO {
 

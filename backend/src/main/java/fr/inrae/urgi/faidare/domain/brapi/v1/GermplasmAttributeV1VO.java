@@ -1,14 +1,17 @@
 package fr.inrae.urgi.faidare.domain.brapi.v1;
 
+import fr.inrae.urgi.faidare.config.ElasticSearchConfig;
+import org.springframework.context.annotation.Import;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 
 import java.util.List;
 import java.util.Objects;
 
+@Import({ElasticSearchConfig.class})
 @Document(
-        indexName = "faidare_germplasm-attribute_dev-group0",
-        createIndex = false
+    indexName = "#{@faidarePropertiesBean.getAliasName('germplasm-attribute', 0L)}",
+    createIndex = false
 )
 public class GermplasmAttributeV1VO {
 
