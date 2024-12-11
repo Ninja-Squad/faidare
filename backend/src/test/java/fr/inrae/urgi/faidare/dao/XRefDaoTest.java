@@ -1,15 +1,18 @@
 package fr.inrae.urgi.faidare.dao;
 
+import fr.inrae.urgi.faidare.config.ElasticSearchConfig;
 import fr.inrae.urgi.faidare.domain.XRefDocumentVO;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.elasticsearch.DataElasticsearchTest;
+import org.springframework.context.annotation.Import;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataElasticsearchTest
+@Import({ElasticSearchConfig.class})
 public class XRefDaoTest {
 
     @Autowired

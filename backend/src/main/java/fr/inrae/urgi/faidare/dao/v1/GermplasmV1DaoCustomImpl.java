@@ -1,8 +1,10 @@
 package fr.inrae.urgi.faidare.dao.v1;
 
+import fr.inrae.urgi.faidare.config.ElasticSearchConfig;
 import fr.inrae.urgi.faidare.domain.brapi.GermplasmSitemapVO;
 import fr.inrae.urgi.faidare.domain.brapi.v1.GermplasmV1VO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Import;
 import org.springframework.data.elasticsearch.client.elc.NativeQuery;
 import org.springframework.data.elasticsearch.client.elc.NativeQueryBuilder;
 import org.springframework.data.elasticsearch.client.elc.Queries;
@@ -18,6 +20,7 @@ import org.springframework.data.elasticsearch.core.query.FetchSourceFilterBuilde
 import java.util.Set;
 import java.util.stream.Stream;
 
+@Import({ElasticSearchConfig.class})
 public class GermplasmV1DaoCustomImpl implements GermplasmV1DaoCustom{
 
     @Autowired
@@ -38,7 +41,7 @@ public class GermplasmV1DaoCustomImpl implements GermplasmV1DaoCustom{
                 .withQuery(builder -> builder.matchAll(Queries.matchAllQuery()))
                 .withSourceFilter(new FetchSourceFilterBuilder().withIncludes("germplasmDbId").build())
                 .build();
-        return elasticsearchOperations.searchForStream(query, GermplasmSitemapVO.class, IndexCoordinates.of(GermplasmV1VO.INDEX_NAME))
+        return elasticsearchOperations.searchForStream(query, GermplasmSitemapVO.class, IndexCoordinates.of("faidare_germplasm_dev-group0"))
                 .stream()
                 .map(SearchHit::getContent);
     }

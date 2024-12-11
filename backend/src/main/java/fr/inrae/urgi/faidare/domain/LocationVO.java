@@ -2,17 +2,20 @@ package fr.inrae.urgi.faidare.domain;
 import java.util.List;
 import java.util.Objects;
 
+import fr.inrae.urgi.faidare.config.ElasticSearchConfig;
+import org.springframework.context.annotation.Import;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 
+@Import({ElasticSearchConfig.class})
 @Document(
-        indexName = LocationVO.INDEX_NAME,
-        createIndex = false
+    indexName = "#{@faidarePropertiesBean.getAliasName('location', 0L)}",
+    createIndex = false
 )
 
 public class LocationVO {
 
-    public static final String INDEX_NAME = "faidare_location_dev-group0";
+    //public static final String INDEX_NAME = "faidare_location_dev-group0";
 
     private String abbreviation;
 

@@ -1,5 +1,6 @@
 package fr.inrae.urgi.faidare.dao;
 
+import fr.inrae.urgi.faidare.config.ElasticSearchConfig;
 import fr.inrae.urgi.faidare.dao.v1.GermplasmV1Dao;
 import fr.inrae.urgi.faidare.domain.PuiNameValueVO;
 import fr.inrae.urgi.faidare.domain.brapi.GermplasmSitemapVO;
@@ -7,6 +8,7 @@ import fr.inrae.urgi.faidare.domain.brapi.v1.GermplasmV1VO;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.elasticsearch.DataElasticsearchTest;
+import org.springframework.context.annotation.Import;
 import org.springframework.data.elasticsearch.core.SearchHitsIterator;
 
 import java.util.HashSet;
@@ -17,6 +19,7 @@ import java.util.Set;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataElasticsearchTest
+@Import({ElasticSearchConfig.class})
 class GermplasmV1DaoTest {
 
     @Autowired
