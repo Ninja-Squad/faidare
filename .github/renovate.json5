@@ -24,6 +24,17 @@
       ],
       "enabled": false
     },
+    // allow only patch and minor updates for elasticsearch dependencies
+    {
+      "packageNames": [
+          "org.elasticsearch:elasticsearch",
+          "org.elasticsearch.client:elasticsearch-rest-high-level-client"
+      ],
+      "updateTypes": [
+          "major"
+      ],
+      "enabled": false
+    },
     // allow only patch and minor updates for kibana docker image
     {
       "packageNames": [
