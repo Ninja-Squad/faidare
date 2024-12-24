@@ -1,5 +1,5 @@
-import com.github.gradle.node.yarn.task.YarnInstallTask
-import com.github.gradle.node.yarn.task.YarnTask
+import com.github.gradle.node.pnpm.task.PnpmInstallTask
+import com.github.gradle.node.pnpm.task.PnpmTask
 
 plugins {
     base
@@ -8,8 +8,6 @@ plugins {
 
 node {
     version.set("18.19.0")
-    npmVersion.set("9.9.2")
-    yarnVersion.set("1.22.19")
     download.set(true)
 }
 
@@ -19,23 +17,23 @@ tasks {
     }
 
     val prepare by registering {
-        dependsOn(YarnInstallTask.NAME)
+        dependsOn(PnpmInstallTask.NAME)
     }
 
-    // This is not a yarn_build task because the task to run is `yarn build:prod`
+    // This is not a pnpm_build task because the task to run is `pnpm build:prod`
     // and tasks with colons are not supported
-    val yarnBuildProd by registering(YarnTask::class) {
+    val pnpmBuildProd by registering(PnpmTask::class) {
         args.set(listOf("run", "build:prod"))
         dependsOn(prepare)
         inputs.file("webpack.config.js")
         inputs.file("tsconfig.json")
         inputs.file("package.json")
-        inputs.file("yarn.lock")
+        inputs.file("pnpm-lock.yaml")
         inputs.dir("src")
-        outputs.dir("$buildDir/dist")
+        outputs.dir(layout.buildDirectory.dir("dist"))
     }
 
     assemble {
-        dependsOn(yarnBuildProd)
+        dependsOn(pnpmBuildProd)
     }
 }

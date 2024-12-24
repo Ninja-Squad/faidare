@@ -9,7 +9,7 @@ Look at the [contribution guide](CONTRIBUTING.md).
 
 ## Install development environment
 
-- Install `node` and `yarn`
+- Install `node` and `pnpm`
 
 Installation via `nvm` is recommended for easier control of installed version:
 https://github.com/creationix/nvm
@@ -23,7 +23,7 @@ nvm use v16.14.0
 
 ```sh
 cd web
-yarn
+pnpm install
 ```
 
 - Install latest Java JDK8
@@ -81,16 +81,16 @@ The build process for these assets can be run with the following command:
 
 ```sh
 cd web
-yarn watch
+pnpm watch
 ```
 
-`yarn watch` automatically picks up the changes in any files,
+`pnpm watch` automatically picks up the changes in any files,
 and rebuild the resulting assets (thanks to Webpack).
 Make sure the backend is running with the `dev` profile if you do so (see above),
 otherwise the changes won't be shown in the browser.
 
-`yarn watch:prod` is also available to use production settings,
-while `yarn build` and `yarn build:prod` do the same but without watching the changes. 
+`pnpm watch:prod` is also available to use production settings,
+while `pnpm build` and `pnpm build:prod` do the same but without watching the changes. 
 
 ## Harvest
 
