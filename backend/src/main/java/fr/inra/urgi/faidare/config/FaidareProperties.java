@@ -4,7 +4,7 @@ import fr.inra.urgi.faidare.domain.datadiscovery.data.DataSource;
 import fr.inra.urgi.faidare.domain.datadiscovery.data.DataSourceImpl;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-import javax.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.List;
 

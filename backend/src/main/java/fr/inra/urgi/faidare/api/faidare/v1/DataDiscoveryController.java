@@ -5,7 +5,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import java.io.UnsupportedEncodingException;
 import java.util.Collection;
 import java.util.List;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 import fr.inra.urgi.faidare.config.FaidareProperties;
 import fr.inra.urgi.faidare.domain.brapi.v1.response.BrapiListResponse;

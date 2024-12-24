@@ -4,8 +4,8 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 import java.io.File;
 import java.util.Collections;
-import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
 
 import com.google.common.base.Strings;
 import fr.inra.urgi.faidare.api.BadRequestException;

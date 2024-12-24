@@ -3,7 +3,7 @@ package fr.inra.urgi.faidare.web.germplasm;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
-import javax.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

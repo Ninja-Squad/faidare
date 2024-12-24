@@ -4,7 +4,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 import java.util.List;
 import java.util.Set;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;

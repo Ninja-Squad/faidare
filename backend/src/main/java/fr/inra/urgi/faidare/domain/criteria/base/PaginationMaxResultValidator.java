@@ -1,7 +1,7 @@
 package fr.inra.urgi.faidare.domain.criteria.base;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 /**
  * Pagination validator restricting the max result window to match elasticsearch constrains

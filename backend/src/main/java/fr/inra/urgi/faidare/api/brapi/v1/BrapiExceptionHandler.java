@@ -45,7 +45,7 @@ public class BrapiExceptionHandler {
     /**
      * Generate BrAPI error response from Exception
      *
-     * Automatically extracts javax.validation error message into the BrAPI status
+     * Automatically extracts jakarta.validation error message into the BrAPI status
      */
     private static ResponseEntity<Object> createErrorResponse(
         Exception exception, HttpStatus httpStatus

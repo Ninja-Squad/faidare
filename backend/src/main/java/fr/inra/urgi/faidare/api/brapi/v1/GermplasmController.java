@@ -3,7 +3,7 @@ package fr.inra.urgi.faidare.api.brapi.v1;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 import java.util.List;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 import fr.inra.urgi.faidare.api.NotFoundException;
 import fr.inra.urgi.faidare.domain.brapi.v1.data.BrapiGermplasm;

@@ -2,10 +2,8 @@ package fr.inra.urgi.faidare.web.thymeleaf;
 
 import org.springframework.stereotype.Component;
 import org.thymeleaf.dialect.AbstractDialect;
-import org.thymeleaf.dialect.IDialect;
 import org.thymeleaf.dialect.IExpressionObjectDialect;
 import org.thymeleaf.expression.IExpressionObjectFactory;
-import org.thymeleaf.extras.java8time.dialect.Java8TimeExpressionFactory;
 
 /**
  * A thymeleaf dialect allowing to transform coordinates (latitude and longitude)

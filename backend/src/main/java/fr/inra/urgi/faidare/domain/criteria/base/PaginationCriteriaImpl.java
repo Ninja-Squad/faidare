@@ -2,9 +2,9 @@ package fr.inra.urgi.faidare.domain.criteria.base;
 
 import fr.inra.urgi.faidare.elasticsearch.criteria.annotation.NoDocumentMapping;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 
 /**
  * @author gcornut

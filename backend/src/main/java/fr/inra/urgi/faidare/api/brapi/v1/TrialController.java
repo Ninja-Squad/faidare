@@ -1,6 +1,6 @@
 package fr.inra.urgi.faidare.api.brapi.v1;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 import fr.inra.urgi.faidare.api.NotFoundException;
 import fr.inra.urgi.faidare.domain.brapi.v1.data.BrapiTrial;
