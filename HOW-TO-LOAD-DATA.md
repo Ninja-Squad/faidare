@@ -112,9 +112,7 @@ docker compose up
 ```
 
 ```sh   
-docker run --platform linux/amd64 -t --volume ./data/test:/opt/data/ \ 
---network=container:elasticsearch-faidare registry.forgemia.inra.fr/urgi-is/docker-rare/faidare-loader:feat-upgrade-to-new-api \ 
--jsonDir /opt/data/
+docker run --platform linux/amd64 -t --volume ./data/test:/opt/data/ --network=container:elasticsearch-faidare registry.forgemia.inra.fr/urgi-is/docker-rare/faidare-loader:feat-upgrade-to-new-api -jsonDir /opt/data/
 ```
 
 ### Option 2: Running the Script Locally
