@@ -2,7 +2,8 @@
 
 # TL;DR
 For general data loading commands, see [Data Harvesting and Indexing](#Data Harvesting and Indexing).
-For loading test data, see [Test data](#Test data).
+
+For loading test data, see [Test data](#test-data) below.
 
 
 ## Data Harvesting and Indexing
@@ -110,7 +111,7 @@ For instance for MacOS ARM on the new-api branch, the command would be:
 docker compose up
 
 docker run --platform linux/amd64 -t --volume ./data/test:/opt/data/ \ 
---network=container:elasticsearch-faidare registry.forgemia.inra.fr/urgi-is/docker-rare/faidare-loader:fix-newreadmehowtodeveloponfaidare \ 
+--network=container:elasticsearch-faidare registry.forgemia.inra.fr/urgi-is/docker-rare/faidare-loader:feat-upgrade-to-new-api \ 
 -jsonDir /opt/data/
 ```
 
