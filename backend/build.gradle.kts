@@ -119,8 +119,8 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
 
     // Elasticsearch
-    implementation("org.elasticsearch:elasticsearch:7.17.27")
-    implementation("org.elasticsearch.client:elasticsearch-rest-high-level-client:7.17.27")
+    implementation("org.elasticsearch:elasticsearch:7.17.28")
+    implementation("org.elasticsearch.client:elasticsearch-rest-high-level-client:7.17.28")
 
     // Swagger
     implementation("org.springdoc:springdoc-openapi-ui:1.8.0")
