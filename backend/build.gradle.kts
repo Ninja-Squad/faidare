@@ -25,6 +25,11 @@ repositories {
     mavenCentral()
 }
 
+gitProperties {
+    // necessary, at least until https://github.com/n0mer/gradle-git-properties/issues/240 is fixed
+    dotGitDirectory = project.rootProject.layout.projectDirectory.dir(".git")
+}
+
 tasks {
 
     withType(JavaCompile::class.java) {
