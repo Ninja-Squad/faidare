@@ -11,7 +11,7 @@ plugins {
     java
     jacoco
     id("org.springframework.boot") version "2.7.18"
-    id("com.gorylenko.gradle-git-properties") version "2.4.2"
+    id("com.gorylenko.gradle-git-properties") version "2.5.0"
     id("io.spring.dependency-management") version "1.1.7"
     id("org.sonarqube")
     id("org.owasp.dependencycheck") version "11.1.1"
@@ -136,5 +136,5 @@ dependencies {
 
     // Test dependencies
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("org.jsoup:jsoup:1.18.3")
+    testImplementation("org.jsoup:jsoup:1.19.1")
 }
