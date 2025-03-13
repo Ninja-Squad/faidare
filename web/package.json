@@ -14,7 +14,7 @@
   },
   "author": "",
   "license": "MIT",
-  "packageManager": "pnpm@9.15.6",
+  "packageManager": "pnpm@9.15.9",
   "dependencies": {
     "@types/leaflet": "1.9.16",
     "bootstrap": "5.3.3",
@@ -23,10 +23,10 @@
   "devDependencies": {
     "@types/bootstrap": "5.2.10",
     "@types/leaflet.markercluster": "1.5.5",
-    "autoprefixer": "10.4.20",
+    "autoprefixer": "10.4.21",
     "clean-webpack-plugin": "4.0.0",
     "css-loader": "7.1.2",
-    "css-minimizer-webpack-plugin": "7.0.0",
+    "css-minimizer-webpack-plugin": "7.0.2",
     "leaflet.markercluster": "1.5.3",
     "mini-css-extract-plugin": "2.9.2",
     "postcss": "8.5.3",
