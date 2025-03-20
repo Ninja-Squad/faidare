@@ -49,7 +49,6 @@ faidare:
 
   search-url: https://urgi.versailles.inrae.fr/faidare/search
 
-  # TODO: Update URIs to match URL (update in generated JSON document too)
   # Warning! URIs should match with FAIDARE datadiscovery 'schema:includedInDataCatalog' field value
   data-sources:
   # URGI GnpIS

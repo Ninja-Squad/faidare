@@ -127,12 +127,7 @@ public class Fixtures {
 
         germplasm.setBiologicalStatusOfAccessionCode("Traditional cultivar/landrace ");
         germplasm.setPedigree("LV");
-        SiteVO originSite = new SiteVO();
-        originSite.setSiteId("1234");
-        originSite.setSiteName("Le Moulon");
-        originSite.setSiteType("Origin site");
-        originSite.setLatitude(47.0);
-        originSite.setLongitude(12.0);
+        SiteVO originSite = new SiteVO("1234",47.0,12.0,"Le Moulon", "Origin Site");
         germplasm.setOriginSite(originSite);
 
         List<SiteVO> evaluationSites = new ArrayList<>();

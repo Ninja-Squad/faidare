@@ -1,7 +1,6 @@
 package fr.inrae.urgi.faidare.domain.brapi.v2;
 
 import fr.inrae.urgi.faidare.config.ElasticSearchConfig;
-import fr.inrae.urgi.faidare.config.FaidareProperties;
 import fr.inrae.urgi.faidare.domain.*;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.annotation.Id;

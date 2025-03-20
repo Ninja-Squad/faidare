@@ -21,6 +21,13 @@ public class SiteVO {
     private String siteName;
     private String siteType;
 
+    public SiteVO(String siteId, double latitude, double longitude, String siteName, String siteType) {
+    }
+
+    public SiteVO() {
+
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

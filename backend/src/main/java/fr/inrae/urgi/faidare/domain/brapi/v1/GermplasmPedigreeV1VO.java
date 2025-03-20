@@ -22,7 +22,7 @@ public final class GermplasmPedigreeV1VO {
     @Id
     private String _id;
     @JsonProperty("@id")
-    @Field(name="@id")//TODO : should take germpalsmURI as it is always fed in the new transformer
+    @Field(name="germplasmURI")
     private String id;
     private String germplasmDbId;
 

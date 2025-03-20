@@ -1,12 +1,10 @@
 package fr.inrae.urgi.faidare.dao.v2;
 
 import fr.inrae.urgi.faidare.domain.SynonymsVO;
-import org.springframework.data.elasticsearch.annotations.Field;
-import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import java.util.List;
 
-public class GermplasmCriteria {
+public class GermplasmV2Criteria {
 
     private List<String> accessionNumber;
     private List<String> binomialNames;

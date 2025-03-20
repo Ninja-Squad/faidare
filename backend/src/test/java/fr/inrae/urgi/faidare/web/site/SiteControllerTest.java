@@ -73,8 +73,6 @@ public class SiteControllerTest {
             .andExpect(htmlContent().hasTitle("Site France"))
             .andExpect(htmlContent().containsH2s("Details", "Cross references"))
             .andExpect(htmlContent().endsCorrectly());
-        // TODO : add additionalInfo to LocationVO
-          //  .andExpect(htmlContent().containsH2s("Details", "Additional info", "Cross references"))
 
     }
 

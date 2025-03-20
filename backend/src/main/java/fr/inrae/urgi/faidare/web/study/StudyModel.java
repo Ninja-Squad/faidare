@@ -11,8 +11,6 @@ import fr.inrae.urgi.faidare.domain.XRefDocumentVO;
 import fr.inrae.urgi.faidare.domain.brapi.v1.GermplasmV1VO;
 import fr.inrae.urgi.faidare.domain.brapi.v1.StudyV1VO;
 import fr.inrae.urgi.faidare.domain.brapi.v1.TrialV1VO;
-import fr.inrae.urgi.faidare.domain.brapi.v2.GermplasmV2VO;
-import fr.inrae.urgi.faidare.domain.brapi.v2.StudyV2VO;
 import fr.inrae.urgi.faidare.domain.variable.ObservationVariableVO;
 import fr.inrae.urgi.faidare.web.site.MapLocation;
 

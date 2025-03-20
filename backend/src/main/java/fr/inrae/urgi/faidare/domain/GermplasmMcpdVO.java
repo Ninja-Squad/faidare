@@ -62,7 +62,7 @@ public final class GermplasmMcpdVO {
     private String germplasmDbId;
 
     @JsonProperty("@id")
-    @Field(name="germplasmPUI")//TODO : should take germpalsmURI as it is always fed in the new transformer
+    @Field(name="germplasmURI")
     private String id;
 
     @Id

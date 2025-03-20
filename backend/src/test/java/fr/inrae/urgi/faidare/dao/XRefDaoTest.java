@@ -25,7 +25,6 @@ public class XRefDaoTest {
      */
     @Test
     public void should_get_perDbId(){
-        //TODO: problem between resources and ressources check what is realy produced byt the current ETL.
         List<XRefDocumentVO> lVos = dao.findByLinkedResourcesID("dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzQ1MDI5");
         assertThat(lVos).hasSize(3);
         assertThat(lVos).allMatch(vo -> !vo.getUrl().isBlank());

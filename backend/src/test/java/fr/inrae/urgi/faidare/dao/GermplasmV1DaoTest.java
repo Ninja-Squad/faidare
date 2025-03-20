@@ -1,7 +1,10 @@
 package fr.inrae.urgi.faidare.dao;
 
+import fr.inrae.urgi.faidare.api.brapi.v2.BrapiListResponse;
 import fr.inrae.urgi.faidare.config.ElasticSearchConfig;
 import fr.inrae.urgi.faidare.dao.v1.GermplasmV1Dao;
+import fr.inrae.urgi.faidare.dao.v1.GermplasmV1Criteria;
+import fr.inrae.urgi.faidare.domain.CollPopVO;
 import fr.inrae.urgi.faidare.domain.PuiNameValueVO;
 import fr.inrae.urgi.faidare.domain.brapi.GermplasmSitemapVO;
 import fr.inrae.urgi.faidare.domain.brapi.v1.GermplasmV1VO;
@@ -15,6 +18,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.function.Predicate;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -36,7 +40,7 @@ class GermplasmV1DaoTest {
      */
     @Test
     void getByGermplasmDbId_should_return_one_result() {
-        GermplasmV1VO germplasmVo =
+        fr.inrae.urgi.faidare.domain.brapi.v1.GermplasmV1VO germplasmVo =
                 germplasmDao.getByGermplasmDbId("dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI0MDU5");
 
         assertThat(germplasmVo).isNotNull();
@@ -54,7 +58,7 @@ class GermplasmV1DaoTest {
      */
     @Test
     void getByGermplasmPUI_should_return_one_result() {
-        GermplasmV1VO germplasmVo =
+        fr.inrae.urgi.faidare.domain.brapi.v1.GermplasmV1VO germplasmVo =
                 germplasmDao.getByGermplasmPUI("https://doi.org/10.15454/4NCDUP");
         assertThat(germplasmVo).isNotNull();
         assertThat(germplasmVo.getGermplasmPUI())
@@ -84,10 +88,10 @@ class GermplasmV1DaoTest {
         Set<String> dbIds = Set.of("dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI0MDU5",//recital
                 "dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI0MzI4",//soisson
                 "dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI0NTA1");//TREMIE
-        SearchHitsIterator<GermplasmV1VO> gVoIter = germplasmDao.scrollGermplasmsByGermplasmDbIds(dbIds, 10);
+        SearchHitsIterator<fr.inrae.urgi.faidare.domain.brapi.v1.GermplasmV1VO> gVoIter = germplasmDao.scrollGermplasmsByGermplasmDbIds(dbIds, 10);
         assertThat(gVoIter).isNotNull();
         assertThat(gVoIter.getTotalHits()).isEqualTo(3);
-        GermplasmV1VO gVo = Objects.requireNonNull(gVoIter.stream()
+        fr.inrae.urgi.faidare.domain.brapi.v1.GermplasmV1VO gVo = Objects.requireNonNull(gVoIter.stream()
                 .filter(gVoHit -> "dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI0MzI4".equals(gVoHit.getContent().getGermplasmDbId()))
                 .findAny().orElse(null)).getContent();
         assertThat(gVo).isNotNull();
@@ -109,12 +113,12 @@ class GermplasmV1DaoTest {
                 "dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI1NjEy",//APACHE
                 "dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI1ODk1",//CF00193
                 "dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI1OTEz");//CAPHORN
-        SearchHitsIterator<GermplasmV1VO> gVoIter = germplasmDao.scrollGermplasmsByGermplasmDbIds(dbIds, 3);
+        SearchHitsIterator<fr.inrae.urgi.faidare.domain.brapi.v1.GermplasmV1VO> gVoIter = germplasmDao.scrollGermplasmsByGermplasmDbIds(dbIds, 3);
         assertThat(gVoIter).isNotNull();
         assertThat(gVoIter.getTotalHits()).isEqualTo(7);
         Set<String> resultSet = new HashSet<>();
         while (gVoIter.hasNext()){
-            GermplasmV1VO v1VO = gVoIter.next().getContent();
+            fr.inrae.urgi.faidare.domain.brapi.v1.GermplasmV1VO v1VO = gVoIter.next().getContent();
             resultSet.add( v1VO.getGermplasmDbId());
         }
         assertThat(resultSet.size()).isEqualTo(7);
@@ -124,8 +128,8 @@ class GermplasmV1DaoTest {
     @Test
     void findByGermplasmDbIdIn() {
         String id = "dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI0MDU5";
-        List<GermplasmV1VO> list = germplasmDao.findByGermplasmDbIdIn(Set.of(id)).toList();
-        assertThat(list).extracting(GermplasmV1VO::getGermplasmDbId).containsOnly(id);
+        List<fr.inrae.urgi.faidare.domain.brapi.v1.GermplasmV1VO> list = germplasmDao.findByGermplasmDbIdIn(Set.of(id)).toList();
+        assertThat(list).extracting(fr.inrae.urgi.faidare.domain.brapi.v1.GermplasmV1VO::getGermplasmDbId).containsOnly(id);
     }
 
     @Test
@@ -138,7 +142,7 @@ class GermplasmV1DaoTest {
 
     @Test
     void should_find_by_germplasmId(){
-        GermplasmV1VO gVo = germplasmDao.getByGermplasmDbId("dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI0MDU5");
+        fr.inrae.urgi.faidare.domain.brapi.v1.GermplasmV1VO gVo = germplasmDao.getByGermplasmDbId("dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI0MDU5");
         assertThat(gVo).isNotNull();
         assertThat(gVo.getGermplasmDbId()).isEqualTo("dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI0MDU5");
         assertThat(gVo.getGermplasmPUI()).isEqualTo("https://doi.org/10.15454/WL6NIE");
@@ -148,7 +152,7 @@ class GermplasmV1DaoTest {
 
     @Test
     void should_find_by_germplasmId_with_collecting_site2(){
-        GermplasmV1VO gVo = germplasmDao.getByGermplasmDbId("dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI2ODU5");
+        fr.inrae.urgi.faidare.domain.brapi.v1.GermplasmV1VO gVo = germplasmDao.getByGermplasmDbId("dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI2ODU5");
         assertThat(gVo).isNotNull();
         assertThat(gVo.getGermplasmDbId()).isEqualTo("dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI2ODU5");
         assertThat(gVo.getCollectingSite()).isNotNull();
@@ -161,7 +165,7 @@ class GermplasmV1DaoTest {
 
     @Test
     void should_get_by_germplasm_id_and_have_collector(){
-        GermplasmV1VO gVo = germplasmDao.getByGermplasmDbId("dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI2ODU3");
+        fr.inrae.urgi.faidare.domain.brapi.v1.GermplasmV1VO gVo = germplasmDao.getByGermplasmDbId("dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI2ODU3");
         assertThat(gVo).isNotNull();
         assertThat(gVo.getGermplasmDbId()).isEqualTo("dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI2ODU3");
         assertThat(gVo.getCollector()).isNotNull();
@@ -172,7 +176,7 @@ class GermplasmV1DaoTest {
 
     @Test
     void should_get_by_germplasm_id_and_have_children(){
-        GermplasmV1VO gVo = germplasmDao.getByGermplasmDbId("dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzQzMTY1");
+        fr.inrae.urgi.faidare.domain.brapi.v1.GermplasmV1VO gVo = germplasmDao.getByGermplasmDbId("dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzQzMTY1");
         assertThat(gVo).isNotNull();
         assertThat(gVo.getGermplasmDbId()).isEqualTo("dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzQzMTY1");
         assertThat(gVo.getChildren()).isNotNull();
@@ -183,32 +187,32 @@ class GermplasmV1DaoTest {
         assertThat(gVo.getChildren().get(0).getSibblings()).isNotNull().isNotEmpty().contains(pnv);
     }
     //TODO: criteria search, to reactivate for full BrAPIV1
-    /*
+
     @Test
     void custom_should_search_by_accessionNumber(){
-        GermplasmCriteria gCrit = new GermplasmCriteria();
-        gCrit.setAccessionNumber(List.of("IRGC53931"));
-        BrapiListResponse<GermplasmV2VO> germplasmVOs = germplasmDao.findGermplasmsByCriteria(gCrit);
+        GermplasmV1Criteria gCrit = new GermplasmV1Criteria();
+        gCrit.setAccessionNumber(List.of("CF99005"));
+        BrapiListResponse<GermplasmV1VO> germplasmVOs = germplasmDao.findGermplasmsByCriteria(gCrit);
         assertThat(germplasmVOs).isNotNull();
         assertThat(germplasmVOs.getMetadata().getPagination().getTotalCount()).isGreaterThan(0);
-        assertThat(germplasmVOs.getResult().getData().get(0).getAccessionNumber()).isEqualTo("IRGC53931");
+        assertThat(germplasmVOs.getResult().getData().get(0).getAccessionNumber()).isEqualTo("CF99005");
     }
 
     @Test
     void custom_should_search_by_binomialNames(){
-        GermplasmCriteria gCrit = new GermplasmCriteria();
-        gCrit.setBinomialNames(List.of("Zea mays"));
-        BrapiListResponse<GermplasmV2VO> germplasmVOs = germplasmDao.findGermplasmsByCriteria(gCrit);
+        GermplasmV1Criteria gCrit = new GermplasmV1Criteria();
+        gCrit.setBinomialNames(List.of("Triticum aestivum"));
+        BrapiListResponse<GermplasmV1VO> germplasmVOs = germplasmDao.findGermplasmsByCriteria(gCrit);
         assertThat(germplasmVOs).isNotNull();
         assertThat(germplasmVOs.getMetadata().getPagination().getTotalCount()).isGreaterThan(0);
-        assertThat(germplasmVOs.getResult().getData().get(0).getGenusSpecies()).isEqualTo("Zea mays");
+        assertThat(germplasmVOs.getResult().getData().get(0).getGenusSpecies()).isEqualTo("Triticum aestivum");
     }
 
     @Test
     void custom_should_search_by_collection(){
-        GermplasmCriteria gCrit = new GermplasmCriteria();
+        GermplasmV1Criteria gCrit = new GermplasmV1Criteria();
         gCrit.setCollections((List.of("Wheat INRA collection")));
-        BrapiListResponse<GermplasmV2VO> germplasmVOs = germplasmDao.findGermplasmsByCriteria(gCrit);
+        BrapiListResponse<GermplasmV1VO> germplasmVOs = germplasmDao.findGermplasmsByCriteria(gCrit);
         assertThat(germplasmVOs).isNotNull();
         assertThat(germplasmVOs.getMetadata().getPagination().getTotalCount()).isGreaterThan(0);
         Predicate<CollPopVO> streamsPredicate = item -> item.getName().equals("Wheat INRA collection") ;
@@ -217,9 +221,9 @@ class GermplasmV1DaoTest {
 
     @Test
     void custom_should_search_by_panel(){
-        GermplasmCriteria gCrit = new GermplasmCriteria();
+        GermplasmV1Criteria gCrit = new GermplasmV1Criteria();
         gCrit.setCollections((List.of("RIL")));
-        BrapiListResponse<GermplasmV2VO> germplasmVOs = germplasmDao.findGermplasmsByCriteria(gCrit);
+        BrapiListResponse<GermplasmV1VO> germplasmVOs = germplasmDao.findGermplasmsByCriteria(gCrit);
         assertThat(germplasmVOs).isNotNull();
         assertThat(germplasmVOs.getMetadata().getPagination().getTotalCount()).isGreaterThan(0);
         Predicate<CollPopVO> streamsPredicate = item -> item.getName().equals("RIL") ;
@@ -228,9 +232,9 @@ class GermplasmV1DaoTest {
 
     @Test
     void custom_should_search_by_pop(){
-        GermplasmCriteria gCrit = new GermplasmCriteria();
+        GermplasmV1Criteria gCrit = new GermplasmV1Criteria();
         gCrit.setCollections((List.of("ILN028")));
-        BrapiListResponse<GermplasmV2VO> germplasmVOs = germplasmDao.findGermplasmsByCriteria(gCrit);
+        BrapiListResponse<GermplasmV1VO> germplasmVOs = germplasmDao.findGermplasmsByCriteria(gCrit);
         assertThat(germplasmVOs).isNotNull();
         assertThat(germplasmVOs.getMetadata().getPagination().getTotalCount()).isGreaterThan(0);
         Predicate<CollPopVO> streamsPredicate = item -> item.getName().equals("ILN028") ;
@@ -239,89 +243,54 @@ class GermplasmV1DaoTest {
 
     @Test
     void custom_should_search_by_commonCropNames(){
-        GermplasmCriteria gCrit = new GermplasmCriteria();
-        gCrit.setCommonCropNames(List.of("Maize"));
-        BrapiListResponse<GermplasmV2VO> germplasmVOs = germplasmDao.findGermplasmsByCriteria(gCrit);
+        GermplasmV1Criteria gCrit = new GermplasmV1Criteria();
+        gCrit.setCommonCropNames(List.of("Wheat"));
+        BrapiListResponse<GermplasmV1VO> germplasmVOs = germplasmDao.findGermplasmsByCriteria(gCrit);
         assertThat(germplasmVOs).isNotNull();
         assertThat(germplasmVOs.getMetadata().getPagination().getTotalCount()).isGreaterThan(0);
-        GermplasmV2VO toto = germplasmVOs.getResult().getData().get(0);
-        assertThat(toto.getCommonCropName()).isEqualTo("Maize");
+        GermplasmV1VO toto = germplasmVOs.getResult().getData().get(0);
+        assertThat(toto.getCommonCropName()).isEqualTo("Wheat");
     }
 
-    void custom_should_search_by_externalReferenceIDs(){
-        GermplasmCriteria gCrit = new GermplasmCriteria();
-        gCrit.setExternalReferenceIDs(List.of(""));
-        BrapiListResponse<GermplasmV2VO> germplasmVOs = germplasmDao.findGermplasmsByCriteria(gCrit);
-        assertThat(germplasmVOs).isNotNull();
-        assertThat(germplasmVOs.getMetadata().getPagination().getTotalCount()).isGreaterThan(0);
-//        assertThat(germplasmVOs.getSearchHits().getSearchHit(0).getContent().get()).isEqualTo("");
-    }
-
-    void custom_should_search_by_externalReferenceIds(){
-        GermplasmCriteria gCrit = new GermplasmCriteria();
-        gCrit.setExternalReferenceIds(List.of(""));
-        BrapiListResponse<GermplasmV2VO> germplasmVOs = germplasmDao.findGermplasmsByCriteria(gCrit);
-        assertThat(germplasmVOs).isNotNull();
-        assertThat(germplasmVOs.getMetadata().getPagination().getTotalCount()).isGreaterThan(0);
-//        assertThat(germplasmVOs.getSearchHits().getSearchHit(0).getContent().get()).isEqualTo("");
-    }
-
-    void custom_should_search_by_externalReferenceSources(){
-        GermplasmCriteria gCrit = new GermplasmCriteria();
-        gCrit.setExternalReferenceSources(List.of(""));
-        BrapiListResponse<GermplasmV2VO> germplasmVOs = germplasmDao.findGermplasmsByCriteria(gCrit);
-        assertThat(germplasmVOs).isNotNull();
-        assertThat(germplasmVOs.getMetadata().getPagination().getTotalCount()).isGreaterThan(0);
-    //    assertThat(germplasmVOs.getSearchHits().getSearchHit(0).getContent().get()).isEqualTo("");
-    }
-
-    void custom_should_search_by_familyCodes(){
-        GermplasmCriteria gCrit = new GermplasmCriteria();
-        gCrit.setFamilyCodes(List.of(""));
-        BrapiListResponse<GermplasmV2VO> germplasmVOs = germplasmDao.findGermplasmsByCriteria(gCrit);
-        assertThat(germplasmVOs).isNotNull();
-        assertThat(germplasmVOs.getMetadata().getPagination().getTotalCount()).isGreaterThan(0);
-//        assertThat(germplasmVOs.getSearchHits().getSearchHit(0).getContent().get()).isEqualTo("");
-    }
     @Test
     void custom_should_search_by_genus(){
-        GermplasmCriteria gCrit = new GermplasmCriteria();
-        gCrit.setGenus(List.of("Oryza"));
-        BrapiListResponse<GermplasmV2VO> germplasmVOs = germplasmDao.findGermplasmsByCriteria(gCrit);
+        GermplasmV1Criteria gCrit = new GermplasmV1Criteria();
+        gCrit.setGenus(List.of("Triticum"));
+        BrapiListResponse<GermplasmV1VO> germplasmVOs = germplasmDao.findGermplasmsByCriteria(gCrit);
         assertThat(germplasmVOs).isNotNull();
         assertThat(germplasmVOs.getMetadata().getPagination().getTotalCount()).isGreaterThan(0);
-        assertThat(germplasmVOs.getResult().getData().get(0).getGenus()).isEqualTo("Oryza");
+        assertThat(germplasmVOs.getResult().getData().get(0).getGenus()).isEqualTo("Triticum");
     }
 
     @Test
     void custom_should_search_by_genus_pageSize1(){
-        GermplasmCriteria gCrit = new GermplasmCriteria();
-        gCrit.setGenus(List.of("Oryza"));
+        GermplasmV1Criteria gCrit = new GermplasmV1Criteria();
+        gCrit.setGenus(List.of("Triticum"));
         gCrit.setPageSize(1);
-        BrapiListResponse<GermplasmV2VO> germplasmVOs = germplasmDao.findGermplasmsByCriteria(gCrit);
+        BrapiListResponse<GermplasmV1VO> germplasmVOs = germplasmDao.findGermplasmsByCriteria(gCrit);
         assertThat(germplasmVOs).isNotNull();
         assertThat(germplasmVOs.getMetadata().getPagination().getPageSize()).isEqualTo(1);
         assertThat(germplasmVOs.getMetadata().getPagination().getCurrentPage()).isEqualTo(0);
-        assertThat(germplasmVOs.getMetadata().getPagination().getTotalCount()).isEqualTo(60);
-        assertThat(germplasmVOs.getResult().getData().get(0).getGenus()).isEqualTo("Oryza");
+        assertThat(germplasmVOs.getMetadata().getPagination().getTotalCount()).isEqualTo(544);
+        assertThat(germplasmVOs.getResult().getData().get(0).getGenus()).isEqualTo("Triticum");
     }
 
     @Test
     void custom_should_search_by_germplasmDbIds(){
-        GermplasmCriteria gCrit = new GermplasmCriteria();
-        gCrit.setGermplasmDbIds(List.of("dXJuOklCRVQvYmU0ZTljZGMtNTgwMC00NDU3LWE2YzgtNDA1NjNjMDI3ZGQ5", "aHR0cHM6Ly9kb2kub3JnLzEwLjE1NDU0L1NQQTBRSQ=="));
-        BrapiListResponse<GermplasmV2VO> germplasmVOs = germplasmDao.findGermplasmsByCriteria(gCrit);
+        GermplasmV1Criteria gCrit = new GermplasmV1Criteria();
+        gCrit.setGermplasmDbIds(List.of("dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI3ODA3", "dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI2OTc3"));
+        BrapiListResponse<GermplasmV1VO> germplasmVOs = germplasmDao.findGermplasmsByCriteria(gCrit);
         assertThat(germplasmVOs).isNotNull();
         assertThat(germplasmVOs.getMetadata().getPagination().getTotalCount()).isEqualTo(2);
-        assertThat(germplasmVOs.getResult().getData().get(0).getGermplasmDbId()).isEqualTo("dXJuOklCRVQvYmU0ZTljZGMtNTgwMC00NDU3LWE2YzgtNDA1NjNjMDI3ZGQ5");
-        assertThat(germplasmVOs.getResult().getData().get(1).getGermplasmDbId()).isEqualTo("aHR0cHM6Ly9kb2kub3JnLzEwLjE1NDU0L1NQQTBRSQ==");
+        assertThat(germplasmVOs.getResult().getData().get(0).getGermplasmDbId()).isEqualTo("dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI3ODA3");
+        assertThat(germplasmVOs.getResult().getData().get(1).getGermplasmDbId()).isEqualTo("dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI2OTc3");
     }
 
     @Test
     void custom_should_search_by_germplasmName(){
-        GermplasmCriteria gCrit = new GermplasmCriteria();
+        GermplasmV1Criteria gCrit = new GermplasmV1Criteria();
         gCrit.setGermplasmName(List.of("APACHE"));
-        BrapiListResponse<GermplasmV2VO> pgVo = germplasmDao.findGermplasmsByCriteria(gCrit);
+        BrapiListResponse<GermplasmV1VO> pgVo = germplasmDao.findGermplasmsByCriteria(gCrit);
         assertThat(pgVo).isNotNull();
         assertThat(pgVo.getResult().getData()).isNotEmpty();
         assertThat(pgVo.getResult().getData().get(0).getGermplasmName()).isEqualTo("APACHE");
@@ -329,65 +298,29 @@ class GermplasmV1DaoTest {
 
     @Test
     void custom_should_search_by_germplasmPUIs(){
-        GermplasmCriteria gCrit = new GermplasmCriteria();
-        gCrit.setGermplasmPUIs(List.of("27756e94-501e-41f4-8482-250c6f3527b7"));
-        BrapiListResponse<GermplasmV2VO> germplasmVOs = germplasmDao.findGermplasmsByCriteria(gCrit);
+        GermplasmV1Criteria gCrit = new GermplasmV1Criteria();
+        gCrit.setGermplasmPUIs(List.of("https://doi.org/10.15454/BHQTEW"));
+        BrapiListResponse<GermplasmV1VO> germplasmVOs = germplasmDao.findGermplasmsByCriteria(gCrit);
         assertThat(germplasmVOs).isNotNull();
         assertThat(germplasmVOs.getMetadata().getPagination().getTotalCount()).isGreaterThan(0);
-        assertThat(germplasmVOs.getResult().getData().get(0).getGermplasmPUI()).isEqualTo("27756e94-501e-41f4-8482-250c6f3527b7");
+        assertThat(germplasmVOs.getResult().getData().get(0).getGermplasmPUI()).isEqualTo("https://doi.org/10.15454/BHQTEW");
     }
 
     @Test
     void custom_should_search_by_instituteCodes(){
-        GermplasmCriteria gCrit = new GermplasmCriteria();
-        gCrit.setInstituteCodes(List.of("PHL001"));
-        BrapiListResponse<GermplasmV2VO> germplasmVOs = germplasmDao.findGermplasmsByCriteria(gCrit);
+        GermplasmV1Criteria gCrit = new GermplasmV1Criteria();
+        gCrit.setInstituteCodes(List.of("FRA040"));
+        BrapiListResponse<GermplasmV1VO> germplasmVOs = germplasmDao.findGermplasmsByCriteria(gCrit);
         assertThat(germplasmVOs).isNotNull();
         assertThat(germplasmVOs.getMetadata().getPagination().getTotalCount()).isGreaterThan(0);
-        assertThat(germplasmVOs.getResult().getData().get(0).getInstituteCode()).isEqualTo("PHL001");
+        assertThat(germplasmVOs.getResult().getData().get(0).getInstituteCode()).isEqualTo("FRA040");
     }
 
-
-    void custom_should_search_by_parentDbIds(){
-        GermplasmCriteria gCrit = new GermplasmCriteria();
-        gCrit.setParentDbIds(List.of(""));
-        BrapiListResponse<GermplasmV2VO> germplasmVOs = germplasmDao.findGermplasmsByCriteria(gCrit);
-        assertThat(germplasmVOs).isNotNull();
-        assertThat(germplasmVOs.getMetadata().getPagination().getTotalCount()).isGreaterThan(0);
-//        assertThat(germplasmVOs.getSearchHits().getSearchHit(0).getContent().get()).isEqualTo("");
-    }
-
-    void custom_should_search_by_progenyDbIds(){
-        GermplasmCriteria gCrit = new GermplasmCriteria();
-        gCrit.setProgenyDbIds(List.of(""));
-        BrapiListResponse<GermplasmV2VO> germplasmVOs = germplasmDao.findGermplasmsByCriteria(gCrit);
-        assertThat(germplasmVOs).isNotNull();
-        assertThat(germplasmVOs.getMetadata().getPagination().getTotalCount()).isGreaterThan(0);
-//        assertThat(germplasmVOs.getSearchHits().getSearchHit(0).getContent().get()).isEqualTo("");
-    }
-
-    void custom_should_search_by_programDbIds(){
-        GermplasmCriteria gCrit = new GermplasmCriteria();
-        gCrit.setProgramDbIds(List.of(""));
-        BrapiListResponse<GermplasmV2VO> germplasmVOs = germplasmDao.findGermplasmsByCriteria(gCrit);
-        assertThat(germplasmVOs).isNotNull();
-        assertThat(germplasmVOs.getMetadata().getPagination().getTotalCount()).isGreaterThan(0);
-//        assertThat(germplasmVOs.getSearchHits().getSearchHit(0).getContent().get()).isEqualTo("");
-    }
-
-    void custom_should_search_by_programNames(){
-        GermplasmCriteria gCrit = new GermplasmCriteria();
-        gCrit.setProgramNames(List.of(""));
-        BrapiListResponse<GermplasmV2VO> germplasmVOs = germplasmDao.findGermplasmsByCriteria(gCrit);
-        assertThat(germplasmVOs).isNotNull();
-        assertThat(germplasmVOs.getMetadata().getPagination().getTotalCount()).isGreaterThan(0);
-//        assertThat(germplasmVOs.getSearchHits().getSearchHit(0).getContent().get()).isEqualTo("");
-    }
     @Test
     void custom_should_search_by_species(){
-        GermplasmCriteria gCrit = new GermplasmCriteria();
+        GermplasmV1Criteria gCrit = new GermplasmV1Criteria();
         gCrit.setSpecies(List.of("aestivum"));
-        BrapiListResponse<GermplasmV2VO> germplasmVOs = germplasmDao.findGermplasmsByCriteria(gCrit);
+        BrapiListResponse<GermplasmV1VO> germplasmVOs = germplasmDao.findGermplasmsByCriteria(gCrit);
         assertThat(germplasmVOs).isNotNull();
         assertThat(germplasmVOs.getMetadata().getPagination().getTotalCount()).isGreaterThan(0);
         assertThat(germplasmVOs.getResult().getData().get(0).getSpecies()).isEqualTo("aestivum");
@@ -396,48 +329,31 @@ class GermplasmV1DaoTest {
 
     @Test
     void custom_should_search_by_studyDbIds(){
-        GermplasmCriteria gCrit = new GermplasmCriteria();
-        gCrit.setStudyDbIds(List.of("dXJuOklCRVQvc3R1ZHkvMQ=="));
-        BrapiListResponse<GermplasmV2VO> germplasmVOs = germplasmDao.findGermplasmsByCriteria(gCrit);
+        GermplasmV1Criteria gCrit = new GermplasmV1Criteria();
+        gCrit.setStudyDbIds(List.of("dXJuOklOUkFFLVVSR0kvc3R1ZHkvQlRIX0NoYXV4X2Rlc19QciVDMyVBOXNfMjAwMF9TZXRCMQ=="));
+        BrapiListResponse<GermplasmV1VO> germplasmVOs = germplasmDao.findGermplasmsByCriteria(gCrit);
         assertThat(germplasmVOs).isNotNull();
         assertThat(germplasmVOs.getMetadata().getPagination().getTotalCount()).isGreaterThan(0);
-        assertThat(germplasmVOs.getResult().getData().get(0).getStudyDbIds()).contains("dXJuOklCRVQvc3R1ZHkvMQ==");
+        assertThat(germplasmVOs.getResult().getData().get(0).getStudyDbIds()).contains("dXJuOklOUkFFLVVSR0kvc3R1ZHkvQlRIX0NoYXV4X2Rlc19QciVDMyVBOXNfMjAwMF9TZXRCMQ==");
     }
 
-    void custom_should_search_by_studyNames(){
-        GermplasmCriteria gCrit = new GermplasmCriteria();
-        gCrit.setStudyNames(List.of(""));
-        BrapiListResponse<GermplasmV2VO> germplasmVOs = germplasmDao.findGermplasmsByCriteria(gCrit);
-        assertThat(germplasmVOs).isNotNull();
-        assertThat(germplasmVOs.getMetadata().getPagination().getTotalCount()).isGreaterThan(0);
-        //assertThat(germplasmVOs.getSearchHits().getSearchHit(0).getContent().get()).isEqualTo("");
-    }
     @Test
     void custom_should_search_by_synonyms(){
-        GermplasmCriteria gCrit = new GermplasmCriteria();
-        gCrit.setSynonyms(List.of("Hsinchu 103"));
-        BrapiListResponse<GermplasmV2VO> germplasmVOs = germplasmDao.findGermplasmsByCriteria(gCrit);
+        GermplasmV1Criteria gCrit = new GermplasmV1Criteria();
+        gCrit.setSynonyms(List.of("WW-152"));
+        BrapiListResponse<GermplasmV1VO> germplasmVOs = germplasmDao.findGermplasmsByCriteria(gCrit);
         assertThat(germplasmVOs).isNotNull();
         assertThat(germplasmVOs.getMetadata().getPagination().getTotalCount()).isGreaterThan(0);
-        assertThat(germplasmVOs.getResult().getData().get(0).getSynonyms()).contains("Hsinchu 103");
+        assertThat(germplasmVOs.getResult().getData().get(0).getSynonyms()).contains("WW-152");
     }
 
     void custom_should_search_by_trialDbIds(){
-        GermplasmCriteria gCrit = new GermplasmCriteria();
+        GermplasmV1Criteria gCrit = new GermplasmV1Criteria();
         gCrit.setTrialDbIds(List.of(""));
-        BrapiListResponse<GermplasmV2VO> germplasmVOs = germplasmDao.findGermplasmsByCriteria(gCrit);
+        BrapiListResponse<GermplasmV1VO> germplasmVOs = germplasmDao.findGermplasmsByCriteria(gCrit);
         assertThat(germplasmVOs).isNotNull();
         assertThat(germplasmVOs.getMetadata().getPagination().getTotalCount()).isGreaterThan(0);
 //        assertThat(germplasmVOs.getSearchHits().getSearchHit(0).getContent().get()).isEqualTo("");
     }
 
-    void custom_should_search_by_trialNames(){
-        GermplasmCriteria gCrit = new GermplasmCriteria();
-        gCrit.setTrialNames(List.of(""));
-        BrapiListResponse<GermplasmV2VO> germplasmVOs = germplasmDao.findGermplasmsByCriteria(gCrit);
-        assertThat(germplasmVOs).isNotNull();
-        assertThat(germplasmVOs.getMetadata().getPagination().getTotalCount()).isGreaterThan(0);
- //       assertThat(germplasmVOs.getSearchHits().getSearchHit(0).getContent().get()).isEqualTo("");
-    }
-    */
 }

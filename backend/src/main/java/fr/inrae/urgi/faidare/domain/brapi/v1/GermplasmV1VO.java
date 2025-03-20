@@ -48,15 +48,13 @@ public final class GermplasmV1VO {
     private String genusSpecies; //GnpIS
     private String genusSpeciesSubtaxa; //GnpIS
     private String germplasmDbId;
-    //private List<DonorInfoVO> donorInfo; TODO activate
     private String germplasmName;
     private String germplasmPUI;
     private Long groupId; //GnpIS
     @Field(name = "germplasmPUI")
     private String germplasmURI;
     @JsonProperty("@id")
-    @Field(name = "germplasmPUI")
-//TODO : should take germpalsmURI as it is always fed in the new transformer
+    @Field(name = "germplasmURI")
     private String id;
     private InstituteVO holdingInstitute; //GnpIS
     private InstituteVO holdingGenbank; //GnpIS

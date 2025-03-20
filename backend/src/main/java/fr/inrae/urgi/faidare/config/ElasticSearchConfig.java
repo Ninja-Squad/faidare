@@ -25,7 +25,9 @@ public class ElasticSearchConfig {
     /**
      * Provides builder for {@link ElasticsearchRestClientAutoConfiguration}
      */
-    //TODO: is this deprecated ?
+    //The RestClient.builder() is not deprecated in Elasticsearch 7.x.
+    // However, in newer versions (e.g., 8.x), there may be alternative approaches
+    // or native clients to consider.
     @Bean
     public RestClientBuilder restClientBuilder() {
         // if we are on CI, we use a hardcoded host, else we use the injected value

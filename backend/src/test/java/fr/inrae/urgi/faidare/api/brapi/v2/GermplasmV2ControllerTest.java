@@ -87,6 +87,25 @@ class GermplasmV2ControllerTest {
         assertThat(accNumber).isEqualTo("29814");
     }
 
+    @Test
+    void should_get_germplasm_by_criteria() throws Exception{
+
+        HttpEntity<String> entity = new HttpEntity<>(null, headers);
+        ResponseEntity<String> response = testRestTemplate.exchange(
+            createURLWithPort("/brapi/v2/germplasm?accessionNumber=13481&genus=Triticum&species=aestivum&page=0&pageSize=1"),
+            HttpMethod.GET, entity, String.class);
+        assertThat(response.getStatusCode().is2xxSuccessful()).isTrue();
+        String accNumber = JsonPath.parse(response.getBody()).read("$.result.data.[0].accessionNumber");
+        assertThat(accNumber).isEqualTo("13481");
+        String genus = JsonPath.parse(response.getBody()).read("$.result.data.[0].genus");
+        assertThat(genus).isEqualTo("Triticum");
+        String species = JsonPath.parse(response.getBody()).read("$.result.data.[0].species");
+        assertThat(species).isEqualTo("aestivum");
+        Integer pageSize = JsonPath.parse(response.getBody()).read("$.metadata.pagination.pageSize");
+        assertThat(pageSize).isEqualTo(1);
+
+    }
+
 
 
     @Test
@@ -126,11 +145,6 @@ class GermplasmV2ControllerTest {
         assertThat(response.getStatusCode().is2xxSuccessful()).isTrue();
     }
 
-
-
-    @Test
-    void germplasmAttribute() {
-    }
 
     @Test
     void should_get_collection(){

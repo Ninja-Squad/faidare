@@ -39,35 +39,15 @@ class StudyV2DaoTest {
         assertThat(studyVO).isNotNull();
         assertThat(studyVO.getStudyDbId()).isEqualTo("dXJuOklOUkFFLVVSR0kvc3R1ZHkvQlRIX0VzdHIlQzMlQTllcy1Nb25zXzIwMDRfVEVDSA==");
     }
-    // TODO : There is no Rice, all the test studies docs have a null commonCropName
+//    It is commented because in the actual data test we have just null commonCropNames
 //    @Test
 //    void custom_should_search_by_commonCropNames(){
 //        StudyCriteria sCrit = new StudyCriteria();
-//        sCrit.setCommonCropNames(List.of("Rice"));
+//        sCrit.setCommonCropNames(List.of("Wheat"));
 //        SearchHits<StudyV2VO> studyVOs = studyV2Dao.findStudiesByCriteria(sCrit);
 //        assertThat(studyVOs).isNotNull().isNotEmpty();
-//        assertThat(studyVOs.getSearchHit(0).getContent().getCommonCropNames()).isEqualTo("Rice");
+//        assertThat(studyVOs.getSearchHit(0).getContent().getCommonCropName()).isEqualTo("Wheat");
 //    }
-
-
-        //TODO : check if this is in the spec
-    void custom_should_search_by_externalReferenceIDs(){
-        StudyCriteria sCrit = new StudyCriteria();
-        sCrit.setExternalReferenceIDs(List.of(""));
-        SearchHits<StudyV2VO> studyVOs = studyV2Dao.findStudiesByCriteria(sCrit);
-        assertThat(studyVOs).isNotNull().isNotEmpty();
-//        assertThat(studyVOs.getSearchHit(0).getContent().getExternalReferences()).contains("");
-    }
-
-
-        //TODO : check if this is in the spec
-    void custom_should_search_by_externalReferenceSources(){
-        StudyCriteria sCrit = new StudyCriteria();
-        sCrit.setExternalReferenceSources(List.of(""));
-        SearchHits<StudyV2VO> studyVOs = studyV2Dao.findStudiesByCriteria(sCrit);
-        assertThat(studyVOs).isNotNull().isNotEmpty();
-    //    assertThat(studyVOs.getSearchHit(0).getContent().get()).isEqualTo("");
-    }
 
     @Test
     void custom_should_search_by_germplasmDbIds(){
@@ -76,17 +56,6 @@ class StudyV2DaoTest {
         SearchHits<StudyV2VO> studyVOs = studyV2Dao.findStudiesByCriteria(sCrit);
         assertThat(studyVOs).isNotNull().isNotEmpty();
         assertThat(studyVOs.getSearchHit(0).getContent().getGermplasmDbIds()).contains("dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI0MzI4");
-    }
-
-
-
-    //TODO : check if this is in the spec
-    void custom_should_search_by_germplasmNames(){
-        StudyCriteria sCrit = new StudyCriteria();
-        sCrit.setGermplasmNames(List.of(""));
-        SearchHits<StudyV2VO> studyVOs = studyV2Dao.findStudiesByCriteria(sCrit);
-        assertThat(studyVOs).isNotNull().isNotEmpty();
- //       assertThat(studyVOs.getSearchHit(0).getContent().get()).isEqualTo("");
     }
 
     @Test
@@ -116,26 +85,6 @@ class StudyV2DaoTest {
         assertThat(studyVOs.getSearchHit(0).getContent().getObservationVariableDbIds()).contains("CO_321:1000070");
     }
 
-
-        //TODO : check if this is in the spec
-    void custom_should_search_by_observationVariableNames(){
-        StudyCriteria sCrit = new StudyCriteria();
-        sCrit.setObservationVariableNames(List.of(""));
-        SearchHits<StudyV2VO> studyVOs = studyV2Dao.findStudiesByCriteria(sCrit);
-        assertThat(studyVOs).isNotNull().isNotEmpty();
-//        assertThat(studyVOs.getSearchHit(0).getContent().get()).isEqualTo("");
-    }
-
-
-        //TODO : check if this is in the spec
-    void custom_should_search_by_observationVariablePUIs(){
-        StudyCriteria sCrit = new StudyCriteria();
-        sCrit.setObservationVariablePUIs(List.of(""));
-        SearchHits<StudyV2VO> studyVOs = studyV2Dao.findStudiesByCriteria(sCrit);
-        assertThat(studyVOs).isNotNull().isNotEmpty();
-//        assertThat(studyVOs.getSearchHit(0).getContent().get()).isEqualTo("");
-    }
-
     @Test
     void custom_should_search_by_programDbIds(){
         StudyCriteria sCrit = new StudyCriteria();
@@ -154,25 +103,6 @@ class StudyV2DaoTest {
         assertThat(studyVOs.getSearchHit(0).getContent().getProgramName()).isEqualTo("INRA Wheat Breeding Network");
     }
 
-    //@Test
-    void custom_should_search_by_seasonDbIds(){
-        StudyCriteria sCrit = new StudyCriteria();
-        sCrit.setSeasonDbIds(List.of("2000"));
-        //TODO : test data is still V1 compliant
-        SearchHits<StudyV2VO> studyVOs = studyV2Dao.findStudiesByCriteria(sCrit);
-        assertThat(studyVOs).isNotNull().isNotEmpty();
-        assertThat(studyVOs.getTotalHits()).isEqualTo(10);
-    }
-
-    //@Test
-    void custom_should_search_by_studyCodes(){
-        StudyCriteria sCrit = new StudyCriteria();
-        sCrit.setStudyCodes(List.of(""));
-        SearchHits<StudyV2VO> studyVOs = studyV2Dao.findStudiesByCriteria(sCrit);
-        assertThat(studyVOs).isNotNull().isNotEmpty();
-        assertThat(studyVOs.getSearchHit(0).getContent().getStudyCode()).isEqualTo("");
-    }
-
     @Test
     void custom_should_search_by_studyDbIds(){
         StudyCriteria sCrit = new StudyCriteria();
@@ -189,14 +119,6 @@ class StudyV2DaoTest {
         SearchHits<StudyV2VO> studyVOs = studyV2Dao.findStudiesByCriteria(sCrit);
         assertThat(studyVOs).isNotNull().isNotEmpty();
         assertThat(studyVOs.getSearchHit(0).getContent().getStudyName()).isEqualTo("BTH_Estrées-Mons_2005_TECH");
-    }
-
-    void custom_should_search_by_studyPUIs(){
-        StudyCriteria sCrit = new StudyCriteria();
-        sCrit.setStudyPUIs(List.of(""));
-        SearchHits<StudyV2VO> studyVOs = studyV2Dao.findStudiesByCriteria(sCrit);
-        assertThat(studyVOs).isNotNull().isNotEmpty();
-        assertThat(studyVOs.getSearchHit(0).getContent().getStudyPUI()).isEqualTo("");
     }
 
     @Test
