@@ -135,6 +135,19 @@ class GermplasmV2ControllerTest {
     }
 
     @Test
+    void should_search_germplasm_by_germplasmDbId() throws Exception {
+        HttpEntity<String> entity = new HttpEntity<>(null, headers);
+
+        ResponseEntity<String> response = testRestTemplate.exchange(
+            createURLWithPort("/brapi/v2/germplasm?germplasmDbId=dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI2NDI2"),
+            HttpMethod.GET, entity, String.class);
+        assertThat(response.getStatusCode().is2xxSuccessful()).isTrue();
+        String germplasmDbId = JsonPath.parse(response.getBody()).read("$.result.data.[0].germplasmDbId");
+        assertThat(germplasmDbId).isEqualTo("dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI2NDI2");
+    }
+
+
+    @Test
     void should_search_germplasm_by_dbids() throws URISyntaxException {
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setAccept(List.of(MediaType.APPLICATION_JSON));

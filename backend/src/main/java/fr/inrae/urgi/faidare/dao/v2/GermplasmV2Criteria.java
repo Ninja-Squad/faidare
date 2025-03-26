@@ -15,7 +15,7 @@ public class GermplasmV2Criteria {
     private List<String> externalReferenceSources;
     private List<String> familyCodes;
     private List<String> genus;
-    private List<String> germplasmDbIds;
+    private List<String> germplasmDbId;
     private List<String> germplasmName;
     private List<String> germplasmPUIs;
     private List<String> instituteCodes;
@@ -69,9 +69,9 @@ public class GermplasmV2Criteria {
 
     public void setGenus(List<String> genus) { this.genus = genus; }
 
-    public List<String> getGermplasmDbIds() { return germplasmDbIds; }
+    public List<String> getGermplasmDbId() { return germplasmDbId; }
 
-    public void setGermplasmDbIds(List<String> germplasmDbIds) { this.germplasmDbIds = germplasmDbIds; }
+    public void setGermplasmDbId(List<String> germplasmDbId) { this.germplasmDbId = germplasmDbId; }
 
     public List<String> getGermplasmName() {
         return germplasmName;

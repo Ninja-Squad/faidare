@@ -39,7 +39,7 @@ public class GermplasmV2DaoCustomImpl implements GermplasmV2DaoCustom {
         fieldMappings.put("externalReferenceSources", germplasmV2Criteria.getExternalReferenceSources());
         fieldMappings.put("familyCodes", germplasmV2Criteria.getFamilyCodes());
         fieldMappings.put("genus", germplasmV2Criteria.getGenus());
-        fieldMappings.put("germplasmDbId", germplasmV2Criteria.getGermplasmDbIds());
+        fieldMappings.put("germplasmDbId", germplasmV2Criteria.getGermplasmDbId());
         fieldMappings.put("germplasmName", germplasmV2Criteria.getGermplasmName());
         fieldMappings.put("germplasmPUI", germplasmV2Criteria.getGermplasmPUIs());
         fieldMappings.put("instituteCode", germplasmV2Criteria.getInstituteCodes());

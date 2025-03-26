@@ -158,7 +158,7 @@ class GermplasmV2DaoTest {
     @Test
     void custom_should_search_by_germplasmDbIds(){
         GermplasmV2Criteria gCrit = new GermplasmV2Criteria();
-        gCrit.setGermplasmDbIds(List.of(
+        gCrit.setGermplasmDbId(List.of(
             "dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI0MDU5",//recital
             "dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI0MzI4",//soisson
             "dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI0NTA1"//TREMIE
