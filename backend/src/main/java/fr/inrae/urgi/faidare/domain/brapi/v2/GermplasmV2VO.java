@@ -33,7 +33,7 @@ public class GermplasmV2VO {
 
     private String biologicalStatusOfAccessionDescription;
 
-    private List<GermplasmInstituteVO> breeder;
+    private List<GermplasmInstituteVO> breeder; //GnpIS
 
     private String breedingMethodDbId;
 

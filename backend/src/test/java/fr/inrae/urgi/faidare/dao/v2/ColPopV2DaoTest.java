@@ -1,8 +1,7 @@
-package fr.inrae.urgi.faidare.dao;
+package fr.inrae.urgi.faidare.dao.v2;
 
 import fr.inrae.urgi.faidare.api.brapi.v2.BrapiListResponse;
 import fr.inrae.urgi.faidare.config.ElasticSearchConfig;
-import fr.inrae.urgi.faidare.dao.v2.CollectionV2Dao;
 import fr.inrae.urgi.faidare.domain.CollPopVO;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

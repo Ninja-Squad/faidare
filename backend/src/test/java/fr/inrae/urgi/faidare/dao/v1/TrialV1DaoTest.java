@@ -1,7 +1,6 @@
-package fr.inrae.urgi.faidare.dao;
+package fr.inrae.urgi.faidare.dao.v1;
 
 import fr.inrae.urgi.faidare.config.ElasticSearchConfig;
-import fr.inrae.urgi.faidare.dao.v1.TrialV1Dao;
 import fr.inrae.urgi.faidare.domain.brapi.v1.TrialV1VO;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +17,7 @@ public class TrialV1DaoTest {
     protected TrialV1Dao dao;
 
     @Test
-    public void should_get_one_location_perDbId(){
+    public void should_get_one_trialName_perDbId(){
         TrialV1VO vo = dao.getByTrialDbId("dXJuOklOUkFFLVVSR0kvdHJpYWwvNw==");
         assertThat(vo).isNotNull();
          assertThat(vo.getTrialName()).isEqualTo("INRA Wheat Network technological variables");

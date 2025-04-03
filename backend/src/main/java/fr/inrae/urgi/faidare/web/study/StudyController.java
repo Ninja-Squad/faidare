@@ -212,11 +212,12 @@ public class StudyController {
         }
 
         return study.getTrialsDbIds()
-                    .stream()
-                    .sorted(Comparator.naturalOrder())
-                    .map(trialRepository::getByTrialDbId)
-                    .filter(Objects::nonNull)
-                    .collect(Collectors.toList());
+            .stream()
+            .sorted(Comparator.naturalOrder())
+            .map(trialRepository::getByTrialDbId)
+            .filter(Objects::nonNull)
+            .collect(Collectors.toList());
+
     }
 
 

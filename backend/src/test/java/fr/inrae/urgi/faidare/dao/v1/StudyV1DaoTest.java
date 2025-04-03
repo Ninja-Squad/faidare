@@ -1,7 +1,6 @@
-package fr.inrae.urgi.faidare.dao;
+package fr.inrae.urgi.faidare.dao.v1;
 
 import fr.inrae.urgi.faidare.config.ElasticSearchConfig;
-import fr.inrae.urgi.faidare.dao.v1.StudyV1Dao;
 import fr.inrae.urgi.faidare.domain.brapi.StudySitemapVO;
 import fr.inrae.urgi.faidare.domain.brapi.v1.StudyV1VO;
 import org.junit.jupiter.api.Test;

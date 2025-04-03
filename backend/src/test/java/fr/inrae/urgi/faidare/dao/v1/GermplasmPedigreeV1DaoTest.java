@@ -1,13 +1,8 @@
-package fr.inrae.urgi.faidare.dao;
+package fr.inrae.urgi.faidare.dao.v1;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import fr.inrae.urgi.faidare.dao.v1.GermplasmPedigreeV1Dao;
 import fr.inrae.urgi.faidare.domain.brapi.v1.GermplasmPedigreeV1VO;
-import org.json.JSONException;
 import org.junit.jupiter.api.Test;
-import org.skyscreamer.jsonassert.JSONAssert;
-import org.skyscreamer.jsonassert.JSONCompareMode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.elasticsearch.DataElasticsearchTest;
 

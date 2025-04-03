@@ -3,7 +3,6 @@ package fr.inrae.urgi.faidare.dao.v1;
 import fr.inrae.urgi.faidare.config.ElasticSearchConfig;
 import fr.inrae.urgi.faidare.dao.v2.StudyCriteria;
 import fr.inrae.urgi.faidare.domain.brapi.StudySitemapVO;
-import fr.inrae.urgi.faidare.domain.brapi.v1.StudyV1VO;
 import fr.inrae.urgi.faidare.domain.brapi.v2.StudyV2VO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Import;
@@ -34,19 +33,19 @@ public class StudyV1DaoCustomImpl implements StudyV1DaoCustom {
 
         Criteria esCrit = new Criteria();
 
-        if (studyCriteria.getCommonCropNames() != null
-                && !studyCriteria.getCommonCropNames().isEmpty()) {
-            esCrit.and(new Criteria("commonCropName").in(studyCriteria.getCommonCropNames()));
+        if (studyCriteria.getCommonCropName() != null
+                && !studyCriteria.getCommonCropName().isEmpty()) {
+            esCrit.and(new Criteria("commonCropName").in(studyCriteria.getCommonCropName()));
         }
 
-        if (studyCriteria.getExternalReferenceIDs() != null
-                && !studyCriteria.getExternalReferenceIDs().isEmpty()) {
-            esCrit.and(new Criteria("externalReferenceIDs").in(studyCriteria.getExternalReferenceIDs()));
+        if (studyCriteria.getExternalReferenceID() != null
+                && !studyCriteria.getExternalReferenceID().isEmpty()) {
+            esCrit.and(new Criteria("externalReferenceIDs").in(studyCriteria.getExternalReferenceID()));
         }
 
-        if (studyCriteria.getExternalReferenceSources() != null
-                && !studyCriteria.getExternalReferenceSources().isEmpty()) {
-            esCrit.and(new Criteria("externalReferenceSources").in(studyCriteria.getExternalReferenceSources()));
+        if (studyCriteria.getExternalReferenceSource() != null
+                && !studyCriteria.getExternalReferenceSource().isEmpty()) {
+            esCrit.and(new Criteria("externalReferenceSources").in(studyCriteria.getExternalReferenceSource()));
         }
 
         if (studyCriteria.getGermplasmDbIds() != null
@@ -59,44 +58,44 @@ public class StudyV1DaoCustomImpl implements StudyV1DaoCustom {
             esCrit.and(new Criteria("germplasmNames").in(studyCriteria.getGermplasmNames()));
         }
 
-        if (studyCriteria.getLocationDbIds() != null
-                && !studyCriteria.getLocationDbIds().isEmpty()) {
-            esCrit.and(new Criteria("locationDbIds").in(studyCriteria.getLocationDbIds()));
+        if (studyCriteria.getLocationDbId() != null
+                && !studyCriteria.getLocationDbId().isEmpty()) {
+            esCrit.and(new Criteria("locationDbIds").in(studyCriteria.getLocationDbId()));
         }
 
-        if (studyCriteria.getLocationNames() != null
-                && !studyCriteria.getLocationNames().isEmpty()) {
-            esCrit.and(new Criteria("locationNames").in(studyCriteria.getLocationNames()));
+        if (studyCriteria.getLocationName() != null
+                && !studyCriteria.getLocationName().isEmpty()) {
+            esCrit.and(new Criteria("locationNames").in(studyCriteria.getLocationName()));
         }
 
-        if (studyCriteria.getObservationVariableDbIds() != null
-                && !studyCriteria.getObservationVariableDbIds().isEmpty()) {
-            esCrit.and(new Criteria("observationVariableDbIds").in(studyCriteria.getObservationVariableDbIds()));
+        if (studyCriteria.getObservationVariableDbId() != null
+                && !studyCriteria.getObservationVariableDbId().isEmpty()) {
+            esCrit.and(new Criteria("observationVariableDbIds").in(studyCriteria.getObservationVariableDbId()));
         }
 
-        if (studyCriteria.getObservationVariableNames() != null
-                && !studyCriteria.getObservationVariableNames().isEmpty()) {
-            esCrit.and(new Criteria("observationVariableNames").in(studyCriteria.getObservationVariableNames()));
+        if (studyCriteria.getObservationVariableName() != null
+                && !studyCriteria.getObservationVariableName().isEmpty()) {
+            esCrit.and(new Criteria("observationVariableNames").in(studyCriteria.getObservationVariableName()));
         }
 
-        if (studyCriteria.getObservationVariablePUIs() != null
-                && !studyCriteria.getObservationVariablePUIs().isEmpty()) {
-            esCrit.and(new Criteria("observationVariablePUIs").in(studyCriteria.getObservationVariablePUIs()));
+        if (studyCriteria.getObservationVariablePUI() != null
+                && !studyCriteria.getObservationVariablePUI().isEmpty()) {
+            esCrit.and(new Criteria("observationVariablePUIs").in(studyCriteria.getObservationVariablePUI()));
         }
 
-        if (studyCriteria.getProgramDbIds() != null
-                && !studyCriteria.getProgramDbIds().isEmpty()) {
-            esCrit.and(new Criteria("programDbIds").in(studyCriteria.getProgramDbIds()));
+        if (studyCriteria.getProgramDbId() != null
+                && !studyCriteria.getProgramDbId().isEmpty()) {
+            esCrit.and(new Criteria("programDbIds").in(studyCriteria.getProgramDbId()));
         }
 
-        if (studyCriteria.getProgramNames() != null
-                && !studyCriteria.getProgramNames().isEmpty()) {
-            esCrit.and(new Criteria("programNames").in(studyCriteria.getProgramNames()));
+        if (studyCriteria.getProgramName() != null
+                && !studyCriteria.getProgramName().isEmpty()) {
+            esCrit.and(new Criteria("programNames").in(studyCriteria.getProgramName()));
         }
 
-        if (studyCriteria.getSeasonDbIds() != null
-                && !studyCriteria.getSeasonDbIds().isEmpty()) {
-            esCrit.and(new Criteria("seasonDbIds").in(studyCriteria.getSeasonDbIds()));
+        if (studyCriteria.getSeasonDbId() != null
+                && !studyCriteria.getSeasonDbId().isEmpty()) {
+            esCrit.and(new Criteria("seasonDbIds").in(studyCriteria.getSeasonDbId()));
         }
 
         if (studyCriteria.getSortBy() != null
@@ -109,29 +108,29 @@ public class StudyV1DaoCustomImpl implements StudyV1DaoCustom {
             esCrit.and(new Criteria("sortOrder").in(studyCriteria.getSortOrder()));
         }
 
-        if (studyCriteria.getStudyCodes() != null
-                && !studyCriteria.getStudyCodes().isEmpty()) {
-            esCrit.and(new Criteria("studyCodes").in(studyCriteria.getStudyCodes()));
+        if (studyCriteria.getStudyCode() != null
+                && !studyCriteria.getStudyCode().isEmpty()) {
+            esCrit.and(new Criteria("studyCodes").in(studyCriteria.getStudyCode()));
         }
 
-        if (studyCriteria.getStudyDbIds() != null
-                && !studyCriteria.getStudyDbIds().isEmpty()) {
-            esCrit.and(new Criteria("studyDbIds").in(studyCriteria.getStudyDbIds()));
+        if (studyCriteria.getStudyDbId() != null
+                && !studyCriteria.getStudyDbId().isEmpty()) {
+            esCrit.and(new Criteria("studyDbIds").in(studyCriteria.getStudyDbId()));
         }
 
-        if (studyCriteria.getStudyNames() != null
-                && !studyCriteria.getStudyNames().isEmpty()) {
-            esCrit.and(new Criteria("studyNames").in(studyCriteria.getStudyNames()));
+        if (studyCriteria.getStudyName() != null
+                && !studyCriteria.getStudyName().isEmpty()) {
+            esCrit.and(new Criteria("studyNames").in(studyCriteria.getStudyName()));
         }
 
-        if (studyCriteria.getStudyPUIs() != null
-                && !studyCriteria.getStudyPUIs().isEmpty()) {
-            esCrit.and(new Criteria("studyPUIs").in(studyCriteria.getStudyPUIs()));
+        if (studyCriteria.getStudyPUI() != null
+                && !studyCriteria.getStudyPUI().isEmpty()) {
+            esCrit.and(new Criteria("studyPUIs").in(studyCriteria.getStudyPUI()));
         }
 
-        if (studyCriteria.getStudyTypes() != null
-                && !studyCriteria.getStudyTypes().isEmpty()) {
-            esCrit.and(new Criteria("studyTypes").in(studyCriteria.getStudyTypes()));
+        if (studyCriteria.getStudyType() != null
+                && !studyCriteria.getStudyType().isEmpty()) {
+            esCrit.and(new Criteria("studyTypes").in(studyCriteria.getStudyType()));
         }
 
         if (studyCriteria.getTrialDbIds() != null

@@ -148,6 +148,19 @@ class GermplasmV2ControllerTest {
 
 
     @Test
+    void should_get_germplasm_by_trial(){
+        HttpEntity<String> entity = new HttpEntity<>(null, headers);
+
+        ResponseEntity<String> response = testRestTemplate.exchange(
+            createURLWithPort("/brapi/v2/germplasm?trialDbIds=dXJuOklOUkFFLVVSR0kvdHJpYWwvMjQ="),
+            HttpMethod.GET, entity, String.class);
+        assertThat(response.getStatusCode().is2xxSuccessful()).isTrue();
+        List<String> accNumbers = JsonPath.parse(response.getBody()).read("$.result.data.[*].accessionNumber");
+        assertThat(accNumbers).containsExactlyInAnyOrder("661300238", "661300585", "661300444", "661300252", "661300447", "661300540", "661300328", "661300580", "661300355", "661300534");
+
+    }
+
+    @Test
     void should_search_germplasm_by_dbids() throws URISyntaxException {
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setAccept(List.of(MediaType.APPLICATION_JSON));
@@ -170,7 +183,6 @@ class GermplasmV2ControllerTest {
         String collName = JsonPath.parse(response.getBody()).read("$.result.data.[0].name");
         assertThat(collName).isEqualTo("Collection blé INRA");
     }
-
 }
 
 

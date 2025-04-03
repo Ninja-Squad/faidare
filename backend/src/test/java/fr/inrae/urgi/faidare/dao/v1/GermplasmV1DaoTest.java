@@ -1,9 +1,7 @@
-package fr.inrae.urgi.faidare.dao;
+package fr.inrae.urgi.faidare.dao.v1;
 
 import fr.inrae.urgi.faidare.api.brapi.v2.BrapiListResponse;
 import fr.inrae.urgi.faidare.config.ElasticSearchConfig;
-import fr.inrae.urgi.faidare.dao.v1.GermplasmV1Dao;
-import fr.inrae.urgi.faidare.dao.v1.GermplasmV1Criteria;
 import fr.inrae.urgi.faidare.domain.CollPopVO;
 import fr.inrae.urgi.faidare.domain.PuiNameValueVO;
 import fr.inrae.urgi.faidare.domain.brapi.GermplasmSitemapVO;
@@ -40,7 +38,7 @@ class GermplasmV1DaoTest {
      */
     @Test
     void getByGermplasmDbId_should_return_one_result() {
-        fr.inrae.urgi.faidare.domain.brapi.v1.GermplasmV1VO germplasmVo =
+        GermplasmV1VO germplasmVo =
                 germplasmDao.getByGermplasmDbId("dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI0MDU5");
 
         assertThat(germplasmVo).isNotNull();
@@ -58,7 +56,7 @@ class GermplasmV1DaoTest {
      */
     @Test
     void getByGermplasmPUI_should_return_one_result() {
-        fr.inrae.urgi.faidare.domain.brapi.v1.GermplasmV1VO germplasmVo =
+        GermplasmV1VO germplasmVo =
                 germplasmDao.getByGermplasmPUI("https://doi.org/10.15454/4NCDUP");
         assertThat(germplasmVo).isNotNull();
         assertThat(germplasmVo.getGermplasmPUI())
@@ -88,10 +86,10 @@ class GermplasmV1DaoTest {
         Set<String> dbIds = Set.of("dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI0MDU5",//recital
                 "dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI0MzI4",//soisson
                 "dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI0NTA1");//TREMIE
-        SearchHitsIterator<fr.inrae.urgi.faidare.domain.brapi.v1.GermplasmV1VO> gVoIter = germplasmDao.scrollGermplasmsByGermplasmDbIds(dbIds, 10);
+        SearchHitsIterator<GermplasmV1VO> gVoIter = germplasmDao.scrollGermplasmsByGermplasmDbIds(dbIds, 10);
         assertThat(gVoIter).isNotNull();
         assertThat(gVoIter.getTotalHits()).isEqualTo(3);
-        fr.inrae.urgi.faidare.domain.brapi.v1.GermplasmV1VO gVo = Objects.requireNonNull(gVoIter.stream()
+        GermplasmV1VO gVo = Objects.requireNonNull(gVoIter.stream()
                 .filter(gVoHit -> "dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI0MzI4".equals(gVoHit.getContent().getGermplasmDbId()))
                 .findAny().orElse(null)).getContent();
         assertThat(gVo).isNotNull();
@@ -113,12 +111,12 @@ class GermplasmV1DaoTest {
                 "dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI1NjEy",//APACHE
                 "dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI1ODk1",//CF00193
                 "dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI1OTEz");//CAPHORN
-        SearchHitsIterator<fr.inrae.urgi.faidare.domain.brapi.v1.GermplasmV1VO> gVoIter = germplasmDao.scrollGermplasmsByGermplasmDbIds(dbIds, 3);
+        SearchHitsIterator<GermplasmV1VO> gVoIter = germplasmDao.scrollGermplasmsByGermplasmDbIds(dbIds, 3);
         assertThat(gVoIter).isNotNull();
         assertThat(gVoIter.getTotalHits()).isEqualTo(7);
         Set<String> resultSet = new HashSet<>();
         while (gVoIter.hasNext()){
-            fr.inrae.urgi.faidare.domain.brapi.v1.GermplasmV1VO v1VO = gVoIter.next().getContent();
+            GermplasmV1VO v1VO = gVoIter.next().getContent();
             resultSet.add( v1VO.getGermplasmDbId());
         }
         assertThat(resultSet.size()).isEqualTo(7);
@@ -128,8 +126,8 @@ class GermplasmV1DaoTest {
     @Test
     void findByGermplasmDbIdIn() {
         String id = "dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI0MDU5";
-        List<fr.inrae.urgi.faidare.domain.brapi.v1.GermplasmV1VO> list = germplasmDao.findByGermplasmDbIdIn(Set.of(id)).toList();
-        assertThat(list).extracting(fr.inrae.urgi.faidare.domain.brapi.v1.GermplasmV1VO::getGermplasmDbId).containsOnly(id);
+        List<GermplasmV1VO> list = germplasmDao.findByGermplasmDbIdIn(Set.of(id)).toList();
+        assertThat(list).extracting(GermplasmV1VO::getGermplasmDbId).containsOnly(id);
     }
 
     @Test
@@ -142,7 +140,7 @@ class GermplasmV1DaoTest {
 
     @Test
     void should_find_by_germplasmId(){
-        fr.inrae.urgi.faidare.domain.brapi.v1.GermplasmV1VO gVo = germplasmDao.getByGermplasmDbId("dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI0MDU5");
+        GermplasmV1VO gVo = germplasmDao.getByGermplasmDbId("dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI0MDU5");
         assertThat(gVo).isNotNull();
         assertThat(gVo.getGermplasmDbId()).isEqualTo("dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI0MDU5");
         assertThat(gVo.getGermplasmPUI()).isEqualTo("https://doi.org/10.15454/WL6NIE");
@@ -152,7 +150,7 @@ class GermplasmV1DaoTest {
 
     @Test
     void should_find_by_germplasmId_with_collecting_site2(){
-        fr.inrae.urgi.faidare.domain.brapi.v1.GermplasmV1VO gVo = germplasmDao.getByGermplasmDbId("dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI2ODU5");
+        GermplasmV1VO gVo = germplasmDao.getByGermplasmDbId("dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI2ODU5");
         assertThat(gVo).isNotNull();
         assertThat(gVo.getGermplasmDbId()).isEqualTo("dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI2ODU5");
         assertThat(gVo.getCollectingSite()).isNotNull();
@@ -165,7 +163,7 @@ class GermplasmV1DaoTest {
 
     @Test
     void should_get_by_germplasm_id_and_have_collector(){
-        fr.inrae.urgi.faidare.domain.brapi.v1.GermplasmV1VO gVo = germplasmDao.getByGermplasmDbId("dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI2ODU3");
+        GermplasmV1VO gVo = germplasmDao.getByGermplasmDbId("dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI2ODU3");
         assertThat(gVo).isNotNull();
         assertThat(gVo.getGermplasmDbId()).isEqualTo("dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI2ODU3");
         assertThat(gVo.getCollector()).isNotNull();
@@ -176,7 +174,7 @@ class GermplasmV1DaoTest {
 
     @Test
     void should_get_by_germplasm_id_and_have_children(){
-        fr.inrae.urgi.faidare.domain.brapi.v1.GermplasmV1VO gVo = germplasmDao.getByGermplasmDbId("dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzQzMTY1");
+        GermplasmV1VO gVo = germplasmDao.getByGermplasmDbId("dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzQzMTY1");
         assertThat(gVo).isNotNull();
         assertThat(gVo.getGermplasmDbId()).isEqualTo("dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzQzMTY1");
         assertThat(gVo.getChildren()).isNotNull();

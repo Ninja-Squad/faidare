@@ -4,41 +4,41 @@ import java.util.List;
 
 public class StudyCriteria {
 
-    private List<String> commonCropNames;
-    private List<String> externalReferenceIDs;
-    private List<String> externalReferenceSources;
+    private List<String> commonCropName;
+    private List<String> externalReferenceID;
+    private List<String> externalReferenceSource;
     private List<String> germplasmDbIds;
     private List<String> germplasmNames;
-    private List<String> locationDbIds;
-    private List<String> locationNames;
-    private List<String> observationVariableDbIds;
-    private List<String> observationVariableNames;
-    private List<String> observationVariablePUIs;
-    private List<String> programDbIds;
-    private List<String> programNames;
-    private List<String> seasonDbIds;
+    private List<String> locationDbId;
+    private List<String> locationName;
+    private List<String> observationVariableDbId;
+    private List<String> observationVariableName;
+    private List<String> observationVariablePUI;
+    private List<String> programDbId;
+    private List<String> programName;
+    private List<String> seasonDbId;
     private List<String> sortBy;
     private List<String> sortOrder;
-    private List<String> studyCodes;
-    private List<String> studyDbIds;
-    private List<String> studyNames;
-    private List<String> studyPUIs;
-    private List<String> studyTypes;
+    private List<String> studyCode;
+    private List<String> studyDbId;
+    private List<String> studyName;
+    private List<String> studyPUI;
+    private List<String> studyType;
     private List<String> trialDbIds;
     private List<String> trialNames;
 
 
-    public List<String> getCommonCropNames() { return commonCropNames; }
+    public List<String> getCommonCropName() { return commonCropName; }
 
-    public void setCommonCropNames(List<String> commonCropNames) { this.commonCropNames = commonCropNames; }
+    public void setCommonCropName(List<String> commonCropNames) { this.commonCropName = commonCropNames; }
 
-    public List<String> getExternalReferenceIDs() { return externalReferenceIDs; }
+    public List<String> getExternalReferenceID() { return externalReferenceID; }
 
-    public void setExternalReferenceIDs(List<String> externalReferenceIDs) { this.externalReferenceIDs = externalReferenceIDs; }
+    public void setExternalReferenceID(List<String> externalReferenceIDs) { this.externalReferenceID = externalReferenceIDs; }
 
-    public List<String> getExternalReferenceSources() { return externalReferenceSources; }
+    public List<String> getExternalReferenceSource() { return externalReferenceSource; }
 
-    public void setExternalReferenceSources(List<String> externalReferenceSources) { this.externalReferenceSources = externalReferenceSources; }
+    public void setExternalReferenceSource(List<String> externalReferenceSources) { this.externalReferenceSource = externalReferenceSources; }
 
     public List<String> getGermplasmDbIds() { return germplasmDbIds; }
 
@@ -48,37 +48,37 @@ public class StudyCriteria {
 
     public void setGermplasmNames(List<String> germplasmNames) { this.germplasmNames = germplasmNames; }
 
-    public List<String> getLocationDbIds() { return locationDbIds; }
+    public List<String> getLocationDbId() { return locationDbId; }
 
-    public void setLocationDbIds(List<String> locationDbIds) { this.locationDbIds = locationDbIds; }
+    public void setLocationDbId(List<String> locationDbId) { this.locationDbId = locationDbId; }
 
-    public List<String> getLocationNames() { return locationNames; }
+    public List<String> getLocationName() { return locationName; }
 
-    public void setLocationNames(List<String> locationNames) { this.locationNames = locationNames; }
+    public void setLocationName(List<String> locationName) { this.locationName = locationName; }
 
-    public List<String> getObservationVariableDbIds() { return observationVariableDbIds; }
+    public List<String> getObservationVariableDbId() { return observationVariableDbId; }
 
-    public void setObservationVariableDbIds(List<String> observationVariableDbIds) { this.observationVariableDbIds = observationVariableDbIds; }
+    public void setObservationVariableDbId(List<String> observationVariableDbIds) { this.observationVariableDbId = observationVariableDbIds; }
 
-    public List<String> getObservationVariableNames() { return observationVariableNames; }
+    public List<String> getObservationVariableName() { return observationVariableName; }
 
-    public void setObservationVariableNames(List<String> observationVariableNames) { this.observationVariableNames = observationVariableNames; }
+    public void setObservationVariableName(List<String> observationVariableNames) { this.observationVariableName = observationVariableNames; }
 
-    public List<String> getObservationVariablePUIs() { return observationVariablePUIs; }
+    public List<String> getObservationVariablePUI() { return observationVariablePUI; }
 
-    public void setObservationVariablePUIs(List<String> observationVariablePUIs) { this.observationVariablePUIs = observationVariablePUIs; }
+    public void setObservationVariablePUI(List<String> observationVariablePUIs) { this.observationVariablePUI = observationVariablePUIs; }
 
-    public List<String> getProgramDbIds() { return programDbIds; }
+    public List<String> getProgramDbId() { return programDbId; }
 
-    public void setProgramDbIds(List<String> programDbIds) { this.programDbIds = programDbIds; }
+    public void setProgramDbId(List<String> programDbIds) { this.programDbId = programDbIds; }
 
-    public List<String> getProgramNames() { return programNames; }
+    public List<String> getProgramName() { return programName; }
 
-    public void setProgramNames(List<String> programNames) { this.programNames = programNames; }
+    public void setProgramName(List<String> programNames) { this.programName = programNames; }
 
-    public List<String> getSeasonDbIds() { return seasonDbIds; }
+    public List<String> getSeasonDbId() { return seasonDbId; }
 
-    public void setSeasonDbIds(List<String> seasonDbIds) { this.seasonDbIds = seasonDbIds; }
+    public void setSeasonDbId(List<String> seasonDbIds) { this.seasonDbId = seasonDbIds; }
 
     public List<String> getSortBy() { return sortBy; }
 
@@ -88,25 +88,25 @@ public class StudyCriteria {
 
     public void setSortOrder(List<String> sortOrder) { this.sortOrder = sortOrder; }
 
-    public List<String> getStudyCodes() { return studyCodes; }
+    public List<String> getStudyCode() { return studyCode; }
 
-    public void setStudyCodes(List<String> studyCodes) { this.studyCodes = studyCodes; }
+    public void setStudyCode(List<String> studyCodes) { this.studyCode = studyCodes; }
 
-    public List<String> getStudyDbIds() { return studyDbIds; }
+    public List<String> getStudyDbId() { return studyDbId; }
 
-    public void setStudyDbIds(List<String> studyDbIds) { this.studyDbIds = studyDbIds; }
+    public void setStudyDbId(List<String> studyDbIds) { this.studyDbId = studyDbIds; }
 
-    public List<String> getStudyNames() { return studyNames; }
+    public List<String> getStudyName() { return studyName; }
 
-    public void setStudyNames(List<String> studyNames) { this.studyNames = studyNames; }
+    public void setStudyName(List<String> studyNames) { this.studyName = studyNames; }
 
-    public List<String> getStudyPUIs() { return studyPUIs; }
+    public List<String> getStudyPUI() { return studyPUI; }
 
-    public void setStudyPUIs(List<String> studyPUIs) { this.studyPUIs = studyPUIs; }
+    public void setStudyPUI(List<String> studyPUIs) { this.studyPUI = studyPUIs; }
 
-    public List<String> getStudyTypes() { return studyTypes; }
+    public List<String> getStudyType() { return studyType; }
 
-    public void setStudyTypes(List<String> studyTypes) { this.studyTypes = studyTypes; }
+    public void setStudyType(List<String> studyTypes) { this.studyType = studyTypes; }
 
     public List<String> getTrialDbIds() { return trialDbIds; }
 

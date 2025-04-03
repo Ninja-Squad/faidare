@@ -1,10 +1,8 @@
-package fr.inrae.urgi.faidare.dao;
+package fr.inrae.urgi.faidare.dao.v2;
 
 import fr.inrae.urgi.faidare.api.brapi.v2.BrapiListResponse;
 import fr.inrae.urgi.faidare.config.ElasticSearchConfig;
 import fr.inrae.urgi.faidare.config.FaidareProperties;
-import fr.inrae.urgi.faidare.dao.v2.GermplasmV2Criteria;
-import fr.inrae.urgi.faidare.dao.v2.GermplasmV2Dao;
 import fr.inrae.urgi.faidare.domain.CollPopVO;
 import fr.inrae.urgi.faidare.domain.SynonymsVO;
 import fr.inrae.urgi.faidare.domain.brapi.v2.GermplasmV2VO;
@@ -250,14 +248,14 @@ class GermplasmV2DaoTest {
 //        assertThat(germplasmVOs.getResult().getData().get(0).getGermplasmDbId())
 //            .isEqualTo("dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzI2ODkx");
     }
-    // To be activated when we implement germplasm/{trialDbIds}
+    @Test
     void custom_should_search_by_trialDbIds(){
         GermplasmV2Criteria gCrit = new GermplasmV2Criteria();
-        gCrit.setTrialDbIds(List.of(""));
+        gCrit.setTrialDbIds(List.of("dXJuOklOUkFFLVVSR0kvdHJpYWwvMjQ="));
         BrapiListResponse<GermplasmV2VO> germplasmVOs = germplasmDao.findGermplasmsByCriteria(gCrit);
         assertThat(germplasmVOs).isNotNull();
         assertThat(germplasmVOs.getMetadata().getPagination().getTotalCount()).isGreaterThan(0);
-//        assertThat(germplasmVOs.getSearchHits().getSearchHit(0).getContent().get()).isEqualTo("");
+        assertThat(germplasmVOs.getResult().getData()).isNotEmpty().extractingResultOf("getAccessionNumber").containsExactlyInAnyOrder("661300238", "661300585", "661300444", "661300252", "661300447", "661300540", "661300328", "661300580", "661300355", "661300534");
     }
     @Autowired
     private FaidareProperties faidareProperties;

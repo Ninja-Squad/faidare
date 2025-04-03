@@ -151,27 +151,37 @@ public final class StudyV2VO {
         this.documentationURL = documentationURL;
     }
 
-    public String getEndDate() { return endDate; }
+    public String getEndDate() {
+        return endDate;
+    }
 
-    public void setEndDate(String endDate) { this.endDate = endDate; }
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
 
     public List<EnvironmentParametersVO> getEnvironmentParameters() {
         return environmentParameters;
     }
 
-    public void setEnvironmentParameters(List<EnvironmentParametersVO> environmentParameters) { this.environmentParameters = environmentParameters; }
+    public void setEnvironmentParameters(List<EnvironmentParametersVO> environmentParameters) {
+        this.environmentParameters = environmentParameters;
+    }
 
     public PuiDescriptionVO getExperimentalDesign() {
         return experimentalDesign;
     }
 
-    public void setExperimentalDesign(PuiDescriptionVO experimentalDesign) { this.experimentalDesign = experimentalDesign; }
+    public void setExperimentalDesign(PuiDescriptionVO experimentalDesign) {
+        this.experimentalDesign = experimentalDesign;
+    }
 
     public List<ExternalReferencesVO> getExternalReferences() {
         return externalReferences;
     }
 
-    public void setExternalReferences(List<ExternalReferencesVO> externalReferences) { this.externalReferences = externalReferences; }
+    public void setExternalReferences(List<ExternalReferencesVO> externalReferences) {
+        this.externalReferences = externalReferences;
+    }
 
     public List<String> getGermplasmDbIds() {
         return germplasmDbIds;
@@ -241,19 +251,25 @@ public final class StudyV2VO {
         return ObservationLevels;
     }
 
-    public void setObservationLevels(List<ObservationLevelsVO> observationLevels) { ObservationLevels = observationLevels; }
+    public void setObservationLevels(List<ObservationLevelsVO> observationLevels) {
+        ObservationLevels = observationLevels;
+    }
 
     public String getObservationUnitsDescription() {
         return observationUnitsDescription;
     }
 
-    public void setObservationUnitsDescription(String observationUnitsDescription) { this.observationUnitsDescription = observationUnitsDescription; }
+    public void setObservationUnitsDescription(String observationUnitsDescription) {
+        this.observationUnitsDescription = observationUnitsDescription;
+    }
 
     public List<String> getObservationVariableDbIds() {
         return observationVariableDbIds;
     }
 
-    public void setObservationVariableDbIds(List<String> observationVariableDbIds) { this.observationVariableDbIds = observationVariableDbIds; }
+    public void setObservationVariableDbIds(List<String> observationVariableDbIds) {
+        this.observationVariableDbIds = observationVariableDbIds;
+    }
 
     public String getProgramDbId() {
         return programDbId;
@@ -358,6 +374,7 @@ public final class StudyV2VO {
     public void setTrialsDbIds(Set<String> trialsDbIds) {
         this.trialsDbIds = trialsDbIds;
     }
+
 
     public String getTrialName() {
         return trialName;
