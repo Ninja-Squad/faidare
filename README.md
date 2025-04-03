@@ -23,8 +23,8 @@ For loading data in the FAIDARE Elasticsearch, see [HOW-TO-LOAD-DATA.md](HOW-TO-
 
 ### Prerequisites
 
-1. Node.js and Yarn
-Install Node.js and Yarn. Using nvm or volta is advised for version control: https://github.com/creationix/nvm.
+1. Node.js and Pnpm
+Install Node.js and Pnpm. Using nvm or volta is advised for version control: https://github.com/creationix/nvm.
 Check out the versions in the `package.json` file.
 
 2. Java JDK17
