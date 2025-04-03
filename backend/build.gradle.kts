@@ -81,6 +81,11 @@ tasks {
         launchScript()
     }
 
+    bootRun {
+        // set the active directory to the root (instead of backend by default)
+        workingDir = project.rootDir
+    }
+
     test {
         useJUnitPlatform()
         testLogging {
