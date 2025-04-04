@@ -1,6 +1,7 @@
 package fr.inrae.urgi.faidare.dao.v1;
 
 import fr.inrae.urgi.faidare.config.ElasticSearchConfig;
+import fr.inrae.urgi.faidare.config.FaidareProperties;
 import fr.inrae.urgi.faidare.dao.v2.StudyCriteria;
 import fr.inrae.urgi.faidare.domain.brapi.StudySitemapVO;
 import fr.inrae.urgi.faidare.domain.brapi.v2.StudyV2VO;
@@ -27,6 +28,8 @@ public class StudyV1DaoCustomImpl implements StudyV1DaoCustom {
     private ElasticsearchTemplate esTemplate;
     @Autowired
     private ElasticsearchOperations elasticsearchOperations;
+    @Autowired
+    private FaidareProperties faidareProperties;
 
     @Override
     public SearchHits<StudyV2VO> findStudiesByCriteria(StudyCriteria studyCriteria) {
@@ -154,7 +157,7 @@ public class StudyV1DaoCustomImpl implements StudyV1DaoCustom {
                 .withQuery(builder -> builder.matchAll(Queries.matchAllQuery()))
                 .withSourceFilter(new FetchSourceFilterBuilder().withIncludes("studyDbId").build())
                 .build();
-        return esTemplate.searchForStream(query, StudySitemapVO.class, IndexCoordinates.of("faidare_study_dev-group0"))
+        return esTemplate.searchForStream(query, StudySitemapVO.class, IndexCoordinates.of(faidareProperties.getAliasName("study", 0)))
                 .stream()
                 .map(SearchHit::getContent);
     }

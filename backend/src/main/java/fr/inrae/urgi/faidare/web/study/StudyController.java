@@ -31,6 +31,7 @@ import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBo
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import jakarta.servlet.http.HttpServletRequest;
 
 /**
  * Controller used to display a study card based on its ID.
@@ -65,7 +66,7 @@ public class StudyController {
     }
 
     @GetMapping("/{studyId}")
-    public ModelAndView get(@PathVariable("studyId") String studyId, Locale locale) {
+    public ModelAndView get(@PathVariable("studyId") String studyId, Locale locale, HttpServletRequest request) {
         StudyV1VO study = studyRepository.getByStudyDbId(studyId);
 
         if (study == null) {
@@ -89,7 +90,8 @@ public class StudyController {
                                     trials,
                                     crossReferences,
                                     location,
-                                    study.getUrl()
+                                    study.getUrl(),
+                                    request.getContextPath()
                                 )
         );
     }
@@ -103,7 +105,7 @@ public class StudyController {
         StreamingResponseBody body = out -> {
             try (Stream<StudySitemapVO> stream = studyRepository.findAllForSitemap()) {
                 Sitemaps.generateSitemap(
-                    "/sudies/sitemap-" + index + ".txt",
+                    "/studies/sitemap-" + index + ".txt",
                     out,
                     stream,
                     vo -> Math.floorMod(vo.getStudyDbId().hashCode(),

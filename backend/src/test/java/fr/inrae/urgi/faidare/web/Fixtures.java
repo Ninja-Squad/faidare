@@ -3,6 +3,9 @@ package fr.inrae.urgi.faidare.web;
 import fr.inrae.urgi.faidare.config.DataSource;
 import fr.inrae.urgi.faidare.domain.*;
 import fr.inrae.urgi.faidare.domain.brapi.v1.*;
+import fr.inrae.urgi.faidare.domain.brapi.v2.GermplasmV2VO;
+import fr.inrae.urgi.faidare.domain.brapi.v2.StudyV2miniVO;
+import fr.inrae.urgi.faidare.domain.brapi.v2.TrialV2VO;
 import fr.inrae.urgi.faidare.domain.variable.ObservationVariableVO;
 import fr.inrae.urgi.faidare.domain.variable.TraitVO;
 
@@ -65,7 +68,6 @@ public class Fixtures {
         study.setStudyType("Doability");
         study.setProgramName("Program 1");
         study.setActive(true);
-        // FIXME JBN study.startDate used to be a java.util.Date, it's now a String. What does it contain?
         study.setStartDate(LocalDate.now());
         study.setDataLinks(List.of(createDataLink()));
         study.setContacts(List.of(createContact()));
@@ -85,7 +87,7 @@ public class Fixtures {
         return study;
     }
 
-    private static ContactVO createContact() {
+    public static ContactVO createContact() {
         ContactVO contact = new ContactVO();
         contact.setType("Pro");
         contact.setName("John Doe");
@@ -255,6 +257,18 @@ public class Fixtures {
         return germplasm;
     }
 
+    public static GermplasmV2VO createGermplasmV2ForTrial() {
+        GermplasmV2VO germplasm = new GermplasmV2VO();
+
+        germplasm.setGermplasmDbId("germplasm-mini1");
+        germplasm.setGermplasmName("BLE BARBU DU ROUSSILLON mini");
+        germplasm.setAccessionNumber("1408-mini");
+
+        germplasm.setGenus("Genus 1");
+        germplasm.setSpecies("Species 1");
+        germplasm.setSubtaxa("Subtaxa 1");
+        return germplasm;
+    }
 
     private static DonorVO createDonor() {
         DonorVO result = new DonorVO();
@@ -364,10 +378,27 @@ public class Fixtures {
 
     public static TrialV1VO createTrial() {
         TrialV1VO trial = new TrialV1VO();
-        trial.setTrialName("Trail 1");
+        trial.setTrialName("Trial 1");
         trial.setTrialType("Trial type 1");
         trial.setDocumentationURL("http://trials.com");
         trial.setStudies(List.of(createTrialStudy()));
+        return trial;
+    }
+
+    public static TrialV2VO createTrialV2() {
+        TrialV2VO trial = new TrialV2VO();
+        trial.setTrialDbId("trial1");
+        trial.setTrialName("Trial 1");
+        trial.setTrialType("Trial type 1");
+        trial.setDocumentationURL("http://trials.com");
+        trial.setContact(List.of(createContact()));
+        trial.setStudies(List.of(createTrialV2Study()));
+
+        trial.setProgramName("Program 1");
+        // FIXME JBN trial.startDate should be a LocalDate, not a String
+        trial.setStartDate(LocalDate.of(2020, 1, 1).toString());
+        trial.setEndDate(LocalDate.of(2022, 1, 1).toString());
+
         return trial;
     }
 
@@ -375,9 +406,25 @@ public class Fixtures {
         StudyV1miniVO study = new StudyV1miniVO();
         study.setStudyDbId("study2");
         study.setStudyName("Study 2");
+
+        LocationVO site = createSite();
+        study.setLocationDbId(site.getLocationDbId());
+        study.setLocationName(site.getLocationName());
+
         return study;
     }
 
+    private static StudyV2miniVO createTrialV2Study() {
+        StudyV2miniVO study = new StudyV2miniVO();
+        study.setStudyDbId("study2");
+        study.setStudyName("Study 2");
+
+        LocationVO site = createSite();
+        study.setLocationDbId(site.getLocationDbId());
+        study.setLocationName(site.getLocationName());
+
+        return study;
+    }
 
     public static GermplasmAttributeV1VO createGermplasmAttribute() {
         GermplasmAttributeValueV1VO value = new GermplasmAttributeValueV1VO();
