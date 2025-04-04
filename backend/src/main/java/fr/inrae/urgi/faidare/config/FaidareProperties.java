@@ -105,6 +105,8 @@ public class FaidareProperties {
     /**
      * Get Elasticearch alias name using the template property, the document type and the group id
      */
+    // FIXME why pass a groupId? The passed value is ALWAYS 0, so I don't understand what the purpose is.
+    // FIXME documentType should really be an enum, so that there's less chance of passing a wrong value
     public String getAliasName (String documentType, long groupId) {
         return getBaseIndexName(documentType) + "-group" + groupId;
     }

@@ -2,6 +2,7 @@ package fr.inrae.urgi.faidare.dao.v1;
 
 import fr.inrae.urgi.faidare.api.brapi.v2.BrapiListResponse;
 import fr.inrae.urgi.faidare.config.ElasticSearchConfig;
+import fr.inrae.urgi.faidare.config.FaidareProperties;
 import fr.inrae.urgi.faidare.dao.v1.GermplasmV1Criteria;
 import fr.inrae.urgi.faidare.domain.SynonymsVO;
 import fr.inrae.urgi.faidare.domain.brapi.GermplasmSitemapVO;
@@ -33,6 +34,8 @@ public class GermplasmV1DaoCustomImpl implements GermplasmV1DaoCustom{
     private ElasticsearchOperations elasticsearchOperations;
     @Autowired
     private ElasticsearchTemplate esTemplate;
+    @Autowired
+    private FaidareProperties faidareProperties;
 
     @Override
     public SearchHitsIterator<GermplasmV1VO> scrollGermplasmsByGermplasmDbIds(Set<String> germplasmDbIds, int fetchSize) {
@@ -49,7 +52,7 @@ public class GermplasmV1DaoCustomImpl implements GermplasmV1DaoCustom{
                 .withQuery(builder -> builder.matchAll(Queries.matchAllQuery()))
                 .withSourceFilter(new FetchSourceFilterBuilder().withIncludes("germplasmDbId").build())
                 .build();
-        return elasticsearchOperations.searchForStream(query, GermplasmSitemapVO.class, IndexCoordinates.of("faidare_germplasm_dev-group0"))
+        return elasticsearchOperations.searchForStream(query, GermplasmSitemapVO.class, IndexCoordinates.of(faidareProperties.getAliasName("germplasm", 0)))
                 .stream()
                 .map(SearchHit::getContent);
     }

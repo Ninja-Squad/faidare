@@ -1,6 +1,7 @@
 package fr.inrae.urgi.faidare.dao.v1;
 
 import fr.inrae.urgi.faidare.config.ElasticSearchConfig;
+import fr.inrae.urgi.faidare.config.FaidareProperties;
 import fr.inrae.urgi.faidare.domain.LocationVO;
 import fr.inrae.urgi.faidare.domain.brapi.LocationSitemapVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,9 @@ public class LocationV1DaoCustomImpl implements LocationV1DaoCustom {
     @Autowired
     private ElasticsearchTemplate esTemplate;
 
+    @Autowired
+    private FaidareProperties faidareProperties;
+
     @Override
     public Stream<LocationSitemapVO> findAllForSitemap() {
         NativeQueryBuilder nativeQueryBuilder = NativeQuery.builder();
@@ -27,7 +31,7 @@ public class LocationV1DaoCustomImpl implements LocationV1DaoCustom {
             .withQuery(builder -> builder.matchAll(Queries.matchAllQuery()))
             .withSourceFilter(new FetchSourceFilterBuilder().withIncludes("locationDbId").build())
             .build();
-        return esTemplate.searchForStream(query, LocationSitemapVO.class, IndexCoordinates.of("faidare_location_dev-group0"))
+        return esTemplate.searchForStream(query, LocationSitemapVO.class, IndexCoordinates.of(faidareProperties.getAliasName("location", 0)))
                          .stream()
                          .map(SearchHit::getContent);
     }

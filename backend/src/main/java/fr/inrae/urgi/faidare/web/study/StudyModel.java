@@ -28,6 +28,7 @@ public final class StudyModel {
     private final LocationVO location;
     private final List<Map.Entry<String, Object>> additionalInfoProperties;
     private final String url;
+    private final String contextPath;
 
     public StudyModel(StudyV1VO study,
                       DataSource source,
@@ -36,7 +37,8 @@ public final class StudyModel {
                       List<TrialV1VO> trials,
                       List<XRefDocumentVO> crossReferences,
                       LocationVO location,
-                      String url) {
+                      String url,
+                      String contextPath) {
         this.study = study;
         this.source = source;
         this.germplasms = germplasms;
@@ -45,6 +47,7 @@ public final class StudyModel {
         this.crossReferences = crossReferences;
         this.location = location;
         this.url = url;
+        this.contextPath = contextPath;
 
         // FIXME JBN uncomment this once study has additionalInfo
 //        Map<String, Object> additionalInfo =
@@ -93,5 +96,9 @@ public final class StudyModel {
             return Collections.emptyList();
         }
         return MapLocation.locationsToDisplayableMapLocations(Collections.singletonList(this.location));
+    }
+
+    public String getContextPath() {
+        return contextPath;
     }
 }

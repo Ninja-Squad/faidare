@@ -56,7 +56,7 @@
             th:if="${model.study.startDate != null && model.study.endDate != null}"
           >
             <div
-              th:replace="fragments/row::text-row(label='Date', text=${'From ' + #dates.format(model.study.startDate, 'yyyy-MM-dd') + ' to ' + #dates.format(model.study.endDate, 'yyyy-MM-dd') })"
+              th:replace="fragments/row::text-row(label='Date', text=${'From ' + #temporals.format(model.study.startDate, 'yyyy-MM-dd') + ' to ' + #temporals.format(model.study.endDate, 'yyyy-MM-dd') })"
             ></div>
           </th:block>
           <th:block
@@ -289,7 +289,7 @@
 
     <script th:inline="javascript">
       faidare.initializeMap({
-        contextPath: [[${contextPath}]],
+        contextPath: [[${model.contextPath}]],
         locations: [[${model.mapLocations}]]
       });
     </script>

@@ -2,6 +2,8 @@ package fr.inrae.urgi.faidare.dao.v2;
 
 import fr.inrae.urgi.faidare.api.brapi.v2.BrapiListResponse;
 import fr.inrae.urgi.faidare.config.ElasticSearchConfig;
+import fr.inrae.urgi.faidare.domain.brapi.StudySitemapVO;
+import fr.inrae.urgi.faidare.domain.brapi.TrialSitemapVO;
 import fr.inrae.urgi.faidare.domain.brapi.v2.TrialV2VO;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
@@ -96,4 +98,11 @@ public class TrialV2DaoTest {
 //        assertThat(trialVOs.getResult().getData().get(0).getStudyDbIds()).isEqualTo("dXJuOklOUkFFLVVSR0kvc3R1ZHkvUE9QWU9NSUNTLVBPUDItSQ==");
     }
 
+    @Test
+    void findAllForSitemap() {
+        List<TrialSitemapVO> list = dao.findAllForSitemap().toList();
+        assertThat(list.size()).isGreaterThan(1);
+        assertThat(list.get(0)).isInstanceOf(TrialSitemapVO.class);
+        assertThat(list.get(0).getTrialDbId()).isNotNull();
+    }
 }
