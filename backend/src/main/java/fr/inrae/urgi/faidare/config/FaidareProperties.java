@@ -3,6 +3,7 @@ package fr.inrae.urgi.faidare.config;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -34,7 +35,7 @@ public class FaidareProperties {
     @NotBlank
     private String cropOntologyPortalLink;
 
-    private List<DataSource> dataSources = new ArrayList<>();
+    private List<@Valid DataSource> dataSources = new ArrayList<>();
 
     public void setSecurityUserGroupWsUrl(String securityUserGroupWsUrl) {
         this.securityUserGroupWsUrl = securityUserGroupWsUrl;

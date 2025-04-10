@@ -91,6 +91,11 @@ tasks {
         testLogging {
             exceptionFormat = TestExceptionFormat.FULL
         }
+        if (System.getenv("CI") != null) {
+            systemProperties(
+                "spring.elasticsearch.uris" to "http://elasticsearch:9200",
+            )
+        }
     }
 
     jacocoTestReport {
@@ -101,7 +106,7 @@ tasks {
     }
 }
 
-extra["springCloudVersion"] = "2022.0.5"
+extra["springCloudVersion"] = "2024.0.0"
 dependencyManagement {
     imports {
         mavenBom("org.springframework.cloud:spring-cloud-dependencies:${property("springCloudVersion")}")
