@@ -1,5 +1,15 @@
 package fr.inrae.urgi.faidare.web.site;
 
+import static fr.inrae.urgi.faidare.web.Fixtures.htmlContent;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.asyncDispatch;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+import java.util.Arrays;
+import java.util.List;
+
 import fr.inrae.urgi.faidare.config.DataSource;
 import fr.inrae.urgi.faidare.config.FaidareProperties;
 import fr.inrae.urgi.faidare.dao.XRefDocumentDao;
@@ -12,20 +22,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
-
-import java.util.Arrays;
-import java.util.List;
-
-import static fr.inrae.urgi.faidare.web.Fixtures.htmlContent;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.asyncDispatch;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
  * MVC tests for {@link SiteController}
@@ -36,13 +36,13 @@ public class SiteControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @MockBean
+    @MockitoBean
     private LocationV1Dao mockLocationRepository;
 
-    @MockBean
+    @MockitoBean
     private XRefDocumentDao mockXRefDocumentRepository;
 
-    @MockBean
+    @MockitoBean
     private FaidareProperties mockFaidareProperties;
 
     private LocationVO site;

@@ -1,5 +1,20 @@
 package fr.inrae.urgi.faidare.web.study;
 
+import static fr.inrae.urgi.faidare.web.Fixtures.htmlContent;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.asyncDispatch;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Locale;
+import java.util.Set;
+import java.util.stream.Stream;
+
 import fr.inrae.urgi.faidare.config.DataSource;
 import fr.inrae.urgi.faidare.config.FaidareProperties;
 import fr.inrae.urgi.faidare.dao.XRefDocumentDao;
@@ -20,25 +35,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.*;
-import java.util.stream.Stream;
-
-import static fr.inrae.urgi.faidare.web.Fixtures.htmlContent;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.asyncDispatch;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
  * MVC tests for {@link StudyController}
@@ -49,25 +51,25 @@ public class StudyControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @MockBean
+    @MockitoBean
     private StudyV1Dao mockStudyRepository;
 
-    @MockBean
+    @MockitoBean
     private FaidareProperties mockFaidareProperties;
 
-    @MockBean
+    @MockitoBean
     private XRefDocumentDao mockXRefDocumentRepository;
 
-    @MockBean
+    @MockitoBean
     private GermplasmV1Dao mockGermplasmRepository;
 
-    @MockBean
+    @MockitoBean
     private CropOntologyRepository mockCropOntologyRepository;
 
-    @MockBean
+    @MockitoBean
     private TrialV1Dao mockTrialRepository;
 
-    @MockBean
+    @MockitoBean
     private LocationV1Dao mockLocationRepository;
 
     @Autowired
