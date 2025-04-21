@@ -132,7 +132,7 @@ dependencies {
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.6")
 
     // Others
-    implementation("com.google.guava:guava:33.4.7-jre")
+    implementation("com.google.guava:guava:33.4.8-jre")
     implementation("com.opencsv:opencsv:5.10")
 
     // Test dependencies
