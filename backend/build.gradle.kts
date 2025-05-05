@@ -129,13 +129,13 @@ dependencies {
     implementation("org.elasticsearch.client:elasticsearch-rest-high-level-client:7.17.28")
     implementation("org.springframework.cloud:spring-cloud-starter-config")
 
-    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.6")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.8")
 
     // Others
     implementation("com.google.guava:guava:33.4.8-jre")
-    implementation("com.opencsv:opencsv:5.10")
+    implementation("com.opencsv:opencsv:5.11")
 
     // Test dependencies
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("org.jsoup:jsoup:1.19.1")
+    testImplementation("org.jsoup:jsoup:1.20.1")
 }
