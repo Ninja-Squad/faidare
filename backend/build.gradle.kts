@@ -23,6 +23,9 @@ java {
 
 repositories {
     mavenCentral()
+    maven {
+        url = uri("https://repo.spring.io/milestone")
+    }
 }
 
 gitProperties {
@@ -106,7 +109,7 @@ tasks {
     }
 }
 
-extra["springCloudVersion"] = "2024.0.1"
+extra["springCloudVersion"] = "2025.0.0-RC1"
 dependencyManagement {
     imports {
         mavenBom("org.springframework.cloud:spring-cloud-dependencies:${property("springCloudVersion")}")
