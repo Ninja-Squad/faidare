@@ -14,7 +14,7 @@ plugins {
     id("com.gorylenko.gradle-git-properties") version "2.5.0"
     id("io.spring.dependency-management") version "1.1.7"
     id("org.sonarqube")
-    id("org.owasp.dependencycheck") version "12.1.1"
+    id("org.owasp.dependencycheck") version "12.1.2"
 }
 
 java {
@@ -109,7 +109,7 @@ tasks {
     }
 }
 
-extra["springCloudVersion"] = "2025.0.0-RC1"
+extra["springCloudVersion"] = "2025.0.0"
 dependencyManagement {
     imports {
         mavenBom("org.springframework.cloud:spring-cloud-dependencies:${property("springCloudVersion")}")
