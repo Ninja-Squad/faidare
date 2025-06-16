@@ -14,7 +14,7 @@ plugins {
     id("com.gorylenko.gradle-git-properties") version "2.5.0"
     id("io.spring.dependency-management") version "1.1.7"
     id("org.sonarqube")
-    id("org.owasp.dependencycheck") version "12.1.2"
+    id("org.owasp.dependencycheck") version "12.1.3"
 }
 
 java {
@@ -132,7 +132,7 @@ dependencies {
     implementation("org.elasticsearch.client:elasticsearch-rest-high-level-client:7.17.28")
     implementation("org.springframework.cloud:spring-cloud-starter-config")
 
-    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.8")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.9")
 
     // Others
     implementation("com.google.guava:guava:33.4.8-jre")
