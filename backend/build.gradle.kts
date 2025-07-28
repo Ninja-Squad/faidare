@@ -10,7 +10,7 @@ buildscript {
 plugins {
     java
     jacoco
-    id("org.springframework.boot") version "3.5.3"
+    id("org.springframework.boot") version "3.5.4"
     id("com.gorylenko.gradle-git-properties") version "2.5.2"
     id("io.spring.dependency-management") version "1.1.7"
     id("org.sonarqube")
@@ -136,7 +136,7 @@ dependencies {
 
     // Others
     implementation("com.google.guava:guava:33.4.8-jre")
-    implementation("com.opencsv:opencsv:5.11.2")
+    implementation("com.opencsv:opencsv:5.12.0")
 
     // Test dependencies
     testImplementation("org.springframework.boot:spring-boot-starter-test")
