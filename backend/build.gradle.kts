@@ -10,7 +10,7 @@ buildscript {
 plugins {
     java
     jacoco
-    id("org.springframework.boot") version "3.5.4"
+    id("org.springframework.boot") version "3.5.5"
     id("com.gorylenko.gradle-git-properties") version "2.5.2"
     id("io.spring.dependency-management") version "1.1.7"
     id("org.sonarqube")
@@ -130,7 +130,7 @@ dependencies {
     // Elasticsearch
     implementation("org.springframework.boot:spring-boot-starter-data-elasticsearch")
 
-    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.9")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.11")
 
     implementation("org.apache.httpcomponents.client5:httpclient5")
 
@@ -140,5 +140,5 @@ dependencies {
 
     // Test dependencies
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("org.jsoup:jsoup:1.21.1")
+    testImplementation("org.jsoup:jsoup:1.21.2")
 }
