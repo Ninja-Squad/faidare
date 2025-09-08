@@ -11,7 +11,7 @@ plugins {
     java
     jacoco
     id("org.springframework.boot") version "3.5.5"
-    id("com.gorylenko.gradle-git-properties") version "2.5.2"
+    id("com.gorylenko.gradle-git-properties") version "2.5.3"
     id("io.spring.dependency-management") version "1.1.7"
     id("org.sonarqube")
     id("org.owasp.dependencycheck") version "12.1.3"
@@ -130,7 +130,7 @@ dependencies {
     // Elasticsearch
     implementation("org.springframework.boot:spring-boot-starter-data-elasticsearch")
 
-    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.11")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.13")
 
     implementation("org.apache.httpcomponents.client5:httpclient5")
 
