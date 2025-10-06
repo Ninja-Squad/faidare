@@ -10,11 +10,11 @@ buildscript {
 plugins {
     java
     jacoco
-    id("org.springframework.boot") version "3.5.5"
+    id("org.springframework.boot") version "3.5.6"
     id("com.gorylenko.gradle-git-properties") version "2.5.3"
     id("io.spring.dependency-management") version "1.1.7"
     id("org.sonarqube")
-    id("org.owasp.dependencycheck") version "12.1.3"
+    id("org.owasp.dependencycheck") version "12.1.6"
 }
 
 java {
@@ -135,7 +135,7 @@ dependencies {
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.13")
 
     // Others
-    implementation("com.google.guava:guava:33.4.8-jre")
+    implementation("com.google.guava:guava:33.5.0-jre")
     implementation("com.opencsv:opencsv:5.12.0")
 
     // Test dependencies
