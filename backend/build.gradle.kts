@@ -132,7 +132,7 @@ dependencies {
     implementation("org.elasticsearch.client:elasticsearch-rest-high-level-client:7.17.29")
     implementation("org.springframework.cloud:spring-cloud-starter-config")
 
-    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.13")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.14")
 
     // Others
     implementation("com.google.guava:guava:33.5.0-jre")
