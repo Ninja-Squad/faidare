@@ -134,9 +134,14 @@ dependencies {
 
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.14")
 
+    // Excel POI
+    implementation("org.apache.poi:poi:5.4.1")
+    implementation("org.apache.poi:poi-ooxml:5.4.1")
+
     // Others
     implementation("com.google.guava:guava:33.5.0-jre")
     implementation("com.opencsv:opencsv:5.12.0")
+
 
     // Test dependencies
     testImplementation("org.springframework.boot:spring-boot-starter-test")

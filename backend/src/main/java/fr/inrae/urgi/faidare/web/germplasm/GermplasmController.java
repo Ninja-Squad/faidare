@@ -1,5 +1,11 @@
 package fr.inrae.urgi.faidare.web.germplasm;
 
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import fr.inrae.urgi.faidare.api.NotFoundException;
 import fr.inrae.urgi.faidare.config.FaidareProperties;
 import fr.inrae.urgi.faidare.dao.XRefDocumentDao;
@@ -7,6 +13,7 @@ import fr.inrae.urgi.faidare.dao.v1.GermplasmAttributeV1Dao;
 import fr.inrae.urgi.faidare.dao.v1.GermplasmPedigreeV1Dao;
 import fr.inrae.urgi.faidare.dao.v1.GermplasmV1Dao;
 import fr.inrae.urgi.faidare.dao.v2.GermplasmMcpdDao;
+import fr.inrae.urgi.faidare.dao.v2.GermplasmV2Dao;
 import fr.inrae.urgi.faidare.domain.CollPopVO;
 import fr.inrae.urgi.faidare.domain.GermplasmMcpdVO;
 import fr.inrae.urgi.faidare.domain.XRefDocumentVO;
@@ -15,20 +22,21 @@ import fr.inrae.urgi.faidare.domain.brapi.v1.GermplasmAttributeV1VO;
 import fr.inrae.urgi.faidare.domain.brapi.v1.GermplasmAttributeValueV1VO;
 import fr.inrae.urgi.faidare.domain.brapi.v1.GermplasmPedigreeV1VO;
 import fr.inrae.urgi.faidare.domain.brapi.v1.GermplasmV1VO;
+import fr.inrae.urgi.faidare.domain.brapi.v2.GermplasmV2VO;
 import fr.inrae.urgi.faidare.utils.Sitemaps;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
-
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * Controller used to display a germplasm card based on its ID.
@@ -42,6 +50,7 @@ import java.util.stream.Stream;
 public class GermplasmController {
 
     private final GermplasmV1Dao germplasmRepository;
+    private final GermplasmV2Dao germplasmV2Repository;
     private final GermplasmMcpdDao germplasmMcpdRepository;
     private final GermplasmPedigreeV1Dao germplasmPedigreeRepository;
     private final FaidareProperties faidareProperties;
@@ -49,16 +58,20 @@ public class GermplasmController {
     private final GermplasmAttributeV1Dao germplasmAttributeRepository;
     private final GermplasmMcpdExportService germplasmMcpdExportService;
     private final GermplasmExportService germplasmExportService;
+    private final GermplasmMiappeExportService germplasmMiappeExportService;
 
     public GermplasmController(GermplasmV1Dao germplasmRepository,
+                               GermplasmV2Dao germplasmV2Repository,
                                GermplasmMcpdDao germplasmMcpdRepository,
                                GermplasmPedigreeV1Dao germplasmPedigreeRepository,
                                FaidareProperties faidareProperties,
                                XRefDocumentDao xRefDocumentRepository,
                                GermplasmAttributeV1Dao germplasmAttributeRepository,
                                GermplasmMcpdExportService germplasmMcpdExportService,
-                               GermplasmExportService germplasmExportService) {
+                               GermplasmExportService germplasmExportService,
+                               GermplasmMiappeExportService germplasmMiappeExportService) {
         this.germplasmRepository = germplasmRepository;
+        this.germplasmV2Repository = germplasmV2Repository;
         this.germplasmMcpdRepository = germplasmMcpdRepository;
         this.germplasmPedigreeRepository = germplasmPedigreeRepository;
         this.faidareProperties = faidareProperties;
@@ -66,6 +79,7 @@ public class GermplasmController {
         this.germplasmAttributeRepository = germplasmAttributeRepository;
         this.germplasmMcpdExportService = germplasmMcpdExportService;
         this.germplasmExportService = germplasmExportService;
+        this.germplasmMiappeExportService = germplasmMiappeExportService;
     }
 
     @GetMapping("/{germplasmId}")
@@ -111,7 +125,7 @@ public class GermplasmController {
                 germplasmMcpdExportService.export(out, stream, fields);
             }
         };
-        return ResponseEntity.ok().contentType(MediaType.parseMediaType("text/csv")).body(body);
+        return ResponseEntity.ok().contentType(ExportFormat.CSV.getMediaType()).body(body);
     }
 
     @PostMapping("/exports/plant-material")
@@ -124,7 +138,21 @@ public class GermplasmController {
                 germplasmExportService.export(out, stream, fields);
             }
         };
-        return ResponseEntity.ok().contentType(MediaType.parseMediaType("text/csv")).body(body);
+        return ResponseEntity.ok().contentType(ExportFormat.CSV.getMediaType()).body(body);
+    }
+
+    @PostMapping("/exports/miappe")
+    @ResponseBody
+    public ResponseEntity<StreamingResponseBody> export(@Validated @RequestBody GermplasmMiappeExportCommand command) {
+        StreamingResponseBody body = out -> {
+            try (Stream<GermplasmV2VO> stream = germplasmV2Repository.findByGermplasmDbIdIn(command.ids())) {
+                switch (command.format()) {
+                    case EXCEL -> germplasmMiappeExportService.exportAsExcel(out, stream);
+                    case CSV -> germplasmMiappeExportService.exportAsCsv(out, stream);
+                }
+            }
+        };
+        return ResponseEntity.ok().contentType(command.format().getMediaType()).body(body);
     }
 
     @GetMapping("/sitemap-{index}.txt")
