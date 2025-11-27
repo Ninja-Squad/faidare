@@ -1,5 +1,6 @@
 package fr.inrae.urgi.faidare.dao.file;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -15,11 +16,13 @@ import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import com.google.common.collect.Lists;
 import fr.inrae.urgi.faidare.config.FaidareProperties;
+import fr.inrae.urgi.faidare.config.RestClientCustomizations;
 import fr.inrae.urgi.faidare.domain.variable.BrapiTrait;
 import fr.inrae.urgi.faidare.domain.variable.ObservationVariableVO;
 import fr.inrae.urgi.faidare.domain.variable.OntologyVO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestClient;
 import org.springframework.web.client.RestTemplate;
 
 /**
@@ -37,16 +40,19 @@ public class CropOntologyRepositoryImpl implements CropOntologyRepository {
     private static final TimeUnit CACHE_EXPIRATION_TIME_UNIT = TimeUnit.HOURS;
 
     private final FaidareProperties properties;
-    private final RestTemplate client;
+    private final RestClient client;
 
     private final LoadingCache<String, OntologyVO[]> ontologyCache;
     private final LoadingCache<String, ObservationVariableVO[]> variablesByOntology;
+    private final RestClient.Builder clientBuilder;
 
     public CropOntologyRepositoryImpl(
         FaidareProperties properties,
-        RestTemplate client
+        RestClient.Builder clientBuilder
     ) {
-        this.client = client;
+        this.clientBuilder = clientBuilder;
+        RestClientCustomizations.configureWithPermissiveObjectMapper(clientBuilder);
+        this.client = clientBuilder.build();
         this.properties = properties;
 
         // Cache configuration: will refresh if CACHE_EXPIRATION_TIME has passed
@@ -168,7 +174,7 @@ public class CropOntologyRepositoryImpl implements CropOntologyRepository {
         @Override
         public OntologyVO[] load(String repositoryJsonUrl) {
             ResponseEntity<OntologyVO[]> response =
-                client.getForEntity(repositoryJsonUrl, OntologyVO[].class);
+                client.get().uri(repositoryJsonUrl).retrieve().toEntity(OntologyVO[].class);
             return response.getBody();
         }
 
@@ -184,7 +190,7 @@ public class CropOntologyRepositoryImpl implements CropOntologyRepository {
             String ontologyJsonUrl = getOntologyBaseUrl() + ontologyKey + ".json";
 
             ResponseEntity<ObservationVariableVO[]> response =
-                client.getForEntity(ontologyJsonUrl, ObservationVariableVO[].class);
+                client.get().uri(ontologyJsonUrl).retrieve().toEntity(ObservationVariableVO[].class);
             ObservationVariableVO[] variables = response.getBody();
             if (variables != null) {
                 for (ObservationVariableVO variable : variables) {
