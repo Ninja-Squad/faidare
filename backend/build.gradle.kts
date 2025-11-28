@@ -129,7 +129,7 @@ dependencies {
     implementation("org.elasticsearch.client:elasticsearch-rest-high-level-client:7.17.29")
     implementation("org.springframework.cloud:spring-cloud-starter-config")
 
-    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.14")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:3.0.0")
 
     // Excel POI
     implementation("org.apache.poi:poi:5.5.0")
