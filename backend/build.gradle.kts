@@ -125,7 +125,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-elasticsearch")
 
     // Elasticsearch
-    implementation("org.elasticsearch:elasticsearch:7.17.29")
+    implementation("org.elasticsearch:elasticsearch:9.2.1")
     implementation("org.elasticsearch.client:elasticsearch-rest-high-level-client:7.17.29")
     implementation("org.springframework.cloud:spring-cloud-starter-config")
 
