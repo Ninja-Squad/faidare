@@ -132,8 +132,8 @@ dependencies {
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:3.0.0")
 
     // Excel POI
-    implementation("org.apache.poi:poi:5.5.0")
-    implementation("org.apache.poi:poi-ooxml:5.5.0")
+    implementation("org.apache.poi:poi:5.5.1")
+    implementation("org.apache.poi:poi-ooxml:5.5.1")
 
     // Others
     implementation("com.google.guava:guava:33.5.0-jre")
