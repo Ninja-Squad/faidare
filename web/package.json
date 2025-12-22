@@ -6,7 +6,7 @@
   "engines": {
     "node": "24.12.0"
   },
-  "packageManager": "pnpm@10.25.0",
+  "packageManager": "pnpm@10.26.1",
   "scripts": {
     "build": "webpack --mode development",
     "build:prod": "webpack --mode production",
@@ -35,11 +35,11 @@
     "postcss": "8.5.6",
     "postcss-loader": "8.2.0",
     "prettier": "3.7.4",
-    "sass": "1.96.0",
+    "sass": "1.97.1",
     "sass-loader": "16.0.6",
     "ts-loader": "9.5.4",
     "typescript": "5.9.3",
-    "webpack": "5.103.0",
+    "webpack": "5.104.1",
     "webpack-cli": "6.0.1"
   },
   "browserslist": [
