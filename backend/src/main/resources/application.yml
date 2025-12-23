@@ -106,6 +106,9 @@ faidare:
     name: PHIS
     image: https://github.com/OpenSILEX/opensilex/blob/16964775778c2ec2c2880d329c25d50074add40c/opensilex-phis/front/theme/phis/images/logo-phis-lg.png
 
+  obervation-unit-export:
+    directory: ./exports
+
 server:
   compression:
     enabled: true
