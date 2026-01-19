@@ -40,8 +40,8 @@ importers:
         specifier: 1.5.3
         version: 1.5.3(leaflet@1.9.4)
       mini-css-extract-plugin:
-        specifier: 2.9.4
-        version: 2.9.4(webpack@5.104.1)
+        specifier: 2.10.0
+        version: 2.10.0(webpack@5.104.1)
       postcss:
         specifier: 8.5.6
         version: 8.5.6
@@ -49,8 +49,8 @@ importers:
         specifier: 8.2.0
         version: 8.2.0(postcss@8.5.6)(typescript@5.9.3)(webpack@5.104.1)
       prettier:
-        specifier: 3.7.4
-        version: 3.7.4
+        specifier: 3.8.0
+        version: 3.8.0
       sass:
         specifier: 1.97.2
         version: 1.97.2
@@ -862,8 +862,8 @@ packages:
     resolution: {integrity: sha512-ZDY+bPm5zTTF+YpCrAU9nK0UgICYPT0QtT1NZWFv4s++TNkcgVaT0g6+4R2uI4MjQjzysHB1zxuWL50hzaeXiw==}
     engines: {node: '>= 0.6'}
 
-  mini-css-extract-plugin@2.9.4:
-    resolution: {integrity: sha512-ZWYT7ln73Hptxqxk2DxPU9MmapXRhxkJD6tkSR04dnQxm8BGu2hzgKLugK5yySD97u/8yy7Ma7E76k9ZdvtjkQ==}
+  mini-css-extract-plugin@2.10.0:
+    resolution: {integrity: sha512-540P2c5dYnJlyJxTaSloliZexv8rji6rY8FhQN+WF/82iHQfA23j/xtJx97L+mXOML27EqksSek/g4eK7jaL3g==}
     engines: {node: '>= 12.13.0'}
     peerDependencies:
       webpack: ^5.0.0
@@ -1182,8 +1182,8 @@ packages:
     resolution: {integrity: sha512-3Ybi1tAuwAP9s0r1UQ2J4n5Y0G05bJkpUIO0/bI9MhwmD70S5aTWbXGBwxHrelT+XM1k6dM0pk+SwNkpTRN7Pg==}
     engines: {node: ^10 || ^12 || >=14}
 
-  prettier@3.7.4:
-    resolution: {integrity: sha512-v6UNi1+3hSlVvv8fSaoUbggEM5VErKmmpGA7Pl3HF8V6uKY7rvClBOJlH6yNwQtfTueNkGVpOv/mtWL9L4bgRA==}
+  prettier@3.8.0:
+    resolution: {integrity: sha512-yEPsovQfpxYfgWNhCfECjG5AQaO+K3dp6XERmOepyPDVqcJm+bjyCVO3pmU+nAPe0N5dDvekfGezt/EIiRe1TA==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -1253,10 +1253,6 @@ packages:
     engines: {node: '>=14.0.0'}
     hasBin: true
 
-  schema-utils@4.3.2:
-    resolution: {integrity: sha512-Gn/JaSk/Mt9gYubxTtSn/QCV4em9mpAPiR1rqy/Ocu19u/G9J5WWdNoUT4SiV6mFC3y6cxyFcFwdzPM3FgxGAQ==}
-    engines: {node: '>= 10.13.0'}
-
   schema-utils@4.3.3:
     resolution: {integrity: sha512-eflK8wEtyOE6+hsaRVPxvUKYCpRgzLqDTb8krvAsRIwOGlHoSgYLgBXoubGgLd2fT41/OUYdb48v4k4WWHQurA==}
     engines: {node: '>= 10.13.0'}
@@ -1318,10 +1314,6 @@ packages:
     resolution: {integrity: sha512-OoohrmuUlBs8B8o6MB2Aevn+pRIH9zDALSR+6hhqVfa6fRwG/Qw9VUMSMW9VNg2CFc/MTIfabtdOVl9ODIJjpw==}
     engines: {node: '>=14.0.0'}
     hasBin: true
-
-  tapable@2.2.1:
-    resolution: {integrity: sha512-GNzQvQTOIP6RyTfE2Qxb8ZVlNmw0n88vp1szwWRimP02mnTsx3Wtn5qRdqY9w2XduFNUgvOwhNnQsjwCp+kqaQ==}
-    engines: {node: '>=6'}
 
   tapable@2.3.0:
     resolution: {integrity: sha512-g9ljZiwki/LfxmQADO3dEY1CbpmXT5Hm2fJ+QaGKwSXUylMybePR7/67YW7jOrrvjEgL1Fmz5kzyAjWVWLlucg==}
@@ -1970,7 +1962,7 @@ snapshots:
   enhanced-resolve@5.18.0:
     dependencies:
       graceful-fs: 4.2.11
-      tapable: 2.2.1
+      tapable: 2.3.0
 
   entities@4.5.0: {}
 
@@ -2186,10 +2178,10 @@ snapshots:
     dependencies:
       mime-db: 1.52.0
 
-  mini-css-extract-plugin@2.9.4(webpack@5.104.1):
+  mini-css-extract-plugin@2.10.0(webpack@5.104.1):
     dependencies:
-      schema-utils: 4.3.2
-      tapable: 2.2.1
+      schema-utils: 4.3.3
+      tapable: 2.3.0
       webpack: 5.104.1(webpack-cli@6.0.1)
 
   minimatch@3.1.2:
@@ -2467,7 +2459,7 @@ snapshots:
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
-  prettier@3.7.4: {}
+  prettier@3.8.0: {}
 
   randombytes@2.1.0:
     dependencies:
@@ -2515,13 +2507,6 @@ snapshots:
       source-map-js: 1.2.1
     optionalDependencies:
       '@parcel/watcher': 2.5.0
-
-  schema-utils@4.3.2:
-    dependencies:
-      '@types/json-schema': 7.0.15
-      ajv: 8.17.1
-      ajv-formats: 2.1.1(ajv@8.17.1)
-      ajv-keywords: 5.1.0(ajv@8.17.1)
 
   schema-utils@4.3.3:
     dependencies:
@@ -2582,8 +2567,6 @@ snapshots:
       css-what: 6.1.0
       csso: 5.0.5
       picocolors: 1.1.1
-
-  tapable@2.2.1: {}
 
   tapable@2.3.0: {}
 
