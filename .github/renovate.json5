@@ -1,48 +1,42 @@
 {
-  "extends": [
-    "config:recommended",
-    "group:allNonMajor",
-    "schedule:weekly"
+  extends: [
+    'config:recommended',
+    'group:allNonMajor',
+    'schedule:weekly',
   ],
-  // target chore/next branch
-  "baseBranches": [
-    "chore/next"
+  baseBranchPatterns: [
+    'chore/next',
   ],
-  // only 1 PR at the same time (to avoid cascading rebase)
-  "prConcurrentLimit": 1,
-  // auto-merge if build is OK
-  "automerge": true,
-  "packageRules": [
-    // allow only patch and minor updates for elasticsearch docker image
+  prConcurrentLimit: 1,
+  automerge: true,
+  packageRules: [
     {
-      "packageNames": [
-          "docker.elastic.co/elasticsearch/elasticsearch"
+      matchPackageNames: [
+        'docker.elastic.co/elasticsearch/elasticsearch',
       ],
-      "updateTypes": [
-          "major"
+      matchUpdateTypes: [
+        'major',
       ],
-      "enabled": false
+      enabled: false,
     },
-    // allow only patch and minor updates for elasticsearch dependencies
     {
-      "packageNames": [
-          "org.elasticsearch:elasticsearch",
-          "org.elasticsearch.client:elasticsearch-rest-high-level-client"
+      matchPackageNames: [
+        'org.elasticsearch:elasticsearch',
+        'org.elasticsearch.client:elasticsearch-rest-high-level-client',
       ],
-      "updateTypes": [
-          "major"
+      matchUpdateTypes: [
+        'major',
       ],
-      "enabled": false
+      enabled: false,
     },
-    // allow only patch and minor updates for kibana docker image
     {
-      "packageNames": [
-          "docker.elastic.co/kibana/kibana"
+      matchPackageNames: [
+        'docker.elastic.co/kibana/kibana',
       ],
-      "updateTypes": [
-          "major"
+      matchUpdateTypes: [
+        'major',
       ],
-      "enabled": false
-    }
-  ]
+      enabled: false,
+    },
+  ],
 }
