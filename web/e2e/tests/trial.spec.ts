@@ -8,7 +8,7 @@ test.describe('Trial', () => {
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('Trial Network: Drops Phenotyping Network');
 
     await page.getByRole('button', { name: 'Export observations' }).click();
-    await page.getByRole('button', { name: 'VIRTUAL_TRIAL' }).click();
+    await page.getByRole('button', { name: 'Level: VIRTUAL_TRIAL' }).click();
 
     await expect(page.getByRole('heading', { level: 1, name: 'Export observations for trial Drops Phenotyping Network' })).toBeVisible();
 
