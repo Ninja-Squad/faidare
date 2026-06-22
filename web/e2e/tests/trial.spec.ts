@@ -1,7 +1,8 @@
 import { expect, test } from '@playwright/test';
 
 test.describe('Trial', () => {
-  test('should display the trial page and export', async ({ page, context }) => {
+  // This page loads live ontology data from URGI URLs that are now protected by Anubis.
+  test.skip('should display the trial page and export', async ({ page, context }) => {
     test.setTimeout(45_000);
     await page.goto('/faidare-dev/trials/dXJuOklOUkFFLVVSR0kvdHJpYWwvNDI=');
 
@@ -59,7 +60,9 @@ test.describe('Trial', () => {
     const exportPagePromise = context.waitForEvent('page');
 
     await page.getByRole('button', { name: 'Export', exact: true }).click();
-    await expect(page.getByRole('heading', { level: 1, name: 'Export observations for trial Drops Phenotyping Network' })).not.toBeVisible();
+    await expect(
+      page.getByRole('heading', { level: 1, name: 'Export observations for trial Drops Phenotyping Network' })
+    ).not.toBeVisible();
 
     const exportPage = await exportPagePromise;
 
