@@ -9,6 +9,7 @@ package fr.inrae.urgi.faidare.api.brapi.v1;
 import com.jayway.jsonpath.JsonPath;
 import fr.inrae.urgi.faidare.Application;
 import fr.inrae.urgi.faidare.domain.variable.ObservationVariableV1VO;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,6 +27,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = Application.class,
         webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+// These endpoints load live ontology data from URGI URLs that are now protected by Anubis.
+@Disabled("URGI ontology endpoints are now protected by Anubis")
 class ObservationVariableV1ControllerTest {
 
     @Value("${server.servlet.context-path}")
