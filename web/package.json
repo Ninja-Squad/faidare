@@ -42,7 +42,7 @@
     "css-minimizer-webpack-plugin": "8.0.0",
     "leaflet.markercluster": "1.5.3",
     "mini-css-extract-plugin": "2.10.2",
-    "postcss": "8.5.22",
+    "postcss": "8.5.25",
     "postcss-loader": "8.2.1",
     "prettier": "3.9.6",
     "sass": "1.102.0",
