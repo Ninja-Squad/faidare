@@ -10,7 +10,7 @@ buildscript {
 plugins {
     java
     jacoco
-    id("org.springframework.boot") version "4.1.0"
+    id("org.springframework.boot") version "4.1.1"
     id("com.gorylenko.gradle-git-properties") version "4.0.1"
     id("io.spring.dependency-management") version "1.1.7"
     id("org.sonarqube")
@@ -105,7 +105,7 @@ tasks {
     }
 }
 
-extra["springCloudVersion"] = "2025.1.2"
+extra["springCloudVersion"] = "2025.1.3"
 dependencyManagement {
     imports {
         mavenBom("org.springframework.cloud:spring-cloud-dependencies:${property("springCloudVersion")}")
@@ -137,7 +137,7 @@ dependencies {
     implementation("org.apache.poi:poi-ooxml:5.5.1")
 
     // Others
-    implementation("com.google.guava:guava:33.7.0-jre")
+    implementation("com.google.guava:guava:33.7.1-jre")
     implementation("com.opencsv:opencsv:5.12.0")
 
     // Test dependencies
