@@ -34,8 +34,8 @@ importers:
         specifier: 10.5.4
         version: 10.5.4(postcss@8.5.22)
       baseline-browser-mapping:
-        specifier: 2.11.14
-        version: 2.11.14
+        specifier: 2.11.16
+        version: 2.11.16
       clean-webpack-plugin:
         specifier: 4.0.0
         version: 4.0.0(webpack@5.109.2)
@@ -61,11 +61,11 @@ importers:
         specifier: 3.9.6
         version: 3.9.6
       sass:
-        specifier: 1.102.0
-        version: 1.102.0
+        specifier: 1.103.1
+        version: 1.103.1
       sass-loader:
         specifier: 17.0.0
-        version: 17.0.0(sass@1.102.0)(webpack@5.109.2)
+        version: 17.0.0(sass@1.103.1)(webpack@5.109.2)
       start-server-and-test:
         specifier: 3.0.12
         version: 3.0.12(supports-color@8.1.1)
@@ -411,13 +411,8 @@ packages:
   balanced-match@1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
 
-  baseline-browser-mapping@2.11.12:
-    resolution: {integrity: sha512-r7WnVImvVCeFpf2DOXfy41aPWzeNg3H/A2X4dKmy1QL0MSyyk/e7z8ihJ3N6Nn2PsdhkVlqnEfnUE4a05P2aTA==}
-    engines: {node: '>=6.0.0'}
-    hasBin: true
-
-  baseline-browser-mapping@2.11.14:
-    resolution: {integrity: sha512-JyJ954WzuIR8/FFzX0o5krdSTrBAkcCSRfWSleRsIHSWV+cZe2FI1PKggVkFke1hBldRs+LRxUczzE9iPmgZww==}
+  baseline-browser-mapping@2.11.16:
+    resolution: {integrity: sha512-H/bNPUFHewJHyCTdjn1n3Pit5+2GmWT6mmeHImPX+8MA9NA6b67jO4gYmi4jTbCJb2otq34KMZnovndDPqJwhQ==}
     engines: {node: '>=6.0.0'}
     hasBin: true
 
@@ -1456,8 +1451,8 @@ packages:
       webpack:
         optional: true
 
-  sass@1.102.0:
-    resolution: {integrity: sha512-NSOyTnaQF7rTAEOtI2fwb386vL+akyiQLBZu8Na7hXCb+umJy0GAqlcMIaqACZ6Z1VgTBS4K9PG6B3IdjHGJsw==}
+  sass@1.103.1:
+    resolution: {integrity: sha512-9icZURbP51S6S0QGoyaeqk9uB06GNWxsFYWfH5RgpFgqK5FA8tJcM3AdVxrZEVJ7dz+L87nG95gBKf4VuaMHGw==}
     engines: {node: '>=20.19.0'}
     hasBin: true
 
@@ -1979,9 +1974,7 @@ snapshots:
 
   balanced-match@1.0.2: {}
 
-  baseline-browser-mapping@2.11.12: {}
-
-  baseline-browser-mapping@2.11.14: {}
+  baseline-browser-mapping@2.11.16: {}
 
   boolbase@1.0.0: {}
 
@@ -2001,7 +1994,7 @@ snapshots:
 
   browserslist@4.28.7:
     dependencies:
-      baseline-browser-mapping: 2.11.12
+      baseline-browser-mapping: 2.11.16
       caniuse-lite: 1.0.30001806
       electron-to-chromium: 1.5.396
       node-releases: 2.0.51
@@ -2901,12 +2894,12 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
-  sass-loader@17.0.0(sass@1.102.0)(webpack@5.109.2):
+  sass-loader@17.0.0(sass@1.103.1)(webpack@5.109.2):
     optionalDependencies:
-      sass: 1.102.0
+      sass: 1.103.1
       webpack: 5.109.2(cssnano@7.0.6(postcss@8.5.22))(csso@5.0.5)(postcss@8.5.22)(webpack-cli@7.2.2)
 
-  sass@1.102.0:
+  sass@1.103.1:
     dependencies:
       chokidar: 5.0.0
       immutable: 5.1.5
