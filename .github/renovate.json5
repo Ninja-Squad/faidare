@@ -14,12 +14,12 @@
   // auto-merge if build is OK
   "automerge": true,
   "packageRules": [
-    // Keep postcss pinned until cssnano/postcss-merge-rules releases a fix for https://github.com/cssnano/cssnano/issues/1846
+    // Skip the known bad postcss 8.5.26 release; allow newer versions in case they include a fix for https://github.com/cssnano/cssnano/issues/1846
     {
       "packageNames": [
           "postcss"
       ],
-      "allowedVersions": "<=8.5.22"
+      "allowedVersions": "!/^8\\.5\\.26$/"
     },
     // allow only patch and minor updates for elasticsearch docker image
     {
