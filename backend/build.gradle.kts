@@ -128,7 +128,7 @@ dependencies {
     // Elasticsearch
     implementation("org.springframework.boot:spring-boot-starter-data-elasticsearch")
 
-    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:3.1.0")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:3.1.1")
 
     implementation("org.apache.httpcomponents.client5:httpclient5")
 
