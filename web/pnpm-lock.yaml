@@ -34,53 +34,53 @@ importers:
         specifier: 10.6.1
         version: 10.6.1(postcss@8.5.28)
       baseline-browser-mapping:
-        specifier: 2.11.25
-        version: 2.11.25
+        specifier: 2.11.26
+        version: 2.11.26
       clean-webpack-plugin:
         specifier: 4.0.0
-        version: 4.0.0(webpack@5.111.0)
+        version: 4.0.0(webpack@5.111.1)
       css-loader:
         specifier: 7.1.5
-        version: 7.1.5(webpack@5.111.0)
+        version: 7.1.5(webpack@5.111.1)
       css-minimizer-webpack-plugin:
         specifier: 8.0.0
-        version: 8.0.0(csso@5.0.5)(webpack@5.111.0)
+        version: 8.0.0(csso@5.0.5)(webpack@5.111.1)
       leaflet.markercluster:
         specifier: 1.5.3
         version: 1.5.3(leaflet@1.9.4)
       mini-css-extract-plugin:
         specifier: 2.10.2
-        version: 2.10.2(webpack@5.111.0)
+        version: 2.10.2(webpack@5.111.1)
       postcss:
         specifier: 8.5.28
         version: 8.5.28
       postcss-loader:
         specifier: 8.2.1
-        version: 8.2.1(postcss@8.5.28)(typescript@6.0.3)(webpack@5.111.0)
+        version: 8.2.1(postcss@8.5.28)(typescript@6.0.3)(webpack@5.111.1)
       prettier:
-        specifier: 3.9.8
-        version: 3.9.8
+        specifier: 3.9.9
+        version: 3.9.9
       sass:
-        specifier: 1.104.1
-        version: 1.104.1
+        specifier: 1.105.0
+        version: 1.105.0
       sass-loader:
         specifier: 17.0.1
-        version: 17.0.1(sass@1.104.1)(webpack@5.111.0)
+        version: 17.0.1(sass@1.105.0)(webpack@5.111.1)
       start-server-and-test:
         specifier: 3.0.12
         version: 3.0.12(supports-color@8.1.1)
       ts-loader:
         specifier: 9.6.2
-        version: 9.6.2(typescript@6.0.3)(webpack@5.111.0)
+        version: 9.6.2(typescript@6.0.3)(webpack@5.111.1)
       typescript:
         specifier: 6.0.3
         version: 6.0.3
       webpack:
-        specifier: 5.111.0
-        version: 5.111.0(cssnano@7.0.6(postcss@8.5.28))(csso@5.0.5)(postcss@8.5.28)(webpack-cli@7.2.3)
+        specifier: 5.111.1
+        version: 5.111.1(cssnano@7.0.6(postcss@8.5.28))(csso@5.0.5)(postcss@8.5.28)(webpack-cli@7.2.3)
       webpack-cli:
         specifier: 7.2.3
-        version: 7.2.3(js-yaml@4.1.0)(webpack@5.111.0)
+        version: 7.2.3(js-yaml@4.1.0)(webpack@5.111.1)
 
 packages:
 
@@ -425,13 +425,13 @@ packages:
   balanced-match@1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
 
-  baseline-browser-mapping@2.11.22:
-    resolution: {integrity: sha512-pWc4w51fBFd7mav43/zKRC+RI6f4yfzQoVlfvE8dECePyfkn1bzLp01Fj0QACcyCZyFhiEMyD2qScfKRWgWibA==}
+  baseline-browser-mapping@2.11.25:
+    resolution: {integrity: sha512-gMmEShwwq7FJqMwvfRwvCl00v4kN+KOfJqXn+f4nrufak5gNHJOksd/60Dvjuz7sI8Y5WiSFBa8FEYr+zoyqCw==}
     engines: {node: '>=6.0.0'}
     hasBin: true
 
-  baseline-browser-mapping@2.11.25:
-    resolution: {integrity: sha512-gMmEShwwq7FJqMwvfRwvCl00v4kN+KOfJqXn+f4nrufak5gNHJOksd/60Dvjuz7sI8Y5WiSFBa8FEYr+zoyqCw==}
+  baseline-browser-mapping@2.11.26:
+    resolution: {integrity: sha512-GLQdD3y6UF8iVuMJl5fHgE4jdn/ua7n+toKfLgNlg3BqQtOZjpy68T8Tup8/wGWZCDlm7KMg7tPb4MPn7oN0TQ==}
     engines: {node: '>=6.0.0'}
     hasBin: true
 
@@ -1378,8 +1378,8 @@ packages:
     resolution: {integrity: sha512-RRuzqDtt5Y9h3quz5hWhK+TPnsmVs6WwSU6LkJMeY4HstUEDuYTG8UJSdawMRzmzAtV+KEoG8N3Qg2qLy5vM/A==}
     engines: {node: ^10 || ^12 || >=14}
 
-  prettier@3.9.8:
-    resolution: {integrity: sha512-WRFq3Wn3WId7LLROfMLdH7xaFr2jR62wU8nLO6rQUOLOxNZUviyJQs1M0iIhLexSFy+L+w0ch66wtoO2jRjG0A==}
+  prettier@3.9.9:
+    resolution: {integrity: sha512-Z/CJHIkdujO/OtN7nXUii0Rf3VT5SRuhjBA82Xvu2XhBUgX3nhP67T0LHceBdQLex7OOFGTox+Q5Yg8Jk2Qivg==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -1442,8 +1442,8 @@ packages:
       webpack:
         optional: true
 
-  sass@1.104.1:
-    resolution: {integrity: sha512-yDA+1aIG3EHgN4V/BvuhCvu61FF6hEd4e+9DxikUm9U0CAGuvdIZ/UYy7qbOxjhbbWQraoyLlMuzdRGOSV5Bmw==}
+  sass@1.105.0:
+    resolution: {integrity: sha512-4EjSuRTyG8M4yRXXY1PT9OUV5zz23xBxJkbIAprohKHqf6HOU4MCpE3U3vAC+iO1gxobBjESNbcj8rYAQZWnyA==}
     engines: {node: '>=20.19.0'}
     hasBin: true
 
@@ -1618,8 +1618,8 @@ packages:
     resolution: {integrity: sha512-jyuiGJdtvY434z5bUZrjz67v76/ePNvFZTp9Mdz29IlH4+GPsgyGjiv0fKI+M7BdkU6ADjulUcKAd3tUK3WlEw==}
     engines: {node: '>=10.13.0'}
 
-  webpack@5.111.0:
-    resolution: {integrity: sha512-A2R74kfE6b3eLKS91iZiol03Ebx7avmJJBOyiP+4LePW9NNeNJGQkKeSQos4dk6R4H0YAMYlv+aOrs1CyWT3eA==}
+  webpack@5.111.1:
+    resolution: {integrity: sha512-cNypaz0RP+S4cvQVi1M/3bRUkvNP0xZpL0TjFx+c6jg64VbxD+2weWDgY9UnjRI6dhZgtaj8DU76GGFcJ79xPQ==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     peerDependencies:
@@ -1990,9 +1990,9 @@ snapshots:
 
   balanced-match@1.0.2: {}
 
-  baseline-browser-mapping@2.11.22: {}
-
   baseline-browser-mapping@2.11.25: {}
+
+  baseline-browser-mapping@2.11.26: {}
 
   boolbase@1.0.0: {}
 
@@ -2012,7 +2012,7 @@ snapshots:
 
   browserslist@4.28.9:
     dependencies:
-      baseline-browser-mapping: 2.11.22
+      baseline-browser-mapping: 2.11.25
       caniuse-lite: 1.0.30001810
       electron-to-chromium: 1.5.427
       node-releases: 2.0.55
@@ -2051,10 +2051,10 @@ snapshots:
 
   ci-info@4.3.1: {}
 
-  clean-webpack-plugin@4.0.0(webpack@5.111.0):
+  clean-webpack-plugin@4.0.0(webpack@5.111.1):
     dependencies:
       del: 4.1.1
-      webpack: 5.111.0(cssnano@7.0.6(postcss@8.5.28))(csso@5.0.5)(postcss@8.5.28)(webpack-cli@7.2.3)
+      webpack: 5.111.1(cssnano@7.0.6(postcss@8.5.28))(csso@5.0.5)(postcss@8.5.28)(webpack-cli@7.2.3)
 
   clone-deep@4.0.1:
     dependencies:
@@ -2101,7 +2101,7 @@ snapshots:
     dependencies:
       postcss: 8.5.28
 
-  css-loader@7.1.5(webpack@5.111.0):
+  css-loader@7.1.5(webpack@5.111.1):
     dependencies:
       icss-utils: 5.1.0(postcss@8.5.28)
       postcss: 8.5.28
@@ -2112,9 +2112,9 @@ snapshots:
       postcss-value-parser: 4.2.0
       semver: 7.6.3
     optionalDependencies:
-      webpack: 5.111.0(cssnano@7.0.6(postcss@8.5.28))(csso@5.0.5)(postcss@8.5.28)(webpack-cli@7.2.3)
+      webpack: 5.111.1(cssnano@7.0.6(postcss@8.5.28))(csso@5.0.5)(postcss@8.5.28)(webpack-cli@7.2.3)
 
-  css-minimizer-webpack-plugin@8.0.0(csso@5.0.5)(webpack@5.111.0):
+  css-minimizer-webpack-plugin@8.0.0(csso@5.0.5)(webpack@5.111.1):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.25
       cssnano: 7.0.6(postcss@8.5.28)
@@ -2122,7 +2122,7 @@ snapshots:
       postcss: 8.5.28
       schema-utils: 4.3.3
       serialize-javascript: 7.0.4
-      webpack: 5.111.0(cssnano@7.0.6(postcss@8.5.28))(csso@5.0.5)(postcss@8.5.28)(webpack-cli@7.2.3)
+      webpack: 5.111.1(cssnano@7.0.6(postcss@8.5.28))(csso@5.0.5)(postcss@8.5.28)(webpack-cli@7.2.3)
     optionalDependencies:
       csso: 5.0.5
 
@@ -2544,11 +2544,11 @@ snapshots:
 
   mimic-fn@2.1.0: {}
 
-  mini-css-extract-plugin@2.10.2(webpack@5.111.0):
+  mini-css-extract-plugin@2.10.2(webpack@5.111.1):
     dependencies:
       schema-utils: 4.3.3
       tapable: 2.3.0
-      webpack: 5.111.0(cssnano@7.0.6(postcss@8.5.28))(csso@5.0.5)(postcss@8.5.28)(webpack-cli@7.2.3)
+      webpack: 5.111.1(cssnano@7.0.6(postcss@8.5.28))(csso@5.0.5)(postcss@8.5.28)(webpack-cli@7.2.3)
 
   minimatch@3.1.2:
     dependencies:
@@ -2556,13 +2556,13 @@ snapshots:
 
   minimist@1.2.8: {}
 
-  minimizer-webpack-plugin@5.8.0(cssnano@7.0.6(postcss@8.5.28))(csso@5.0.5)(postcss@8.5.28)(webpack@5.111.0):
+  minimizer-webpack-plugin@5.8.0(cssnano@7.0.6(postcss@8.5.28))(csso@5.0.5)(postcss@8.5.28)(webpack@5.111.1):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.31
       jest-worker: 27.5.1
-      schema-utils: 4.3.3
+      schema-utils: 4.5.0
       terser: 5.51.2
-      webpack: 5.111.0(cssnano@7.0.6(postcss@8.5.28))(csso@5.0.5)(postcss@8.5.28)(webpack-cli@7.2.3)
+      webpack: 5.111.1(cssnano@7.0.6(postcss@8.5.28))(csso@5.0.5)(postcss@8.5.28)(webpack-cli@7.2.3)
     optionalDependencies:
       cssnano: 7.0.6(postcss@8.5.28)
       csso: 5.0.5
@@ -2692,14 +2692,14 @@ snapshots:
     dependencies:
       postcss: 8.5.28
 
-  postcss-loader@8.2.1(postcss@8.5.28)(typescript@6.0.3)(webpack@5.111.0):
+  postcss-loader@8.2.1(postcss@8.5.28)(typescript@6.0.3)(webpack@5.111.1):
     dependencies:
       cosmiconfig: 9.0.0(typescript@6.0.3)
       jiti: 2.5.1
       postcss: 8.5.28
       semver: 7.6.3
     optionalDependencies:
-      webpack: 5.111.0(cssnano@7.0.6(postcss@8.5.28))(csso@5.0.5)(postcss@8.5.28)(webpack-cli@7.2.3)
+      webpack: 5.111.1(cssnano@7.0.6(postcss@8.5.28))(csso@5.0.5)(postcss@8.5.28)(webpack-cli@7.2.3)
     transitivePeerDependencies:
       - typescript
 
@@ -2854,7 +2854,7 @@ snapshots:
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
-  prettier@3.9.8: {}
+  prettier@3.9.9: {}
 
   proxy-from-env@2.1.0: {}
 
@@ -2888,12 +2888,12 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
-  sass-loader@17.0.1(sass@1.104.1)(webpack@5.111.0):
+  sass-loader@17.0.1(sass@1.105.0)(webpack@5.111.1):
     optionalDependencies:
-      sass: 1.104.1
-      webpack: 5.111.0(cssnano@7.0.6(postcss@8.5.28))(csso@5.0.5)(postcss@8.5.28)(webpack-cli@7.2.3)
+      sass: 1.105.0
+      webpack: 5.111.1(cssnano@7.0.6(postcss@8.5.28))(csso@5.0.5)(postcss@8.5.28)(webpack-cli@7.2.3)
 
-  sass@1.104.1:
+  sass@1.105.0:
     dependencies:
       chokidar: 5.0.0
       immutable: 5.1.5
@@ -3000,13 +3000,13 @@ snapshots:
 
   tree-kill@1.2.2: {}
 
-  ts-loader@9.6.2(typescript@6.0.3)(webpack@5.111.0):
+  ts-loader@9.6.2(typescript@6.0.3)(webpack@5.111.1):
     dependencies:
       chalk: 4.1.2
       picomatch: 4.0.3
       source-map: 0.7.4
       typescript: 6.0.3
-      webpack: 5.111.0(cssnano@7.0.6(postcss@8.5.28))(csso@5.0.5)(postcss@8.5.28)(webpack-cli@7.2.3)
+      webpack: 5.111.1(cssnano@7.0.6(postcss@8.5.28))(csso@5.0.5)(postcss@8.5.28)(webpack-cli@7.2.3)
 
   tslib@2.8.1: {}
 
@@ -3037,7 +3037,7 @@ snapshots:
     dependencies:
       graceful-fs: 4.2.11
 
-  webpack-cli@7.2.3(js-yaml@4.1.0)(webpack@5.111.0):
+  webpack-cli@7.2.3(js-yaml@4.1.0)(webpack@5.111.1):
     dependencies:
       '@discoveryjs/json-ext': 1.1.0
       commander: 14.0.3
@@ -3046,7 +3046,7 @@ snapshots:
       import-local: 3.2.0
       interpret: 3.1.1
       rechoir: 0.8.0
-      webpack: 5.111.0(cssnano@7.0.6(postcss@8.5.28))(csso@5.0.5)(postcss@8.5.28)(webpack-cli@7.2.3)
+      webpack: 5.111.1(cssnano@7.0.6(postcss@8.5.28))(csso@5.0.5)(postcss@8.5.28)(webpack-cli@7.2.3)
       webpack-merge: 6.0.1
     optionalDependencies:
       js-yaml: 4.1.0
@@ -3059,7 +3059,7 @@ snapshots:
 
   webpack-sources@3.5.1: {}
 
-  webpack@5.111.0(cssnano@7.0.6(postcss@8.5.28))(csso@5.0.5)(postcss@8.5.28)(webpack-cli@7.2.3):
+  webpack@5.111.1(cssnano@7.0.6(postcss@8.5.28))(csso@5.0.5)(postcss@8.5.28)(webpack-cli@7.2.3):
     dependencies:
       '@types/estree': 1.0.8
       '@types/json-schema': 7.0.15
@@ -3073,13 +3073,13 @@ snapshots:
       events: 3.3.0
       graceful-fs: 4.2.11
       mime-db: 1.54.0
-      minimizer-webpack-plugin: 5.8.0(cssnano@7.0.6(postcss@8.5.28))(csso@5.0.5)(postcss@8.5.28)(webpack@5.111.0)
+      minimizer-webpack-plugin: 5.8.0(cssnano@7.0.6(postcss@8.5.28))(csso@5.0.5)(postcss@8.5.28)(webpack@5.111.1)
       schema-utils: 4.5.0
       tapable: 2.3.3
       watchpack: 2.5.2
       webpack-sources: 3.5.1
     optionalDependencies:
-      webpack-cli: 7.2.3(js-yaml@4.1.0)(webpack@5.111.0)
+      webpack-cli: 7.2.3(js-yaml@4.1.0)(webpack@5.111.1)
     transitivePeerDependencies:
       - '@minify-html/node'
       - '@swc/core'
