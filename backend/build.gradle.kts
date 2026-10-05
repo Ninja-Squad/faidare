@@ -137,7 +137,7 @@ dependencies {
     implementation("org.apache.poi:poi-ooxml:5.5.1")
 
     // Others
-    implementation("com.google.guava:guava:33.7.1-jre")
+    implementation("com.google.guava:guava:33.7.2-jre")
     implementation("com.opencsv:opencsv:5.12.0")
 
     // Test dependencies
