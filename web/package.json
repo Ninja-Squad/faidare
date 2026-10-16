@@ -4,9 +4,9 @@
   "description": "",
   "private": true,
   "engines": {
-    "node": "24.21.0"
+    "node": "24.22.0"
   },
-  "packageManager": "pnpm@12.10.1",
+  "packageManager": "pnpm@12.11.2",
   "scripts": {
     "build": "webpack --mode development",
     "build:prod": "webpack --mode production",
@@ -42,9 +42,9 @@
     "css-minimizer-webpack-plugin": "8.0.0",
     "leaflet.markercluster": "1.5.3",
     "mini-css-extract-plugin": "2.10.2",
-    "postcss": "8.5.29",
+    "postcss": "8.5.30",
     "postcss-loader": "8.2.1",
-    "prettier": "3.9.9",
+    "prettier": "3.9.10",
     "sass": "1.105.1",
     "sass-loader": "17.0.1",
     "start-server-and-test": "3.0.13",
