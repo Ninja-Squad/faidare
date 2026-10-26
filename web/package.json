@@ -4,9 +4,9 @@
   "description": "",
   "private": true,
   "engines": {
-    "node": "24.22.0"
+    "node": "24.22.1"
   },
-  "packageManager": "pnpm@12.14.0",
+  "packageManager": "pnpm@12.15.0",
   "scripts": {
     "build": "webpack --mode development",
     "build:prod": "webpack --mode production",
@@ -36,21 +36,21 @@
     "@types/bootstrap": "5.2.11",
     "@types/leaflet.markercluster": "1.5.6",
     "autoprefixer": "10.6.1",
-    "baseline-browser-mapping": "2.11.29",
+    "baseline-browser-mapping": "2.11.31",
     "clean-webpack-plugin": "4.0.0",
     "css-loader": "7.1.5",
     "css-minimizer-webpack-plugin": "8.0.0",
     "leaflet.markercluster": "1.5.3",
     "mini-css-extract-plugin": "2.10.2",
-    "postcss": "8.5.30",
+    "postcss": "8.5.31",
     "postcss-loader": "8.2.1",
     "prettier": "3.9.10",
-    "sass": "1.105.2",
+    "sass": "1.106.1",
     "sass-loader": "17.0.1",
     "start-server-and-test": "3.0.13",
     "ts-loader": "9.6.2",
     "typescript": "6.0.3",
-    "webpack": "5.112.0",
+    "webpack": "5.112.1",
     "webpack-cli": "7.2.3"
   },
   "browserslist": [
