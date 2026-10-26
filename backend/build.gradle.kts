@@ -10,7 +10,7 @@ buildscript {
 plugins {
     java
     jacoco
-    id("org.springframework.boot") version "4.1.1"
+    id("org.springframework.boot") version "4.1.2"
     id("com.gorylenko.gradle-git-properties") version "4.0.1"
     id("io.spring.dependency-management") version "1.1.7"
     id("org.sonarqube")
@@ -105,7 +105,7 @@ tasks {
     }
 }
 
-extra["springCloudVersion"] = "2025.1.3"
+extra["springCloudVersion"] = "2025.1.4"
 dependencyManagement {
     imports {
         mavenBom("org.springframework.cloud:spring-cloud-dependencies:${property("springCloudVersion")}")
@@ -128,7 +128,7 @@ dependencies {
     // Elasticsearch
     implementation("org.springframework.boot:spring-boot-starter-data-elasticsearch")
 
-    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:3.1.1")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:3.2.0")
 
     implementation("org.apache.httpcomponents.client5:httpclient5")
 
