@@ -59,7 +59,9 @@ test.describe('Trial', () => {
     const exportPagePromise = context.waitForEvent('page');
 
     await page.getByRole('button', { name: 'Export', exact: true }).click();
-    await expect(page.getByRole('heading', { level: 1, name: 'Export observations for trial Drops Phenotyping Network' })).not.toBeVisible();
+    await expect(
+      page.getByRole('heading', { level: 1, name: 'Export observations for trial Drops Phenotyping Network' })
+    ).not.toBeVisible();
 
     const exportPage = await exportPagePromise;
 

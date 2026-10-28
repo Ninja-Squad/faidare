@@ -1,5 +1,5 @@
 allowBuilds:
-  '@parcel/watcher': false
+    '@parcel/watcher': false
 
 overrides:
-  postcss: 8.5.31
+    postcss: 8.5.31

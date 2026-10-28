@@ -47,7 +47,13 @@ tasks {
         inputs.dir("src")
         inputs.dir("e2e")
         inputs.file("package.json")
-        outputs.file(layout.buildDirectory.file("prettier-result.txt"))
+        inputs.file(".oxfmtrc.json")
+        inputs.file(rootProject.file(".editorconfig"))
+        inputs.file("pnpm-lock.yaml")
+        inputs.file("pnpm-workspace.yaml")
+        inputs.file("playwright.config.ts")
+        inputs.file("tsconfig.json")
+        inputs.file("webpack.config.js")
     }
 
     val e2e by registering(PnpmTask::class) {

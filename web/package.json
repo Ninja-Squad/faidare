@@ -13,9 +13,9 @@
     "watch": "webpack --mode development --watch",
     "watch:prod": "webpack --mode production --watch",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "format": "prettier --write \"src/**/*.+(ts|js|json|html|scss)\"",
-    "format:check": "prettier --check \"src/**/*.+(ts|js|json|html|scss)\"",
-    "format:backend-templates": "prettier --write ../backend/src/main/resources/templates",
+    "format": "oxfmt --write .",
+    "format:check": "oxfmt --check .",
+    "format:backend-templates": "cd .. && web/node_modules/.bin/oxfmt --write backend/src/main/resources/templates",
     "e2e": "playwright test --ui",
     "e2e:headless": "playwright test",
     "start:e2e": "cd .. && java -jar backend/build/libs/faidare.jar --spring.profiles.active=e2e",
@@ -42,9 +42,9 @@
     "css-minimizer-webpack-plugin": "8.0.0",
     "leaflet.markercluster": "1.5.3",
     "mini-css-extract-plugin": "2.10.2",
+    "oxfmt": "0.74.0",
     "postcss": "8.5.31",
     "postcss-loader": "8.2.1",
-    "prettier": "3.9.10",
     "sass": "1.106.1",
     "sass-loader": "17.0.1",
     "start-server-and-test": "3.0.13",
@@ -55,11 +55,5 @@
   },
   "browserslist": [
     "defaults"
-  ],
-  "prettier": {
-    "printWidth": 140,
-    "singleQuote": true,
-    "arrowParens": "avoid",
-    "trailingComma": "none"
-  }
+  ]
 }

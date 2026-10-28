@@ -1,0 +1,13 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "printWidth": 140,
+  "singleQuote": true,
+  "arrowParens": "avoid",
+  "trailingComma": "none",
+  "sortPackageJson": false,
+  "ignorePatterns": ["build/**", "playwright-report/**", "test-results/**"],
+  "sortImports": {
+    "newlinesBetween": false,
+    "sortSideEffects": false
+  }
+}
