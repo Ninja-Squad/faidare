@@ -1,7 +1,7 @@
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 module.exports = (env, argv) => ({
     context: path.resolve(__dirname, '.'),
@@ -31,7 +31,7 @@ module.exports = (env, argv) => ({
             {
                 test: /\.tsx?$/,
                 use: 'ts-loader',
-                exclude: /node_modules/,
+                exclude: /node_modules/
             },
             {
                 // .scss files are loaded by the sass-loader, which transforms them into css loaded by the css-loader
@@ -42,20 +42,20 @@ module.exports = (env, argv) => ({
                     'css-loader',
                     'sass-loader',
                     {
-                        loader: "postcss-loader",
+                        loader: 'postcss-loader',
                         options: {
                             postcssOptions: {
-                                plugins: ["autoprefixer",],
-                            },
-                        },
+                                plugins: ['autoprefixer']
+                            }
+                        }
                     }
-                ],
-            },
-        ],
+                ]
+            }
+        ]
     },
     resolve: {
         // our files are .ts files, but libraries are bundled in .js files
-        extensions: ['.ts', '.js'],
+        extensions: ['.ts', '.js']
     },
     output: {
         // the output is stored in build/dist/resources
@@ -63,10 +63,7 @@ module.exports = (env, argv) => ({
         filename: argv.mode === 'production' ? '[name].[contenthash].js' : '[name].js'
     },
     optimization: {
-        minimizer: [
-            '...',
-            new CssMinimizerPlugin()
-        ]
+        minimizer: ['...', new CssMinimizerPlugin()]
     },
     performance: {
         maxAssetSize: 300000,
