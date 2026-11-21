@@ -1,17 +1,42 @@
 import { expect, test } from '@playwright/test';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
+
+const basemap = readFileSync(join(__dirname, '../fixtures/natural-earth.svg'), 'utf8');
 
 test.describe('Trial', () => {
+  test.use({ viewport: { width: 1280, height: 1200 } });
+
   test('should display the trial page and export', async ({ page, context }) => {
     test.setTimeout(45_000);
+    // Crop each requested tile from the same offline Web Mercator basemap.
+    await page.route('https://server.arcgisonline.com/**/tile/**', route => {
+      const [zoom, row, column] = new URL(route.request().url()).pathname.split('/').slice(-3).map(Number);
+      const size = 256 / 2 ** zoom;
+      return route.fulfill({
+        contentType: 'image/svg+xml',
+        body: basemap.replace('viewBox="0 0 256 256"', `viewBox="${column * size} ${row * size} ${size} ${size}"`)
+      });
+    });
     await page.goto('/faidare-dev/trials/dXJuOklOUkFFLVVSR0kvdHJpYWwvNDI=');
 
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('Trial Network: Drops Phenotyping Network');
+
+    const map = page.locator('#map-container');
+    await expect(map.locator('.leaflet-tile-loaded').first()).toBeVisible();
+    await expect(map.locator('.marker-cluster').first()).toBeVisible();
+    await expect(map).toHaveScreenshot('trial-map.png');
+
+    await map.locator('img.leaflet-marker-icon').first().click();
+    await expect(map.locator('.leaflet-popup').getByRole('link', { name: 'Details' })).toBeVisible();
+    await map.getByRole('button', { name: 'Close popup' }).click();
 
     await page.getByRole('button', { name: 'Export observations' }).click();
     const dropdown = page.locator('.dropdown-menu');
     await dropdown.getByRole('button', { name: 'Level: REPLICATE>BLOCK>PLOT', exact: true }).click();
 
     await expect(page.getByRole('heading', { level: 1, name: 'Export observations for trial Drops Phenotyping Network' })).toBeVisible();
+    await expect(page.getByRole('dialog').locator('.modal-content')).toHaveScreenshot('trial-export-modal.png');
 
     // check all years
     await page.locator('#season-names').getByRole('button', { name: 'All' }).click();
@@ -59,7 +84,9 @@ test.describe('Trial', () => {
     const exportPagePromise = context.waitForEvent('page');
 
     await page.getByRole('button', { name: 'Export', exact: true }).click();
-    await expect(page.getByRole('heading', { level: 1, name: 'Export observations for trial Drops Phenotyping Network' })).not.toBeVisible();
+    await expect(
+      page.getByRole('heading', { level: 1, name: 'Export observations for trial Drops Phenotyping Network' })
+    ).not.toBeVisible();
 
     const exportPage = await exportPagePromise;
 
