@@ -1,9 +1,6 @@
 spring:
   config:
     import: 'optional:configserver:'
-  mvc:
-    pathmatch:
-      matching-strategy: ant-path-matcher
   cloud:
     config:
       name: faidare-cards
