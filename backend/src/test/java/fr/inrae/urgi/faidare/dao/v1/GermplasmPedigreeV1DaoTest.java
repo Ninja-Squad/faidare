@@ -1,6 +1,5 @@
 package fr.inrae.urgi.faidare.dao.v1;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.inrae.urgi.faidare.domain.brapi.v1.GermplasmPedigreeV1VO;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -96,7 +95,6 @@ public class GermplasmPedigreeV1DaoTest {
         GermplasmPedigreeV1VO vo = dao.getByGermplasmDbId("dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzQ1MDM3");
         assertThat(vo).isNotNull();
         assertThat(vo.getGermplasmDbId()).isEqualTo("dXJuOklOUkFFLVVSR0kvZ2VybXBsYXNtLzQ1MDM3");
-        ObjectMapper jacksonMapper = new ObjectMapper();
 //        try {
 //            JSONAssert.assertEquals(expectedPedigree, jacksonMapper.writeValueAsString(vo), JSONCompareMode.LENIENT);
 //        } catch (JsonProcessingException e) {
