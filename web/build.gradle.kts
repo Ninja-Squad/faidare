@@ -29,10 +29,11 @@ tasks {
     val pnpmBuildProd by registering(PnpmTask::class) {
         args.set(listOf("run", "build:prod"))
         dependsOn(prepare)
-        inputs.file("webpack.config.js")
+        inputs.file("vite.config.mjs")
         inputs.file("tsconfig.json")
         inputs.file("package.json")
         inputs.file("pnpm-lock.yaml")
+        inputs.file("pnpm-workspace.yaml")
         inputs.dir("src")
         outputs.dir(layout.buildDirectory.dir("dist"))
     }
@@ -53,7 +54,7 @@ tasks {
         inputs.file("pnpm-workspace.yaml")
         inputs.file("playwright.config.ts")
         inputs.file("tsconfig.json")
-        inputs.file("webpack.config.js")
+        inputs.file("vite.config.mjs")
     }
 
     val e2e by registering(PnpmTask::class) {
