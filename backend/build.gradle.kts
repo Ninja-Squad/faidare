@@ -56,9 +56,18 @@ tasks {
         // replace the script.js and style.css file names referenced in main.html
         // by their actual name, containing the content hash
         filesMatching("**/layout/main.html") {
-            val webAssetsDir = project(":web").file("build/dist/resources/");
-            val scriptFileName = webAssetsDir.list().first { it.startsWith("script") && it.endsWith(".js") }
-            val styleFileName = webAssetsDir.list().first { it.startsWith("style") && it.endsWith(".css") }
+            val webAssetsDir = project(":web").file("build/dist/resources/")
+            /** Finds the hashed filename for the template, failing packaging if it is missing or ambiguous. */
+            fun hashedAsset(stem: String, extension: String): String {
+                val pattern = Regex("$stem\\.[A-Za-z0-9_-]+\\.$extension")
+                val matches = webAssetsDir.listFiles().orEmpty().filter { it.isFile && pattern.matches(it.name) }
+                check(matches.size == 1) {
+                    "Expected exactly one $stem.<hash>.$extension in $webAssetsDir, found ${matches.map { it.name }}"
+                }
+                return matches.single().name
+            }
+            val scriptFileName = hashedAsset("script", "js")
+            val styleFileName = hashedAsset("style", "css")
 
             filter { line ->
                 if (line.contains("script.js")) {
