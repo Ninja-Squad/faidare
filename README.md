@@ -94,13 +94,12 @@ cd web
 pnpm watch
 ```
 
-`pnpm watch` automatically picks up the changes in any files,
-and rebuild the resulting assets (thanks to Webpack).
-Make sure the backend is running with the `dev` profile if you do so (see above),
-otherwise the changes won't be shown in the browser.
+`pnpm watch` rebuilds assets with Vite and reports TypeScript errors as you edit.
+Run the backend with the `dev` profile and reload the page to see changes.
 
-`pnpm watch:prod` is also available to use production settings,
-while `pnpm build` and `pnpm build:prod` do the same but without watching the changes. 
+`pnpm build` builds once. `pnpm build:prod` and `pnpm watch:prod` write minified,
+hashed assets for packaging rather than for the `dev` profile. All four commands
+write to `web/build/dist/resources`, so run only one at a time.
 
 ## GitLab CI
 
@@ -144,4 +143,3 @@ to check what has to be changed.
 
 If you want to use a Spring Cloud configuration server, please refer to
 https://spring.io/guides/gs/centralized-configuration/
-

@@ -1,3 +1,5 @@
+// Vite extracts this into the standalone stylesheet loaded by Thymeleaf.
+import './style/style.scss';
 import { initializePopovers } from './bootstrap/popovers';
 import { initializeMap } from './map/map';
 import 'bootstrap/js/dist/dropdown';
